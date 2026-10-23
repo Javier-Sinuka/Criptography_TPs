@@ -1,0 +1,3 @@
+256 SHA256:gx3TAEzcITB7tlwK4o7nUwGPImb++YJnJINPQk1zZ9c mfa-loopback-client (ED25519)
+/home/cisco/.ssh/id_ed25519_mfa_lab 600
+/home/cisco/.ssh/id_ed25519_wrong 600

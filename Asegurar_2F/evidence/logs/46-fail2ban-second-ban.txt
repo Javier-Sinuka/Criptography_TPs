@@ -1,0 +1,16 @@
+attempt=1 exit=255 time_utc=2026-10-13T05:21:36Z
+   |- Currently banned:	0
+   |- Total banned:	1
+   `- Banned IP list:	
+attempt=2 exit=255 time_utc=2026-10-13T05:21:37Z
+   |- Currently banned:	0
+   |- Total banned:	1
+   `- Banned IP list:	
+attempt=3 exit=255 time_utc=2026-10-13T05:21:39Z
+   |- Currently banned:	0
+   |- Total banned:	1
+   `- Banned IP list:	
+attempt=4 exit=255 time_utc=2026-10-13T05:21:40Z
+   |- Currently banned:	1
+   |- Total banned:	2
+   `- Banned IP list:	10.0.2.2

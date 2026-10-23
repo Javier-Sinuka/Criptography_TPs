@@ -1,0 +1,22 @@
+Oct 13 05:04:12 labvm sshd[2985]: Accepted publickey for cisco from 10.0.2.2 port 60024 ssh2: ED25519 SHA256:TNJCpC5/A8RHEIlVg7Z34u3Db1TUnbzyGXEy2n7thIY
+Oct 13 05:04:31 labvm sshd[3052]: Accepted publickey for cisco from 10.0.2.2 port 39950 ssh2: ED25519 SHA256:TNJCpC5/A8RHEIlVg7Z34u3Db1TUnbzyGXEy2n7thIY
+Oct 13 05:12:14 labvm sshd[1173]: Accepted publickey for cisco from 10.0.2.2 port 40092 ssh2: ED25519 SHA256:TNJCpC5/A8RHEIlVg7Z34u3Db1TUnbzyGXEy2n7thIY
+Oct 13 05:12:42 labvm sshd[1249]: Accepted publickey for cisco from 10.0.2.2 port 34536 ssh2: ED25519 SHA256:TNJCpC5/A8RHEIlVg7Z34u3Db1TUnbzyGXEy2n7thIY
+Oct 13 05:12:43 labvm sudo:    cisco : PWD=/ ; USER=root ; COMMAND=/bin/bash -lc cp -a /etc/pam.d/sshd /root/ssh2fa-backup-2026-10-13/sshd.pre-mfa; cp -a /etc/ssh/sshd_config.d/10-lab-ssh.conf /root/ssh2fa-backup-2026-10-13/10-lab-ssh.pre-mfa.conf; sed -i "s/^@include common-auth/#@include common-auth/" /etc/pam.d/sshd; sed -i "/^#@include common-auth/a auth required pam_google_authenticator.so" /etc/pam.d/sshd; install -o root -g root -m 644 /tmp/10-lab-ssh.conf /etc/ssh/sshd_config.d/10-lab-ssh.conf; /usr/sbin/sshd -t; /usr/sbin/sshd -T | grep -E "^(usepam|pubkeyauthentication|passwordauthentication|kbdinteractiveauthentication|authenticationmethods)"; grep -nE "^#@include common-auth|^auth required pam_google_authenticator.so" /etc/pam.d/sshd; systemctl reload ssh; systemctl is-active ssh
+Oct 13 05:12:52 labvm sshd(pam_google_authenticator)[1331]: Accepted google_authenticator for cisco
+Oct 13 05:12:52 labvm sshd[1329]: Accepted keyboard-interactive/pam for cisco from 127.0.0.1 port 56934 ssh2
+Oct 13 05:13:15 labvm sshd(pam_google_authenticator)[1388]: Invalid verification code for cisco
+Oct 13 05:13:30 labvm sshd(pam_google_authenticator)[1396]: Invalid verification code for cisco
+Oct 13 05:13:45 labvm sshd(pam_google_authenticator)[1397]: Did not receive verification code from user
+Oct 13 05:13:45 labvm sshd(pam_google_authenticator)[1397]: Invalid verification code for cisco
+Oct 13 05:14:13 labvm sshd(pam_google_authenticator)[1407]: Did not receive verification code from user
+Oct 13 05:14:13 labvm sshd(pam_google_authenticator)[1407]: Invalid verification code for cisco
+Oct 13 05:14:13 labvm sshd(pam_google_authenticator)[1408]: Did not receive verification code from user
+Oct 13 05:14:13 labvm sshd(pam_google_authenticator)[1408]: Invalid verification code for cisco
+Oct 13 05:14:13 labvm sshd(pam_google_authenticator)[1409]: Did not receive verification code from user
+Oct 13 05:14:13 labvm sshd(pam_google_authenticator)[1409]: Invalid verification code for cisco
+Oct 13 05:15:05 labvm sshd(pam_google_authenticator)[1451]: Invalid verification code for cisco
+Oct 13 05:15:05 labvm sshd(pam_google_authenticator)[1456]: Invalid verification code for cisco
+Oct 13 05:15:06 labvm sshd(pam_google_authenticator)[1460]: Accepted google_authenticator for cisco
+Oct 13 05:15:06 labvm sshd[1458]: Accepted keyboard-interactive/pam for cisco from 127.0.0.1 port 33028 ssh2
+Oct 13 05:15:20 labvm sudo:    cisco : PWD=/ ; USER=root ; COMMAND=/bin/bash -lc grep -E "(Accepted publickey|Accepted keyboard-interactive|Failed keyboard-interactive|pam_google_authenticator|Partial publickey)" /var/log/auth.log | tail -n 22

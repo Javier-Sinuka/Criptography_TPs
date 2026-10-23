@@ -1,0 +1,18 @@
+Fail2Ban v0.11.2
+iptables v1.8.7 (nf_tables)
+active
+/var/log/auth.log 52641 bytes
+/etc/fail2ban/action.d/iptables-multiport.conf
+/etc/fail2ban/action.d/nftables-multiport.conf
+backend = auto
+filter = %(__name__)s[mode=%(mode)s]
+port = 0:65535
+banaction = iptables-multiport
+banaction_allports = iptables-allports
+port    = ssh
+backend = %(sshd_backend)s
+port     = ssh
+backend  = %(dropbear_backend)s
+port     = ssh
+port     = http,https
+port     = http,https

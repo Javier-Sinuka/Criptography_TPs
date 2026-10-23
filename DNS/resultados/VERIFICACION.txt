@@ -1,0 +1,19 @@
+VERIFICACION DEL LABORATORIO DNS
+
+- Los PCAP son capturas de dumpcap, no archivos de paquetes sintetizados.
+- Normal: 22 tramas, 10 consultas, 10 respuestas y 2 ARP.
+- Demostracion: 83 tramas, 34 consultas y 34 respuestas DNS.
+- Descartes informados por dumpcap: cero en ambas capturas definitivas.
+- 1072 bytes de contenido ficticio; original y dos reconstrucciones identicos.
+- Detector Python: 0 candidatas normales y 33 candidatas en la demostracion.
+- Una alerta agrupada para 10.203.0.1 / lab.test.
+- Filtro de Wireshark de longitud: 33 coincidencias sobre la demo.
+- Contraste rawshark: 272 + 827 = 1099 valores coincidentes.
+- Guia de defensa: 20 preguntas y respuestas.
+- Se conservaron la incidencia de captura y el intento inicial sin PCAP.
+- Se retiraron los dos namespaces experimentales; no se cambio la red del host.
+
+Fuentes verificables: analisis.json, rawshark_*.txt, filtro_longitud.txt,
+vm/dumpcap_normal.txt, vm/dumpcap_exfil.txt y vm/ejecucion_aislada.txt.
+
+PDF compilado y revisado: sin errores, referencias pendientes ni desbordamientos.

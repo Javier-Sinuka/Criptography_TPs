@@ -1,0 +1,3779 @@
+
+=== FECHA ===
+2026-09-20T11:18:40.973319-03:00
+=== COMANDO ===
+date --iso-8601=seconds
+=== RESULTADO ===
+2026-09-20T11:18:40-03:00
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:18:40.979385-03:00
+=== COMANDO ===
+cat /etc/os-release
+=== RESULTADO ===
+PRETTY_NAME="Ubuntu 24.04.4 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.4 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:18:40.982599-03:00
+=== COMANDO ===
+uname -a
+=== RESULTADO ===
+Linux javier-lcd 7.0.0-31-generic #31~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Mon Aug 10 09:38:02 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:18:40.989534-03:00
+=== COMANDO ===
+id
+=== RESULTADO ===
+uid=1000(javier) gid=1000(javier) groups=1000(javier),4(adm),20(dialout),24(cdrom),27(sudo),30(dip),46(plugdev),100(users),114(lpadmin),984(docker)
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:18:40.994526-03:00
+=== COMANDO ===
+ip -br addr
+=== RESULTADO ===
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+enp4s0           DOWN           
+wlp5s0           UP             192.168.1.163/24 2803:9810:8372:db08:daa1:aa9e:1220:3514/64 2803:9810:8372:db08:20a8:80ea:74fe:520a/64 fdab:ec5a:2bdb:8:c6f5:a363:26fe:2eb5/64 fdab:ec5a:2bdb:8:9bc6:63fe:7bf3:946c/64 fe80::689d:1127:4bf1:250e/64 
+br-1385c38ab001  DOWN           172.23.0.1/16 
+br-338bb2bba8bd  DOWN           172.22.0.1/16 
+br-616fc5cbd3f5  DOWN           172.27.0.1/16 
+br-b585bc4995bb  DOWN           172.28.0.1/24 
+docker0          DOWN           172.17.0.1/16 
+br-ccbef031a412  DOWN           172.25.0.1/16 
+br-d92acc0dd0b4  DOWN           172.20.0.1/16 
+br-dbae8a604ea0  DOWN           172.30.2.1/24 
+br-34c976162a53  DOWN           172.19.0.1/16 
+br-3cd8e843bc3f  DOWN           172.30.1.1/24 
+br-8c66809ff0d7  DOWN           172.21.0.1/16 
+br-b17508390bc8  DOWN           172.26.0.1/16 
+br-b44b5a1ff467  DOWN           172.24.0.1/16 
+br-e015a35c7e62  DOWN           172.18.0.1/16 
+br-17ce80e25b8e  DOWN           198.18.24.1/24 
+br-3b80079c4793  DOWN           198.18.17.1/24 
+br-ac8fa0746f40  DOWN           198.18.25.1/24 
+br-7ce617033add  DOWN           198.18.29.1/24 
+br-9d3151387967  DOWN           198.18.15.1/24 
+br-dc05e9a1e63b  DOWN           198.18.1.1/24 
+br-e0325fd6a7c3  DOWN           172.31.0.1/16 
+br-1434ee26641f  DOWN           198.18.18.1/24 
+br-365aef83c7b5  DOWN           198.18.30.1/24 
+br-56617e38732f  DOWN           198.18.22.1/24 
+br-689346b4d9bb  DOWN           198.18.20.1/24 
+br-88ba811fe179  DOWN           198.18.8.1/24 
+br-9a7a2d2c2b3d  DOWN           198.18.2.1/24 
+br-cb2d84e74ac7  DOWN           198.18.9.1/24 
+br-0df970f85c1e  DOWN           198.18.26.1/24 
+br-16e1f1fe1e4c  DOWN           198.18.31.1/24 
+br-72ebd6b7d1ba  DOWN           198.18.21.1/24 
+br-b774b02f61b8  DOWN           198.18.27.1/24 
+br-c6a91d9c03ef  DOWN           198.18.10.1/24 
+br-ee8b84b0e030  DOWN           198.18.28.1/24 
+br-6d5ef8715eac  DOWN           198.18.5.1/24 
+br-82c3e18637bc  DOWN           198.18.13.1/24 
+br-8605553cbf92  DOWN           198.18.3.1/24 
+br-b658d61fa9c8  DOWN           172.29.0.1/16 
+br-d5962bc6ab60  DOWN           198.18.7.1/24 
+br-0de762046101  DOWN           198.18.11.1/24 
+br-6cda9daea60e  DOWN           198.18.12.1/24 
+br-aee5da2d2fb6  DOWN           172.30.0.1/16 
+br-fde7268bb614  DOWN           198.18.19.1/24 
+br-0c6a6fb579aa  DOWN           198.18.14.1/24 
+br-544c735af9be  DOWN           198.18.23.1/24 
+br-3bb0b90c6261  DOWN           198.18.6.1/24 
+br-70cb6672194f  DOWN           198.18.4.1/24 
+br-c89fd6c2989c  DOWN           198.18.16.1/24 
+br-fe345ac90824  DOWN           198.18.32.1/24 
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:18:40.999461-03:00
+=== COMANDO ===
+ip route
+=== RESULTADO ===
+default via 192.168.1.1 dev wlp5s0 proto dhcp src 192.168.1.163 metric 600 
+172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 linkdown 
+172.18.0.0/16 dev br-e015a35c7e62 proto kernel scope link src 172.18.0.1 linkdown 
+172.19.0.0/16 dev br-34c976162a53 proto kernel scope link src 172.19.0.1 linkdown 
+172.20.0.0/16 dev br-d92acc0dd0b4 proto kernel scope link src 172.20.0.1 linkdown 
+172.21.0.0/16 dev br-8c66809ff0d7 proto kernel scope link src 172.21.0.1 linkdown 
+172.22.0.0/16 dev br-338bb2bba8bd proto kernel scope link src 172.22.0.1 linkdown 
+172.23.0.0/16 dev br-1385c38ab001 proto kernel scope link src 172.23.0.1 linkdown 
+172.24.0.0/16 dev br-b44b5a1ff467 proto kernel scope link src 172.24.0.1 linkdown 
+172.25.0.0/16 dev br-ccbef031a412 proto kernel scope link src 172.25.0.1 linkdown 
+172.26.0.0/16 dev br-b17508390bc8 proto kernel scope link src 172.26.0.1 linkdown 
+172.27.0.0/16 dev br-616fc5cbd3f5 proto kernel scope link src 172.27.0.1 linkdown 
+172.28.0.0/24 dev br-b585bc4995bb proto kernel scope link src 172.28.0.1 linkdown 
+172.29.0.0/16 dev br-b658d61fa9c8 proto kernel scope link src 172.29.0.1 linkdown 
+172.30.0.0/16 dev br-aee5da2d2fb6 proto kernel scope link src 172.30.0.1 linkdown 
+172.30.1.0/24 dev br-3cd8e843bc3f proto kernel scope link src 172.30.1.1 linkdown 
+172.30.2.0/24 dev br-dbae8a604ea0 proto kernel scope link src 172.30.2.1 linkdown 
+172.31.0.0/16 dev br-e0325fd6a7c3 proto kernel scope link src 172.31.0.1 linkdown 
+192.168.1.0/24 dev wlp5s0 proto kernel scope link src 192.168.1.163 metric 600 
+198.18.1.0/24 dev br-dc05e9a1e63b proto kernel scope link src 198.18.1.1 linkdown 
+198.18.2.0/24 dev br-9a7a2d2c2b3d proto kernel scope link src 198.18.2.1 linkdown 
+198.18.3.0/24 dev br-8605553cbf92 proto kernel scope link src 198.18.3.1 linkdown 
+198.18.4.0/24 dev br-70cb6672194f proto kernel scope link src 198.18.4.1 linkdown 
+198.18.5.0/24 dev br-6d5ef8715eac proto kernel scope link src 198.18.5.1 linkdown 
+198.18.6.0/24 dev br-3bb0b90c6261 proto kernel scope link src 198.18.6.1 linkdown 
+198.18.7.0/24 dev br-d5962bc6ab60 proto kernel scope link src 198.18.7.1 linkdown 
+198.18.8.0/24 dev br-88ba811fe179 proto kernel scope link src 198.18.8.1 linkdown 
+198.18.9.0/24 dev br-cb2d84e74ac7 proto kernel scope link src 198.18.9.1 linkdown 
+198.18.10.0/24 dev br-c6a91d9c03ef proto kernel scope link src 198.18.10.1 linkdown 
+198.18.11.0/24 dev br-0de762046101 proto kernel scope link src 198.18.11.1 linkdown 
+198.18.12.0/24 dev br-6cda9daea60e proto kernel scope link src 198.18.12.1 linkdown 
+198.18.13.0/24 dev br-82c3e18637bc proto kernel scope link src 198.18.13.1 linkdown 
+198.18.14.0/24 dev br-0c6a6fb579aa proto kernel scope link src 198.18.14.1 linkdown 
+198.18.15.0/24 dev br-9d3151387967 proto kernel scope link src 198.18.15.1 linkdown 
+198.18.16.0/24 dev br-c89fd6c2989c proto kernel scope link src 198.18.16.1 linkdown 
+198.18.17.0/24 dev br-3b80079c4793 proto kernel scope link src 198.18.17.1 linkdown 
+198.18.18.0/24 dev br-1434ee26641f proto kernel scope link src 198.18.18.1 linkdown 
+198.18.19.0/24 dev br-fde7268bb614 proto kernel scope link src 198.18.19.1 linkdown 
+198.18.20.0/24 dev br-689346b4d9bb proto kernel scope link src 198.18.20.1 linkdown 
+198.18.21.0/24 dev br-72ebd6b7d1ba proto kernel scope link src 198.18.21.1 linkdown 
+198.18.22.0/24 dev br-56617e38732f proto kernel scope link src 198.18.22.1 linkdown 
+198.18.23.0/24 dev br-544c735af9be proto kernel scope link src 198.18.23.1 linkdown 
+198.18.24.0/24 dev br-17ce80e25b8e proto kernel scope link src 198.18.24.1 linkdown 
+198.18.25.0/24 dev br-ac8fa0746f40 proto kernel scope link src 198.18.25.1 linkdown 
+198.18.26.0/24 dev br-0df970f85c1e proto kernel scope link src 198.18.26.1 linkdown 
+198.18.27.0/24 dev br-b774b02f61b8 proto kernel scope link src 198.18.27.1 linkdown 
+198.18.28.0/24 dev br-ee8b84b0e030 proto kernel scope link src 198.18.28.1 linkdown 
+198.18.29.0/24 dev br-7ce617033add proto kernel scope link src 198.18.29.1 linkdown 
+198.18.30.0/24 dev br-365aef83c7b5 proto kernel scope link src 198.18.30.1 linkdown 
+198.18.31.0/24 dev br-16e1f1fe1e4c proto kernel scope link src 198.18.31.1 linkdown 
+198.18.32.0/24 dev br-fe345ac90824 proto kernel scope link src 198.18.32.1 linkdown 
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:18:41.003304-03:00
+=== COMANDO ===
+ip neigh
+=== RESULTADO ===
+192.168.1.139 dev wlp5s0 lladdr a0:d0:5b:56:4c:06 STALE 
+192.168.1.1 dev wlp5s0 lladdr 74:24:9f:b1:e1:cd REACHABLE 
+192.168.1.41 dev wlp5s0 lladdr d8:bf:c0:16:fb:79 STALE 
+172.18.113.255 dev br-e015a35c7e62 FAILED 
+192.168.1.193 dev wlp5s0 lladdr 58:41:46:3d:10:96 REACHABLE 
+172.18.112.226 dev br-e015a35c7e62 FAILED 
+fe80::7624:9fff:feb1:e1cd dev wlp5s0 lladdr 74:24:9f:b1:e1:cd router REACHABLE 
+fdab:ec5a:2bdb:8::1 dev wlp5s0 lladdr 74:24:9f:b1:e1:cd router STALE 
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:18:41.007702-03:00
+=== COMANDO ===
+cat /etc/resolv.conf
+=== RESULTADO ===
+# This is /run/systemd/resolve/stub-resolv.conf managed by man:systemd-resolved(8).
+# Do not edit.
+#
+# This file might be symlinked as /etc/resolv.conf. If you're looking at
+# /etc/resolv.conf and seeing this text, you have followed the symlink.
+#
+# This is a dynamic resolv.conf file for connecting local clients to the
+# internal DNS stub resolver of systemd-resolved. This file lists all
+# configured search domains.
+#
+# Run "resolvectl status" to see details about the uplink DNS servers
+# currently in use.
+#
+# Third party programs should typically not access this file directly, but only
+# through the symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a
+# different way, replace this symlink by a static file or a different symlink.
+#
+# See man:systemd-resolved.service(8) for details about the supported modes of
+# operation for /etc/resolv.conf.
+
+nameserver 127.0.0.53
+options edns0 trust-ad
+search lan
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:18:41.010780-03:00
+=== COMANDO ===
+resolvectl status
+=== RESULTADO ===
+Global
+         Protocols: -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+  resolv.conf mode: stub
+
+Link 2 (enp4s0)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 3 (wlp5s0)
+    Current Scopes: DNS
+         Protocols: +DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+Current DNS Server: 192.168.1.1
+       DNS Servers: 192.168.1.1 fdab:ec5a:2bdb:8::1
+        DNS Domain: lan
+
+Link 5 (br-1385c38ab001)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 6 (br-338bb2bba8bd)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 7 (br-616fc5cbd3f5)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 8 (br-b585bc4995bb)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 9 (docker0)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 10 (br-ccbef031a412)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 11 (br-d92acc0dd0b4)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 12 (br-dbae8a604ea0)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 13 (br-34c976162a53)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 14 (br-3cd8e843bc3f)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 15 (br-8c66809ff0d7)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 16 (br-b17508390bc8)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 17 (br-b44b5a1ff467)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 18 (br-e015a35c7e62)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 19 (br-17ce80e25b8e)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 20 (br-3b80079c4793)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 21 (br-ac8fa0746f40)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 22 (br-7ce617033add)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 23 (br-9d3151387967)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 24 (br-dc05e9a1e63b)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 25 (br-e0325fd6a7c3)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 26 (br-1434ee26641f)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 27 (br-365aef83c7b5)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 28 (br-56617e38732f)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 29 (br-689346b4d9bb)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 30 (br-88ba811fe179)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 31 (br-9a7a2d2c2b3d)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 32 (br-cb2d84e74ac7)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 33 (br-0df970f85c1e)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 34 (br-16e1f1fe1e4c)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 35 (br-72ebd6b7d1ba)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 36 (br-b774b02f61b8)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 37 (br-c6a91d9c03ef)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 38 (br-ee8b84b0e030)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 39 (br-6d5ef8715eac)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 40 (br-82c3e18637bc)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 41 (br-8605553cbf92)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 42 (br-b658d61fa9c8)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 43 (br-d5962bc6ab60)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 44 (br-0de762046101)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 45 (br-6cda9daea60e)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 46 (br-aee5da2d2fb6)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 47 (br-fde7268bb614)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 48 (br-0c6a6fb579aa)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 49 (br-544c735af9be)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 50 (br-3bb0b90c6261)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 51 (br-70cb6672194f)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 52 (br-c89fd6c2989c)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 53 (br-fe345ac90824)
+    Current Scopes: none
+         Protocols: -DefaultRoute -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:18:41.038833-03:00
+=== COMANDO ===
+systemctl is-active systemd-resolved dnsmasq nscd
+=== RESULTADO ===
+active
+inactive
+inactive
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:18:41.056778-03:00
+=== COMANDO ===
+VBoxManage list vms
+=== RESULTADO ===
+"CyberOps Security Onion" {0d5553c1-1730-45f6-b3a7-c47062fb348a}
+"Cybersecurity LabVM Worksation 20230210" {1109edf8-c17d-4c44-83ec-786778f0d158}
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:18:41.363726-03:00
+=== COMANDO ===
+VBoxManage list runningvms
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:18:41.450779-03:00
+=== COMANDO ===
+docker ps --format '{{.Names}}	{{.Image}}	{{.Status}}'
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:18:42.809358-03:00
+=== COMANDO ===
+docker images --format '{{.Repository}}:{{.Tag}}'
+=== RESULTADO ===
+ion-dtn:4.1.4
+hardy:v0.2.0
+hardy-base:ubuntu24.04
+postgres:latest
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:18:43.164015-03:00
+=== COMANDO ===
+sudo -n true
+=== RESULTADO ===
+sudo: a password is required
+
+=== RETORNO ===
+1
+
+=== FECHA ===
+2026-09-20T11:18:43.199971-03:00
+=== COMANDO ===
+tcpdump --version
+=== RESULTADO ===
+tcpdump version 4.99.4
+libpcap version 1.10.4 (with TPACKET_V3)
+OpenSSL 3.0.13 30 Jan 2024
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:18:43.221478-03:00
+=== COMANDO ===
+python3 --version
+=== RESULTADO ===
+Python 3.12.3
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:18:43.227803-03:00
+=== COMANDO ===
+pdflatex --version
+=== RESULTADO ===
+pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian)
+kpathsea version 6.3.5
+Copyright 2023 Han The Thanh (pdfTeX) et al.
+There is NO warranty.  Redistribution of this software is
+covered by the terms of both the pdfTeX copyright and
+the Lesser GNU General Public License.
+For more information about these matters, see the file
+named COPYING and the pdfTeX source.
+Primary author of pdfTeX: Han The Thanh (pdfTeX) et al.
+Compiled with libpng 1.6.43; using libpng 1.6.43
+Compiled with zlib 1.3; using zlib 1.3
+Compiled with xpdf version 4.04
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:18:43.246930-03:00
+=== COMANDO ===
+dpkg-query -W 'wireshark*' tshark tcpdump '*qemu*' '*virtualbox*' '*vmware*' 'docker*' podman '*screenshot*' python3-pil python3-gi x11-utils
+=== RESULTADO ===
+dpkg-query: no packages found matching wireshark*
+dpkg-query: no packages found matching tshark
+dpkg-query: no packages found matching podman
+dpkg-query: no packages found matching *screenshot*
+docker-buildx-plugin	0.37.0-1~ubuntu.24.04~noble
+docker-ce	5:29.8.0-1~ubuntu.24.04~noble
+docker-ce-cli	5:29.8.0-1~ubuntu.24.04~noble
+docker-ce-rootless-extras	5:29.8.0-1~ubuntu.24.04~noble
+docker-cli	
+docker-compose-plugin	5.5.1-1~ubuntu.24.04~noble
+docker-model-plugin	
+docker.io	
+python3-gi	3.48.2-1
+python3-pil:amd64	10.2.0-1ubuntu1.3
+qemu-user	
+qemu-user-static	
+tcpdump	4.99.4-3ubuntu4.24.04.1
+virtualbox	
+virtualbox-7.2	7.2.14-174565~Ubuntu~noble
+virtualbox-dkms	
+virtualbox-guest-additions-iso	
+virtualbox-guest-modules	
+virtualbox-ose	
+virtualbox-qt	
+x11-utils	7.7+6build2
+xserver-xorg-video-vmware	1:13.4.0-1build1
+
+=== RETORNO ===
+1
+
+=== FECHA ===
+2026-09-20T11:18:43.345412-03:00
+=== COMANDO ===
+apt-cache policy wireshark tshark
+=== RESULTADO ===
+wireshark:
+  Installed: (none)
+  Candidate: 4.2.2-1.1build3
+  Version table:
+     4.2.2-1.1build3 500
+        500 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages
+tshark:
+  Installed: (none)
+  Candidate: 4.2.2-1.1build3
+  Version table:
+     4.2.2-1.1build3 500
+        500 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:19:12.740964-03:00
+=== COMANDO ===
+VBoxManage showvminfo 'Cybersecurity LabVM Worksation 20230210' --machinereadable
+=== RESULTADO ===
+name="Cybersecurity LabVM Worksation 20230210"
+encryption="disabled"
+groups="/"
+platformArchitecture="x86"
+ostype="Ubuntu (64-bit)"
+UUID="1109edf8-c17d-4c44-83ec-786778f0d158"
+CfgFile="/home/javier/VirtualBox VMs/Cybersecurity LabVM Worksation 20230210/Cybersecurity LabVM Worksation 20230210.vbox"
+SnapFldr="/home/javier/VirtualBox VMs/Cybersecurity LabVM Worksation 20230210/Snapshots"
+LogFldr="/home/javier/VirtualBox VMs/Cybersecurity LabVM Worksation 20230210/Logs"
+hardwareuuid="1109edf8-c17d-4c44-83ec-786778f0d158"
+memory=2048
+pagefusion="off"
+vram=64
+cpuexecutioncap=100
+cpu-profile="host"
+chipset="piix3"
+firmware="BIOS"
+cpus=2
+hpet="off"
+pae="on"
+longmode="on"
+triplefaultreset="off"
+apic="on"
+x2apic="on"
+nested-hw-virt="off"
+hwvirtex="on"
+nestedpaging="on"
+largepages="on"
+vtxvpid="on"
+vtxux="on"
+virtvmsavevmload="on"
+cpuid-portability-level=0
+bootmenu="messageandmenu"
+boot1="disk"
+boot2="dvd"
+boot3="none"
+boot4="none"
+acpi="on"
+ioapic="on"
+biosapic="apic"
+biossystemtimeoffset=0
+NvramFile="/home/javier/VirtualBox VMs/Cybersecurity LabVM Worksation 20230210/Cybersecurity LabVM Worksation 20230210.nvram"
+rtcuseutc="off"
+iommu="none"
+paravirtprovider="default"
+effparavirtprovider="kvm"
+VMState="poweroff"
+VMStateChangeTime="2026-09-12T22:37:21.000000000"
+graphicscontroller="vmsvga"
+monitorcount=1
+accelerate3d="off"
+teleporterenabled="off"
+teleporterport=0
+teleporteraddress=""
+teleporterpassword=""
+tracing-enabled="off"
+tracing-allow-vm-access="off"
+tracing-config=""
+autostart-enabled="off"
+autostart-delay=0
+defaultfrontend=""
+vmprocpriority="default"
+storagecontrollername0="IDE Controller"
+storagecontrollertype0="PIIX4"
+storagecontrollerinstance0="0"
+storagecontrollermaxportcount0="2"
+storagecontrollerportcount0="2"
+storagecontrollerbootable0="on"
+storagecontrollername1="SATA Controller"
+storagecontrollertype1="IntelAhci"
+storagecontrollerinstance1="0"
+storagecontrollermaxportcount1="30"
+storagecontrollerportcount1="2"
+storagecontrollerbootable1="on"
+"IDE Controller-0-0"="none"
+"IDE Controller-0-1"="none"
+"IDE Controller-1-0"="none"
+"IDE Controller-1-1"="none"
+"SATA Controller-0-0"="/home/javier/VirtualBox VMs/Cybersecurity LabVM Worksation 20230210/Cybersecurity LabVM Worksation 20230210-disk001.vdi"
+"SATA Controller-ImageUUID-0-0"="9c0f3ef6-6225-4b33-b33f-ed780a768d22"
+"SATA Controller-nonrotational-0-0"="off"
+"SATA Controller-discard-0-0"="off"
+"SATA Controller-1-0"="/home/javier/VirtualBox VMs/Cybersecurity LabVM Worksation 20230210/Cybersecurity LabVM Worksation 20230210-disk002.vdi"
+"SATA Controller-ImageUUID-1-0"="3bc7c105-b02a-43a0-99fb-6a412be5af9d"
+"SATA Controller-nonrotational-1-0"="off"
+"SATA Controller-discard-1-0"="off"
+natnet1="nat"
+macaddress1="080027554407"
+cableconnected1="on"
+nic1="nat"
+nictype1="82540EM"
+nicspeed1="0"
+mtu="0"
+sockSnd="64"
+sockRcv="64"
+tcpWndSnd="64"
+tcpWndRcv="64"
+localhostReachable="1"
+forwardBroadcast="0"
+enableTFTP="0"
+nic2="none"
+nic3="none"
+nic4="none"
+nic5="none"
+nic6="none"
+nic7="none"
+nic8="none"
+hidpointing="ps2mouse"
+hidkeyboard="ps2kbd"
+uart1="off"
+uart2="off"
+uart3="off"
+uart4="off"
+lpt1="off"
+lpt2="off"
+audio="none"
+audio_out="on"
+audio_in="off"
+clipboard="bidirectional"
+clipboard_file_transfers="off"
+draganddrop="bidirectional"
+vrde="off"
+usb="off"
+ehci="off"
+xhci="off"
+recording_started="off"
+recording_enabled="off"
+recording_screens=1
+ rec_screen0
+rec_screen_enabled="on"
+rec_screen_id=0
+rec_screen_video_enabled="on"
+rec_screen_audio_enabled="off"
+rec_screen_dest="File"
+rec_screen_dest_filename="/home/javier/VirtualBox VMs/Cybersecurity LabVM Worksation 20230210/Cybersecurity LabVM Worksation 20230210-screen0.webm"
+rec_screen_opts="ac_profile=med"
+rec_screen_video_res_xy="1024x768"
+rec_screen_video_rate_kbps=512
+rec_screen_video_fps=25
+description="Cisco Networking Academy Lab VM Worksation for the Cybersecurity Essentials, Endpoint Security, Network Defense, Cyber Threat Management, CyberOps Associate and Network Security courses."
+GuestMemoryBalloon=0
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:19:13.015014-03:00
+=== COMANDO ===
+VBoxManage showvminfo 'CyberOps Security Onion' --machinereadable
+=== RESULTADO ===
+name="CyberOps Security Onion"
+encryption="disabled"
+groups="/"
+platformArchitecture="x86"
+ostype="Ubuntu (64-bit)"
+UUID="0d5553c1-1730-45f6-b3a7-c47062fb348a"
+CfgFile="/home/javier/VirtualBox VMs/CyberOps Security Onion/CyberOps Security Onion.vbox"
+SnapFldr="/home/javier/VirtualBox VMs/CyberOps Security Onion/Snapshots"
+LogFldr="/home/javier/VirtualBox VMs/CyberOps Security Onion/Logs"
+hardwareuuid="0d5553c1-1730-45f6-b3a7-c47062fb348a"
+memory=4096
+pagefusion="off"
+vram=16
+cpuexecutioncap=100
+cpu-profile="host"
+chipset="piix3"
+firmware="BIOS"
+cpus=1
+hpet="off"
+pae="off"
+longmode="on"
+triplefaultreset="off"
+apic="on"
+x2apic="on"
+nested-hw-virt="off"
+hwvirtex="on"
+nestedpaging="on"
+largepages="on"
+vtxvpid="on"
+vtxux="on"
+virtvmsavevmload="on"
+cpuid-portability-level=0
+bootmenu="messageandmenu"
+boot1="floppy"
+boot2="dvd"
+boot3="disk"
+boot4="none"
+acpi="on"
+ioapic="on"
+biosapic="apic"
+biossystemtimeoffset=0
+NvramFile="/home/javier/VirtualBox VMs/CyberOps Security Onion/CyberOps Security Onion.nvram"
+rtcuseutc="on"
+iommu="none"
+paravirtprovider="default"
+effparavirtprovider="kvm"
+VMState="poweroff"
+VMStateChangeTime="2026-09-12T22:38:09.000000000"
+graphicscontroller="vmsvga"
+monitorcount=1
+accelerate3d="off"
+teleporterenabled="off"
+teleporterport=0
+teleporteraddress=""
+teleporterpassword=""
+tracing-enabled="off"
+tracing-allow-vm-access="off"
+tracing-config=""
+autostart-enabled="off"
+autostart-delay=0
+defaultfrontend=""
+vmprocpriority="default"
+storagecontrollername0="IDE"
+storagecontrollertype0="PIIX4"
+storagecontrollerinstance0="0"
+storagecontrollermaxportcount0="2"
+storagecontrollerportcount0="2"
+storagecontrollerbootable0="on"
+storagecontrollername1="SATA"
+storagecontrollertype1="IntelAhci"
+storagecontrollerinstance1="0"
+storagecontrollermaxportcount1="30"
+storagecontrollerportcount1="1"
+storagecontrollerbootable1="on"
+"IDE-0-0"="none"
+"IDE-0-1"="none"
+"IDE-1-0"="emptydrive"
+"IDE-IsEjected-1-0"="off"
+"IDE-1-1"="none"
+"SATA-0-0"="/home/javier/VirtualBox VMs/CyberOps Security Onion/CyberOps Security Onion-disk001.vdi"
+"SATA-ImageUUID-0-0"="e6f7bcd5-7e1e-4512-aa1f-6947c20f4179"
+"SATA-hot-pluggable-0-0"="off"
+"SATA-nonrotational-0-0"="off"
+"SATA-discard-0-0"="off"
+intnet1="dmz"
+macaddress1="0800270FFEC9"
+cableconnected1="on"
+nic1="intnet"
+nictype1="82540EM"
+nicspeed1="0"
+intnet2="dmz"
+macaddress2="08002771BF50"
+cableconnected2="on"
+nic2="intnet"
+nictype2="82540EM"
+nicspeed2="0"
+natnet3="nat"
+macaddress3="0800274EA793"
+cableconnected3="on"
+nic3="nat"
+nictype3="82540EM"
+nicspeed3="0"
+mtu="0"
+sockSnd="64"
+sockRcv="64"
+tcpWndSnd="64"
+tcpWndRcv="64"
+localhostReachable="1"
+forwardBroadcast="0"
+enableTFTP="0"
+nic4="none"
+nic5="none"
+nic6="none"
+nic7="none"
+nic8="none"
+hidpointing="ps2mouse"
+hidkeyboard="ps2kbd"
+uart1="off"
+uart2="off"
+uart3="off"
+uart4="off"
+lpt1="off"
+lpt2="off"
+audio="alsa"
+audio_out="on"
+audio_in="off"
+clipboard="disabled"
+clipboard_file_transfers="off"
+draganddrop="disabled"
+vrde="off"
+usb="off"
+ehci="off"
+xhci="off"
+recording_started="off"
+recording_enabled="off"
+recording_screens=1
+ rec_screen0
+rec_screen_enabled="on"
+rec_screen_id=0
+rec_screen_video_enabled="on"
+rec_screen_audio_enabled="off"
+rec_screen_dest="File"
+rec_screen_dest_filename="/home/javier/VirtualBox VMs/CyberOps Security Onion/CyberOps Security Onion-screen0.webm"
+rec_screen_opts="ac_profile=med"
+rec_screen_video_res_xy="1024x768"
+rec_screen_video_rate_kbps=512
+rec_screen_video_fps=25
+description="Evalution Mode, SO version 16.04.6.5
+Updated 08.06.2020"
+GuestMemoryBalloon=0
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:19:13.351740-03:00
+=== COMANDO ===
+ip addr show dev wlp5s0
+=== RESULTADO ===
+3: wlp5s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 8c:c8:4b:06:70:0b brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.163/24 brd 192.168.1.255 scope global dynamic noprefixroute wlp5s0
+       valid_lft 3198sec preferred_lft 3198sec
+    inet6 2803:9810:8372:db08:daa1:aa9e:1220:3514/64 scope global temporary dynamic 
+       valid_lft 268sec preferred_lft 118sec
+    inet6 2803:9810:8372:db08:20a8:80ea:74fe:520a/64 scope global dynamic mngtmpaddr noprefixroute 
+       valid_lft 268sec preferred_lft 118sec
+    inet6 fdab:ec5a:2bdb:8:c6f5:a363:26fe:2eb5/64 scope global temporary dynamic 
+       valid_lft 163400sec preferred_lft 76902sec
+    inet6 fdab:ec5a:2bdb:8:9bc6:63fe:7bf3:946c/64 scope global mngtmpaddr noprefixroute 
+       valid_lft forever preferred_lft forever
+    inet6 fe80::689d:1127:4bf1:250e/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:19:13.475861-03:00
+=== COMANDO ===
+tcpdump -D
+=== RESULTADO ===
+1.wlp5s0 [Up, Running, Wireless, Associated]
+2.any (Pseudo-device that captures on all interfaces) [Up, Running]
+3.lo [Up, Running, Loopback]
+4.enp4s0 [Up, Disconnected]
+5.br-1385c38ab001 [Up, Disconnected]
+6.br-338bb2bba8bd [Up, Disconnected]
+7.br-616fc5cbd3f5 [Up, Disconnected]
+8.br-b585bc4995bb [Up, Disconnected]
+9.docker0 [Up, Disconnected]
+10.br-ccbef031a412 [Up, Disconnected]
+11.br-d92acc0dd0b4 [Up, Disconnected]
+12.br-dbae8a604ea0 [Up, Disconnected]
+13.br-34c976162a53 [Up, Disconnected]
+14.br-3cd8e843bc3f [Up, Disconnected]
+15.br-8c66809ff0d7 [Up, Disconnected]
+16.br-b17508390bc8 [Up, Disconnected]
+17.br-b44b5a1ff467 [Up, Disconnected]
+18.br-e015a35c7e62 [Up, Disconnected]
+19.br-17ce80e25b8e [Up, Disconnected]
+20.br-3b80079c4793 [Up, Disconnected]
+21.br-ac8fa0746f40 [Up, Disconnected]
+22.br-7ce617033add [Up, Disconnected]
+23.br-9d3151387967 [Up, Disconnected]
+24.br-dc05e9a1e63b [Up, Disconnected]
+25.br-e0325fd6a7c3 [Up, Disconnected]
+26.br-1434ee26641f [Up, Disconnected]
+27.br-365aef83c7b5 [Up, Disconnected]
+28.br-56617e38732f [Up, Disconnected]
+29.br-689346b4d9bb [Up, Disconnected]
+30.br-88ba811fe179 [Up, Disconnected]
+31.br-9a7a2d2c2b3d [Up, Disconnected]
+32.br-cb2d84e74ac7 [Up, Disconnected]
+33.br-0df970f85c1e [Up, Disconnected]
+34.br-16e1f1fe1e4c [Up, Disconnected]
+35.br-72ebd6b7d1ba [Up, Disconnected]
+36.br-b774b02f61b8 [Up, Disconnected]
+37.br-c6a91d9c03ef [Up, Disconnected]
+38.br-ee8b84b0e030 [Up, Disconnected]
+39.br-6d5ef8715eac [Up, Disconnected]
+40.br-82c3e18637bc [Up, Disconnected]
+41.br-8605553cbf92 [Up, Disconnected]
+42.br-b658d61fa9c8 [Up, Disconnected]
+43.br-d5962bc6ab60 [Up, Disconnected]
+44.br-0de762046101 [Up, Disconnected]
+45.br-6cda9daea60e [Up, Disconnected]
+46.br-aee5da2d2fb6 [Up, Disconnected]
+47.br-fde7268bb614 [Up, Disconnected]
+48.br-0c6a6fb579aa [Up, Disconnected]
+49.br-544c735af9be [Up, Disconnected]
+50.br-3bb0b90c6261 [Up, Disconnected]
+51.br-70cb6672194f [Up, Disconnected]
+52.br-c89fd6c2989c [Up, Disconnected]
+53.br-fe345ac90824 [Up, Disconnected]
+54.bluetooth0 (Bluetooth adapter number 0) [Wireless, Association status unknown]
+55.bluetooth-monitor (Bluetooth Linux Monitor) [Wireless]
+56.nflog (Linux netfilter log (NFLOG) interface) [none]
+57.nfqueue (Linux netfilter queue (NFQUEUE) interface) [none]
+58.dbus-system (D-Bus system bus) [none]
+59.dbus-session (D-Bus session bus) [none]
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:19:13.700454-03:00
+=== COMANDO ===
+docker run --rm --network none --read-only --entrypoint /bin/sh hardy-base:ubuntu24.04 -c 'command -v python3; command -v tcpdump; command -v tshark; command -v ip; cat /etc/os-release'
+=== RESULTADO ===
+/usr/bin/python3
+PRETTY_NAME="Ubuntu 24.04.4 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.4 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:19:50.461424-03:00
+=== COMANDO ===
+VBoxManage startvm 'Cybersecurity LabVM Worksation 20230210' --type headless
+=== RESULTADO ===
+Waiting for VM "Cybersecurity LabVM Worksation 20230210" to power on...
+VM "Cybersecurity LabVM Worksation 20230210" has been successfully started.
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:19:58.954070-03:00
+=== COMANDO ===
+VBoxManage controlvm 'Cybersecurity LabVM Worksation 20230210' screenshotpng /home/javier/Documents/University/5to/Crypto/TPs/DNS/evidencias/00_arranque_vm.png
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:19:59.244657-03:00
+=== COMANDO ===
+VBoxManage guestproperty enumerate 'Cybersecurity LabVM Worksation 20230210'
+=== RESULTADO ===
+/VirtualBox/GuestAdd/HostVerLastChecked  = '7.2.14'                       @ 2026-08-18T00:43:43.019Z
+/VirtualBox/GuestAdd/Revision            = '155176'                       @ 2026-08-18T00:43:35.059Z
+/VirtualBox/GuestAdd/Version             = '7.0.6'                        @ 2026-08-18T00:43:35.059Z
+/VirtualBox/GuestAdd/VersionExt          = '7.0.6'                        @ 2026-08-18T00:43:35.059Z
+/VirtualBox/GuestInfo/Net/0/MAC          = '080027554407'                 @ 2026-08-18T00:43:35.065Z
+/VirtualBox/GuestInfo/Net/0/Name         = 'enp0s3'                       @ 2026-08-18T00:43:35.065Z
+/VirtualBox/GuestInfo/Net/0/Status       = 'Up'                           @ 2026-08-18T00:43:35.065Z
+/VirtualBox/GuestInfo/Net/0/V4/Broadcast = '10.0.2.255'                   @ 2026-08-18T00:43:35.065Z
+/VirtualBox/GuestInfo/Net/0/V4/IP        = '10.0.2.15'                    @ 2026-08-18T00:43:35.065Z
+/VirtualBox/GuestInfo/Net/0/V4/Netmask   = '255.255.255.0'                @ 2026-08-18T00:43:35.065Z
+/VirtualBox/GuestInfo/Net/Count          = '1'                            @ 2026-08-18T00:44:25.131Z
+/VirtualBox/GuestInfo/OS/Product         = 'Linux'                        @ 2026-08-18T00:43:35.059Z
+/VirtualBox/GuestInfo/OS/Release         = '5.15.0-60-generic'            @ 2026-08-18T00:43:35.059Z
+/VirtualBox/GuestInfo/OS/ServicePack     = ''                             @ 2026-08-18T00:43:35.059Z
+/VirtualBox/GuestInfo/OS/Version         = '#66-Ubuntu SMP Fri Jan 20 14:29:49 UTC 2023' @ 2026-08-18T00:43:35.059Z
+/VirtualBox/HostGuest/SysprepArgs        = ''                             @ 2026-09-20T14:19:50.796Z TRANSIENT, RDONLYGUEST
+/VirtualBox/HostGuest/SysprepExec        = ''                             @ 2026-09-20T14:19:50.796Z TRANSIENT, RDONLYGUEST
+/VirtualBox/HostInfo/GUI/LanguageID      = 'en_US'                        @ 2026-08-18T00:44:35.646Z RDONLYGUEST
+/VirtualBox/HostInfo/VBoxRev             = '174565'                       @ 2026-09-20T14:19:50.877Z TRANSIENT, RDONLYGUEST
+/VirtualBox/HostInfo/VBoxVer             = '7.2.14'                       @ 2026-09-20T14:19:50.877Z TRANSIENT, RDONLYGUEST
+/VirtualBox/HostInfo/VBoxVerExt          = '7.2.14'                       @ 2026-09-20T14:19:50.877Z TRANSIENT, RDONLYGUEST
+/VirtualBox/VMInfo/ResetCounter          = '0'                            @ 2026-09-20T14:19:50.796Z TRANSIENT, RDONLYGUEST
+/VirtualBox/VMInfo/ResumeCounter         = '0'                            @ 2026-09-20T14:19:50.796Z TRANSIENT, RDONLYGUEST
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:20:23.166668-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /usr/bin/id --username analyst --password cyberops --wait-stdout --wait-stderr -- /usr/bin/id
+=== RESULTADO ===
+/usr/bin/id: ‘/usr/bin/id’: no such user
+
+=== RETORNO ===
+33
+
+=== FECHA ===
+2026-09-20T11:20:45.526734-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password cyberops --wait-stdout --wait-stderr -- -lc 'id; cat /etc/os-release; ip -br addr; ip route; cat /etc/resolv.conf; command -v wireshark tshark dumpcap tcpdump dig nslookup python3 xdotool wmctrl scrot xfce4-terminal; sudo -n true; printenv DISPLAY; ls /home/analyst'
+=== RESULTADO ===
+uid=1002(analyst) gid=1002(analyst) groups=1002(analyst),27(sudo),123(wireshark),999(vboxsf)
+PRETTY_NAME="Ubuntu 22.04.1 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.1 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+enp0s3           UP             10.0.2.15/24 metric 100 fd17:625c:f037:2:a00:27ff:fe55:4407/64 fe80::a00:27ff:fe55:4407/64 
+default via 10.0.2.2 dev enp0s3 proto dhcp src 10.0.2.15 metric 100 
+10.0.2.0/24 dev enp0s3 proto kernel scope link src 10.0.2.15 metric 100 
+10.0.2.2 dev enp0s3 proto dhcp scope link src 10.0.2.15 metric 100 
+10.0.2.3 dev enp0s3 proto dhcp scope link src 10.0.2.15 metric 100 
+# This is /run/systemd/resolve/stub-resolv.conf managed by man:systemd-resolved(8).
+# Do not edit.
+#
+# This file might be symlinked as /etc/resolv.conf. If you're looking at
+# /etc/resolv.conf and seeing this text, you have followed the symlink.
+#
+# This is a dynamic resolv.conf file for connecting local clients to the
+# internal DNS stub resolver of systemd-resolved. This file lists all
+# configured search domains.
+#
+# Run "resolvectl status" to see details about the uplink DNS servers
+# currently in use.
+#
+# Third party programs should typically not access this file directly, but only
+# through the symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a
+# different way, replace this symlink by a static file or a different symlink.
+#
+# See man:systemd-resolved.service(8) for details about the supported modes of
+# operation for /etc/resolv.conf.
+
+nameserver 127.0.0.53
+options edns0 trust-ad
+search lan
+/usr/bin/wireshark
+/usr/bin/dumpcap
+/usr/bin/tcpdump
+/usr/bin/dig
+/usr/bin/nslookup
+/usr/bin/python3
+sudo: a password is required
+Desktop
+lab.support.files
+second_drive
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:20:49.858407-03:00
+=== COMANDO ===
+VBoxManage controlvm 'Cybersecurity LabVM Worksation 20230210' screenshotpng /home/javier/Documents/University/5to/Crypto/TPs/DNS/evidencias/00_escritorio_vm.png
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:21:35.772023-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'wireshark --version | head -5; dumpcap -D; command -v gnome-terminal xterm; python3 -c "import tkinter"; ls /usr/bin/*shark*; ls -l /usr/bin/dumpcap; getcap /usr/bin/dumpcap; systemctl is-active systemd-resolved dnsmasq nscd; resolvectl status; ip neigh; date --iso-8601=seconds'
+=== RESULTADO ===
+Wireshark 3.6.7 (Git v3.6.7 packaged as 3.6.7-1~ubuntu22.04.0+wiresharkdevstable)
+
+Copyright 1998-2022 Gerald Combs <gerald@wireshark.org> and contributors.
+License GPLv2+: GNU GPL version 2 or later <https://www.gnu.org/licenses/gpl-2.0.html>
+This is free software; see the source for copying conditions. There is NO
+1. enp0s3
+2. any
+3. lo (Loopback)
+4. bluetooth-monitor
+5. nflog
+6. nfqueue
+7. dbus-system
+8. dbus-session
+/usr/bin/xterm
+/usr/bin/rawshark
+/usr/bin/sharkd
+/usr/bin/wireshark
+-rwxr-xr-- 1 root wireshark 129696 Aug  5  2022 /usr/bin/dumpcap
+/usr/bin/dumpcap cap_net_admin,cap_net_raw=eip
+active
+inactive
+inactive
+Global
+       Protocols: -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+resolv.conf mode: stub
+
+Link 2 (enp0s3)
+    Current Scopes: DNS
+         Protocols: +DefaultRoute +LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+Current DNS Server: 10.0.2.3
+       DNS Servers: 10.0.2.3 fd17:625c:f037:2::3
+        DNS Domain: lan
+10.0.2.3 dev enp0s3 lladdr 52:54:00:12:35:00 STALE
+10.0.2.2 dev enp0s3 lladdr 52:54:00:12:35:00 REACHABLE
+fe80::2 dev enp0s3 lladdr 52:54:00:12:35:00 router REACHABLE
+fd17:625c:f037:2::2 dev enp0s3 lladdr 52:54:00:12:35:00 router STALE
+2026-09-20T14:21:39+00:00
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:21:39.573425-03:00
+=== COMANDO ===
+VBoxManage controlvm 'Cybersecurity LabVM Worksation 20230210' keyboardputscancode 50 d0 1c 9c
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:22:12.479714-03:00
+=== COMANDO ===
+VBoxManage controlvm 'Cybersecurity LabVM Worksation 20230210' screenshotpng /home/javier/Documents/University/5to/Crypto/TPs/DNS/evidencias/00_login.png
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:22:13.037020-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'mkdir -p /home/analyst/dns-lab/{capturas,resultados,scripts,evidencias}; resolvectl flush-caches; ip addr show enp0s3; cat /proc/sys/net/ipv4/ip_local_port_range; rawshark -h | head -35; sharkd -h | head -25'
+=== RESULTADO ===
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:55:44:07 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic enp0s3
+       valid_lft 86273sec preferred_lft 86273sec
+    inet6 fd17:625c:f037:2:a00:27ff:fe55:4407/64 scope global dynamic mngtmpaddr noprefixroute 
+       valid_lft 86273sec preferred_lft 14273sec
+    inet6 fe80::a00:27ff:fe55:4407/64 scope link 
+       valid_lft forever preferred_lft forever
+32768	60999
+Rawshark (Wireshark) 3.6.7 (Git v3.6.7 packaged as 3.6.7-1~ubuntu22.04.0+wiresharkdevstable)
+Dump and analyze network traffic.
+See https://www.wireshark.org for more information.
+
+Usage: rawshark [options] ...
+
+Input file:
+  -r <infile>              set the pipe or file name to read from
+
+Processing:
+  -d <encap:linktype>|<proto:protoname>
+                           packet encapsulation or protocol
+  -F <field>               field to display
+  -m                       virtual memory limit, in bytes
+  -n                       disable all name resolution (def: all enabled)
+  -N <name resolve flags>  enable specific name resolution(s): "mnNtdv"
+  -p                       use the system's packet header format
+                           (which may have 64-bit timestamps)
+  -R <read filter>         packet filter in Wireshark display filter syntax
+  -s                       skip PCAP header on input
+
+Output:
+  -l                       flush output after each packet
+  -S                       format string for fields
+                           (%D - name, %S - stringval, %N numval)
+  -t ad|a|r|d|dd|e         output format of time stamps (def: r: rel. to first)
+Diagnostic output:
+  --log-level <level>      sets the active log level ("critical", "warning", etc.)
+  --log-fatal <level>      sets level to abort the program ("critical" or "warning")
+  --log-domains <[!]list>  comma separated list of the active log domains
+  --log-debug <[!]list>    comma separated list of domains with "debug" level
+  --log-noisy <[!]list>    comma separated list of domains with "noisy" level
+  --log-file <path>        file to output messages to (in addition to stderr)
+
+Miscellaneous:
+
+Usage: sharkd [<classic_options>|<gold_options>]
+
+Classic (classic_options):
+  [-|<socket>]
+
+  <socket> examples:
+  - unix:/tmp/sharkd.sock - listen on unix file /tmp/sharkd.sock
+
+Gold (gold_options):
+  -a <socket>, --api <socket>
+                           listen on this socket
+  -h, --help               show this help information
+  -v, --version            show version information
+  -C <config profile>, --config-profile <config profile>
+                           start with specified configuration profile
+
+  Examples:
+    sharkd -C myprofile
+    sharkd -a tcp:127.0.0.1:4446 -C myprofile
+
+See the sharkd page of the Wireshark wiki for full details.
+
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:24:17.053791-03:00
+=== COMANDO ===
+VBoxManage controlvm 'Cybersecurity LabVM Worksation 20230210' keyboardputstring cyberops
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:24:17.397193-03:00
+=== COMANDO ===
+VBoxManage controlvm 'Cybersecurity LabVM Worksation 20230210' keyboardputscancode 1c 9c
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:24:17.635864-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' copyto --username analyst --password '<clave predeterminada de la VM educativa>' scripts/registrar.py scripts/normal.py scripts/dns_demo.py scripts/aislado.py /home/analyst/dns-lab/scripts/
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:24:18.017646-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'python3 /home/analyst/dns-lab/scripts/normal.py > /home/analyst/dns-lab/resultados/ejecucion_normal.txt 2>&1; cat /home/analyst/dns-lab/resultados/ejecucion_normal.txt'
+=== RESULTADO ===
+
+=== FECHA ===
+2026-09-20T14:24:18.345843+00:00
+=== COMANDO ===
+ip addr show enp0s3
+=== RESULTADO ===
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:55:44:07 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic enp0s3
+       valid_lft 86148sec preferred_lft 86148sec
+    inet6 fd17:625c:f037:2:a00:27ff:fe55:4407/64 scope global dynamic mngtmpaddr noprefixroute 
+       valid_lft 86148sec preferred_lft 14148sec
+    inet6 fe80::a00:27ff:fe55:4407/64 scope link 
+       valid_lft forever preferred_lft forever
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:18.355413+00:00
+=== COMANDO ===
+ip route
+=== RESULTADO ===
+default via 10.0.2.2 dev enp0s3 proto dhcp src 10.0.2.15 metric 100 
+10.0.2.0/24 dev enp0s3 proto kernel scope link src 10.0.2.15 metric 100 
+10.0.2.2 dev enp0s3 proto dhcp scope link src 10.0.2.15 metric 100 
+10.0.2.3 dev enp0s3 proto dhcp scope link src 10.0.2.15 metric 100 
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:18.370100+00:00
+=== COMANDO ===
+ip neigh
+=== RESULTADO ===
+10.0.2.3 dev enp0s3 lladdr 52:54:00:12:35:00 STALE
+10.0.2.2 dev enp0s3 lladdr 52:54:00:12:35:00 STALE
+fe80::2 dev enp0s3 lladdr 52:54:00:12:35:00 router STALE
+fd17:625c:f037:2::2 dev enp0s3 lladdr 52:54:00:12:35:00 router STALE
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:18.375421+00:00
+=== COMANDO ===
+cat /etc/resolv.conf
+=== RESULTADO ===
+# This is /run/systemd/resolve/stub-resolv.conf managed by man:systemd-resolved(8).
+# Do not edit.
+#
+# This file might be symlinked as /etc/resolv.conf. If you're looking at
+# /etc/resolv.conf and seeing this text, you have followed the symlink.
+#
+# This is a dynamic resolv.conf file for connecting local clients to the
+# internal DNS stub resolver of systemd-resolved. This file lists all
+# configured search domains.
+#
+# Run "resolvectl status" to see details about the uplink DNS servers
+# currently in use.
+#
+# Third party programs should typically not access this file directly, but only
+# through the symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a
+# different way, replace this symlink by a static file or a different symlink.
+#
+# See man:systemd-resolved.service(8) for details about the supported modes of
+# operation for /etc/resolv.conf.
+
+nameserver 127.0.0.53
+options edns0 trust-ad
+search lan
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:18.379280+00:00
+=== COMANDO ===
+resolvectl status
+=== RESULTADO ===
+Global
+       Protocols: -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+resolv.conf mode: stub
+
+Link 2 (enp0s3)
+    Current Scopes: DNS
+         Protocols: +DefaultRoute +LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+Current DNS Server: 10.0.2.3
+       DNS Servers: 10.0.2.3 fd17:625c:f037:2::3
+        DNS Domain: lan
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:18.397426+00:00
+=== COMANDO ===
+resolvectl flush-caches
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:18.413657+00:00
+=== COMANDO ===
+resolvectl statistics
+=== RESULTADO ===
+DNSSEC supported by current servers: no
+
+Transactions          
+Current Transactions: 0
+  Total Transactions: 13
+                      
+Cache                 
+  Current Cache Size: 0
+          Cache Hits: 2
+        Cache Misses: 8
+                      
+DNSSEC Verdicts       
+              Secure: 0
+            Insecure: 0
+               Bogus: 0
+       Indeterminate: 0
+
+=== RETORNO ===
+0
+
+CAPTURA: dumpcap -i enp0s3 -p -P -w /home/analyst/dns-lab/capturas/normal_dns.pcap
+=== NSLOOKUP INTERACTIVO ===
+server 10.0.2.3
+www.cisco.com
+exit
+Default server: 10.0.2.3
+Address: 10.0.2.3#53
+Server:		10.0.2.3
+Address:	10.0.2.3#53
+
+Non-authoritative answer:
+www.cisco.com	canonical name = www.cisco.com.akadns.net.
+www.cisco.com.akadns.net	canonical name = wwwds.cisco.com.edgekey.net.
+wwwds.cisco.com.edgekey.net	canonical name = e2867.dsca.akamaiedge.net.
+Name:	e2867.dsca.akamaiedge.net
+Address: 2.20.140.117
+Name:	e2867.dsca.akamaiedge.net
+Address: 2600:1419:1200:885::b33
+Name:	e2867.dsca.akamaiedge.net
+Address: 2600:1419:1200:884::b33
+
+
+
+=== FECHA ===
+2026-09-20T14:24:20.188988+00:00
+=== COMANDO ===
+dig @10.0.2.3 www.google.com A +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 www.google.com A +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 25968
+;; flags: qr rd ra; QUERY: 1, ANSWER: 8, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;www.google.com.			IN	A
+
+;; ANSWER SECTION:
+www.google.com.		119	IN	A	142.251.156.119
+www.google.com.		119	IN	A	142.251.152.119
+www.google.com.		119	IN	A	142.251.154.119
+www.google.com.		119	IN	A	142.251.151.119
+www.google.com.		119	IN	A	142.251.155.119
+www.google.com.		119	IN	A	142.251.150.119
+www.google.com.		119	IN	A	142.251.157.119
+www.google.com.		119	IN	A	142.251.153.119
+
+;; Query time: 32 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:20 UTC 2026
+;; MSG SIZE  rcvd: 160
+
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:20.664737+00:00
+=== COMANDO ===
+dig @10.0.2.3 www.google.com AAAA +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 www.google.com AAAA +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 12901
+;; flags: qr rd ra; QUERY: 1, ANSWER: 8, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;www.google.com.			IN	AAAA
+
+;; ANSWER SECTION:
+www.google.com.		262	IN	AAAA	2001:4860:482c:7700::
+www.google.com.		262	IN	AAAA	2001:4860:482a:7700::
+www.google.com.		262	IN	AAAA	2001:4860:4828:7700::
+www.google.com.		262	IN	AAAA	2001:4860:4827:7700::
+www.google.com.		262	IN	AAAA	2001:4860:4826:7700::
+www.google.com.		262	IN	AAAA	2001:4860:482b:7700::
+www.google.com.		262	IN	AAAA	2001:4860:482d:7700::
+www.google.com.		262	IN	AAAA	2001:4860:4829:7700::
+
+;; Query time: 32 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:20 UTC 2026
+;; MSG SIZE  rcvd: 256
+
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:21.132628+00:00
+=== COMANDO ===
+dig @10.0.2.3 example.com A +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 example.com A +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 8677
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;example.com.			IN	A
+
+;; ANSWER SECTION:
+example.com.		300	IN	A	104.20.23.154
+example.com.		300	IN	A	172.66.147.243
+
+;; Query time: 112 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:21 UTC 2026
+;; MSG SIZE  rcvd: 61
+
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:21.709844+00:00
+=== COMANDO ===
+dig @10.0.2.3 example.com AAAA +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 example.com AAAA +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 47520
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;example.com.			IN	AAAA
+
+;; ANSWER SECTION:
+example.com.		300	IN	AAAA	2606:4700:10::6814:179a
+example.com.		300	IN	AAAA	2606:4700:10::ac42:93f3
+
+;; Query time: 152 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:21 UTC 2026
+;; MSG SIZE  rcvd: 85
+
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:22.316242+00:00
+=== COMANDO ===
+dig @10.0.2.3 www.iana.org A +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 www.iana.org A +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 7381
+;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;www.iana.org.			IN	A
+
+;; ANSWER SECTION:
+www.iana.org.		1780	IN	CNAME	www.iana.org.cdn.cloudflare.net.
+www.iana.org.cdn.cloudflare.net. 300 IN	A	104.18.25.232
+www.iana.org.cdn.cloudflare.net. 300 IN	A	104.18.24.232
+
+;; Query time: 56 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:22 UTC 2026
+;; MSG SIZE  rcvd: 107
+
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:22.854040+00:00
+=== COMANDO ===
+dig @10.0.2.3 www.iana.org AAAA +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 www.iana.org AAAA +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 45842
+;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 2
+
+;; QUESTION SECTION:
+;www.iana.org.			IN	AAAA
+
+;; ANSWER SECTION:
+www.iana.org.		299	IN	CNAME	www.iana.org.cdn.cloudflare.net.
+www.iana.org.cdn.cloudflare.net. 300 IN	AAAA	2606:4700::6812:18e8
+www.iana.org.cdn.cloudflare.net. 300 IN	AAAA	2606:4700::6812:19e8
+
+;; ADDITIONAL SECTION:
+www.iana.org.cdn.cloudflare.net. 299 IN	A	104.18.25.232
+www.iana.org.cdn.cloudflare.net. 299 IN	A	104.18.24.232
+
+;; Query time: 56 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:22 UTC 2026
+;; MSG SIZE  rcvd: 163
+
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:23.414428+00:00
+=== COMANDO ===
+dig @10.0.2.3 www.cisco.com A +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 www.cisco.com A +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 4482
+;; flags: qr rd ra; QUERY: 1, ANSWER: 4, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;www.cisco.com.			IN	A
+
+;; ANSWER SECTION:
+www.cisco.com.		16	IN	CNAME	www.cisco.com.akadns.net.
+www.cisco.com.akadns.net. 16	IN	CNAME	wwwds.cisco.com.edgekey.net.
+wwwds.cisco.com.edgekey.net. 16	IN	CNAME	e2867.dsca.akamaiedge.net.
+e2867.dsca.akamaiedge.net. 16	IN	A	2.20.140.117
+
+;; Query time: 0 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:23 UTC 2026
+;; MSG SIZE  rcvd: 159
+
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:23.881889+00:00
+=== COMANDO ===
+dig @10.0.2.3 www.google.com A +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 www.google.com A +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 13333
+;; flags: qr rd ra; QUERY: 1, ANSWER: 8, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;www.google.com.			IN	A
+
+;; ANSWER SECTION:
+www.google.com.		115	IN	A	142.251.151.119
+www.google.com.		115	IN	A	142.251.156.119
+www.google.com.		115	IN	A	142.251.152.119
+www.google.com.		115	IN	A	142.251.155.119
+www.google.com.		115	IN	A	142.251.157.119
+www.google.com.		115	IN	A	142.251.150.119
+www.google.com.		115	IN	A	142.251.154.119
+www.google.com.		115	IN	A	142.251.153.119
+
+;; Query time: 8 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:23 UTC 2026
+;; MSG SIZE  rcvd: 160
+
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:23.991299+00:00
+=== COMANDO ===
+ip neigh
+=== RESULTADO ===
+10.0.2.3 dev enp0s3 lladdr 52:54:00:12:35:00 DELAY
+10.0.2.2 dev enp0s3 lladdr 52:54:00:12:35:00 STALE
+fe80::2 dev enp0s3 lladdr 52:54:00:12:35:00 router STALE
+fd17:625c:f037:2::2 dev enp0s3 lladdr 52:54:00:12:35:00 router STALE
+
+=== RETORNO ===
+0
+
+Capturing on 'enp0s3'
+File: /home/analyst/dns-lab/capturas/normal_dns.pcap
+
+Packets: 3 
+Packets: 6 
+Packets: 8 
+Packets: 10 
+Packets: 12 
+Packets: 13 
+Packets: 15 
+Packets: 18 
+Packets: 20 
+Packets: 22 
+Packets captured: 22
+Packets received/dropped on interface 'enp0s3': 22/0 (pcap:0/dumpcap:0/flushed:0/ps_ifdrop:0) (100.0%)
+
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:24:42.064295-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'printf '"'"'%s\n'"'"' cyberops | sudo -S -p '"'"''"'"' python3 /home/analyst/dns-lab/scripts/aislado.py > /home/analyst/dns-lab/resultados/ejecucion_aislada.txt 2>&1; cat /home/analyst/dns-lab/resultados/ejecucion_aislada.txt'
+=== RESULTADO ===
+
+=== FECHA ===
+2026-09-20T14:24:42.279247+00:00
+=== COMANDO ===
+ip netns add dns-client-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:42.287315+00:00
+=== COMANDO ===
+ip netns add dns-server-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:42.296812+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 link add dns-cli type veth peer name dns-rx netns dns-server-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:42.309695+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 addr add 10.203.0.1/30 dev dns-cli
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:42.313954+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 link set lo up
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:42.317841+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 link set dns-cli up
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:42.325828+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 -br addr
+=== RESULTADO ===
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+dns-cli@if2      DOWN           10.203.0.1/30 
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:42.332850+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 route
+=== RESULTADO ===
+10.203.0.0/30 dev dns-cli proto kernel scope link src 10.203.0.1 linkdown 
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:42.335868+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 addr add 10.203.0.2/30 dev dns-rx
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:42.340469+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 link set lo up
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:42.346135+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 link set dns-rx up
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:42.351870+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 -br addr
+=== RESULTADO ===
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+dns-rx@if2       DOWN           10.203.0.2/30 
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:42.359753+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 route
+=== RESULTADO ===
+10.203.0.0/30 dev dns-rx proto kernel scope link src 10.203.0.2 
+
+=== RETORNO ===
+0
+
+CAPTURA: ip netns exec dns-client-20260920 dumpcap -i dns-cli -p -P -w /home/analyst/dns-lab/capturas/dns_exfiltration.pcap
+{"received_bytes": 1072, "chunks": 34, "sha256": "41e631070a6cf404f57bf882d7e1161af41f816e5660468d7aac6630dd22a731"}
+
+=== FECHA ===
+2026-09-20T14:24:42.969273+00:00
+=== COMANDO ===
+ip netns exec dns-client-20260920 python3 /home/analyst/dns-lab/scripts/dns_demo.py sender
+=== RESULTADO ===
+{"synthetic_bytes": 1072, "chunks": 34, "sha256": "41e631070a6cf404f57bf882d7e1161af41f816e5660468d7aac6630dd22a731"}
+
+=== RETORNO ===
+0
+
+VERIFICACION: archivos identicos, 1072 bytes; SHA256 41e631070a6cf404f57bf882d7e1161af41f816e5660468d7aac6630dd22a731
+Capturing on 'dns-cli'
+dumpcap: The file to which the capture would be saved ("/home/analyst/dns-lab/capturas/dns_exfiltration.pcap") could not be opened: Permission denied.
+
+
+=== FECHA ===
+2026-09-20T14:24:50.427132+00:00
+=== COMANDO ===
+ip netns del dns-server-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:50.434786+00:00
+=== COMANDO ===
+ip netns del dns-client-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:50.448120+00:00
+=== COMANDO ===
+ip netns list
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:24:50.621665-03:00
+=== COMANDO ===
+VBoxManage controlvm 'Cybersecurity LabVM Worksation 20230210' screenshotpng /home/javier/Documents/University/5to/Crypto/TPs/DNS/evidencias/01_vm_operativa.png
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:25:14.250628-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' copyfrom --username analyst --password '<clave predeterminada de la VM educativa>' /home/analyst/dns-lab/capturas/normal_dns.pcap /home/analyst/dns-lab/capturas/dns_exfiltration.pcap capturas/
+=== RESULTADO ===
+VBoxManage: error: Querying guest filesystem object information failed: No such file or directory "/home/analyst/dns-lab/capturas/dns_exfiltration.pcap".
+VBoxManage: error: Error looking file system information for source '/home/analyst/dns-lab/capturas/dns_exfiltration.pcap', vrc=VERR_GENERAL_FAILURE
+
+=== RETORNO ===
+1
+
+=== FECHA ===
+2026-09-20T11:25:14.618524-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'tar -czf /home/analyst/dns-resultados.tar.gz -C /home/analyst/dns-lab resultados; ps -eo user,comm | egrep "Xorg|xfce|gnome|mate"; ls -l /home/analyst/.Xauthority /run/user/1002/gdm/Xauthority; wireshark --help | tail -30'
+=== RESULTADO ===
+root     Xorg
+analyst  mate-session
+analyst  mate-settings-d
+analyst  mate-panel
+analyst  mate-multiload-
+analyst  mate-power-mana
+analyst  mate-terminal
+analyst  polkit-mate-aut
+-rw------- 1 analyst analyst 50 Sep 20 14:24 /home/analyst/.Xauthority
+ls: cannot access '/run/user/1002/gdm/Xauthority': No such file or directory
+  -J <jump filter>         jump to the first packet matching the (display)
+                           filter
+  -j                       search backwards for a matching packet after "-J"
+  -t a|ad|adoy|d|dd|e|r|u|ud|udoy
+                           format of time stamps (def: r: rel. to first)
+  -u s|hms                 output format of seconds (def: s: seconds)
+  -X <key>:<value>         eXtension options, see man page for details
+  -z <statistics>          show various statistics, see man page for details
+
+Output:
+  -w <outfile|->           set the output filename (or '-' for stdout)
+  --capture-comment <comment>
+                           add a capture file comment, if supported
+Diagnostic output:
+  --log-level <level>      sets the active log level ("critical", "warning", etc.)
+  --log-fatal <level>      sets level to abort the program ("critical" or "warning")
+  --log-domains <[!]list>  comma separated list of the active log domains
+  --log-debug <[!]list>    comma separated list of domains with "debug" level
+  --log-noisy <[!]list>    comma separated list of domains with "noisy" level
+  --log-file <path>        file to output messages to (in addition to stderr)
+
+Miscellaneous:
+  -h, --help               display this help and exit
+  -v, --version            display version info and exit
+  -P <key>:<path>          persconf:path - personal configuration files
+                           persdata:path - personal data files
+  -o <name>:<value> ...    override preference or recent setting
+  -K <keytab>              keytab file to use for kerberos decryption
+  --display <X display>    X display to use
+  --fullscreen             start Wireshark in full screen
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:25:15.089072-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' copyfrom --username analyst --password '<clave predeterminada de la VM educativa>' /home/analyst/dns-resultados.tar.gz resultados/vm_resultados.tar.gz
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:25:59.753972-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' copyto --username analyst --password '<clave predeterminada de la VM educativa>' scripts/aislado.py /home/analyst/dns-lab/scripts/
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:26:00.056931-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'mkdir -p /home/analyst/dns-lab/resultados/intento_01; cp /home/analyst/dns-lab/resultados/{ejecucion_aislada.txt,dumpcap_exfil.txt,emisor.json,receptor.json,dns_demo.txt,dns_demo_recibido.txt} /home/analyst/dns-lab/resultados/intento_01/; printf '"'"'%s\n'"'"' cyberops | sudo -S -p '"'"''"'"' python3 /home/analyst/dns-lab/scripts/aislado.py > /home/analyst/dns-lab/resultados/ejecucion_aislada.txt 2>&1; cat /home/analyst/dns-lab/resultados/ejecucion_aislada.txt'
+=== RESULTADO ===
+
+=== FECHA ===
+2026-09-20T14:26:00.281245+00:00
+=== COMANDO ===
+ip netns add dns-client-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.289186+00:00
+=== COMANDO ===
+ip netns add dns-server-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.299542+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 link add dns-cli type veth peer name dns-rx netns dns-server-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.303931+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 addr add 10.203.0.1/30 dev dns-cli
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.307818+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 link set lo up
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.314443+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 link set dns-cli up
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.317283+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 -br addr
+=== RESULTADO ===
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+dns-cli@if2      DOWN           10.203.0.1/30 
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.321053+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 route
+=== RESULTADO ===
+10.203.0.0/30 dev dns-cli proto kernel scope link src 10.203.0.1 linkdown 
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.328002+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 addr add 10.203.0.2/30 dev dns-rx
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.333053+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 link set lo up
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.339692+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 link set dns-rx up
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.353067+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 -br addr
+=== RESULTADO ===
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+dns-rx@if2       DOWN           10.203.0.2/30 
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.357443+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 route
+=== RESULTADO ===
+10.203.0.0/30 dev dns-rx proto kernel scope link src 10.203.0.2 
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.862016+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 addr
+=== RESULTADO ===
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: dns-cli@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 7e:9e:18:cd:b2:18 brd ff:ff:ff:ff:ff:ff link-netns dns-server-20260920
+    inet 10.203.0.1/30 scope global dns-cli
+       valid_lft forever preferred_lft forever
+    inet6 fe80::7c9e:18ff:fecd:b218/64 scope link tentative 
+       valid_lft forever preferred_lft forever
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.866355+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 route
+=== RESULTADO ===
+10.203.0.0/30 dev dns-cli proto kernel scope link src 10.203.0.1 
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.871914+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 addr
+=== RESULTADO ===
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: dns-rx@if2: <NO-CARRIER,BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state DOWN group default qlen 1000
+    link/ether 02:af:b9:5b:09:ac brd ff:ff:ff:ff:ff:ff link-netns dns-client-20260920
+    inet 10.203.0.2/30 scope global dns-rx
+       valid_lft forever preferred_lft forever
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.877644+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 route
+=== RESULTADO ===
+10.203.0.0/30 dev dns-rx proto kernel scope link src 10.203.0.2 
+
+=== RETORNO ===
+0
+
+CAPTURA: ip netns exec dns-client-20260920 dumpcap -i dns-cli -p -P -w -
+{"received_bytes": 1072, "chunks": 34, "sha256": "41e631070a6cf404f57bf882d7e1161af41f816e5660468d7aac6630dd22a731"}
+
+=== FECHA ===
+2026-09-20T14:26:01.487643+00:00
+=== COMANDO ===
+ip netns exec dns-client-20260920 python3 /home/analyst/dns-lab/scripts/dns_demo.py sender
+=== RESULTADO ===
+{"synthetic_bytes": 1072, "chunks": 34, "sha256": "41e631070a6cf404f57bf882d7e1161af41f816e5660468d7aac6630dd22a731"}
+
+=== RETORNO ===
+0
+
+VERIFICACION: archivos identicos, 1072 bytes; SHA256 41e631070a6cf404f57bf882d7e1161af41f816e5660468d7aac6630dd22a731
+Capturing on 'dns-cli'
+File: -
+
+Packets: 1 
+Packets: 10 
+Packets: 18 
+Packets: 22 
+Packets: 30 
+Packets: 37 
+Packets: 41 
+Packets: 47 
+Packets: 51 
+Packets: 58 
+Packets: 62 
+Packets: 70 
+Packets: 75 
+Packets: 81 
+Packets: 83 
+Packets captured: 83
+Packets received/dropped on interface 'dns-cli': 83/0 (pcap:0/dumpcap:0/flushed:0/ps_ifdrop:0) (100.0%)
+
+
+=== FECHA ===
+2026-09-20T14:26:08.981267+00:00
+=== COMANDO ===
+ip netns del dns-server-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:08.986223+00:00
+=== COMANDO ===
+ip netns del dns-client-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:08.994983+00:00
+=== COMANDO ===
+ip netns list
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:28:11.916650-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' copyfrom --username analyst --password '<clave predeterminada de la VM educativa>' /home/analyst/dns-lab/capturas/normal_dns.pcap /home/analyst/dns-lab/capturas/dns_exfiltration.pcap capturas/
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:28:12.184668-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'tar -czf /home/analyst/dns-resultados.tar.gz -C /home/analyst/dns-lab resultados; rawshark -r /home/analyst/dns-lab/capturas/normal_dns.pcap -s -d encap:1 -n -F frame.number -F eth.src -F eth.dst -F ip.src -F ip.dst -F udp.srcport -F udp.dstport -F udp.length -F dns.id -F dns.flags -F dns.qry.name -F dns.a -F dns.aaaa -F dns.cname > /home/analyst/dns-lab/resultados/rawshark_normal.txt; cat /home/analyst/dns-lab/resultados/rawshark_normal.txt'
+=== RESULTADO ===
+rawshark: "/home/analyst/dns-lab/capturas/normal_dns.pcap" is neither an interface nor a pipe
+0 FT_UINT32 BASE_DEC - 1 FT_ETHER BASE_NONE - 2 FT_ETHER BASE_NONE - 3 FT_IPv4 BASE_NONE - 4 FT_IPv4 BASE_NONE - 5 FT_UINT16 BASE_PT_UDP - 6 FT_UINT16 BASE_PT_UDP - 7 FT_UINT16 BASE_DEC - 8 FT_UINT16 BASE_HEX - 9 FT_UINT16 BASE_HEX - 10 FT_STRING BASE_NONE - 11 FT_IPv4 BASE_NONE - 12 FT_IPv6 BASE_NONE - 13 FT_STRING BASE_NONE - 
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:28:13.022917-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' copyfrom --username analyst --password '<clave predeterminada de la VM educativa>' /home/analyst/dns-resultados.tar.gz resultados/vm_resultados_final.tar.gz
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:28:13.355477-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' copyfrom --username analyst --password '<clave predeterminada de la VM educativa>' /home/analyst/dns-lab/resultados/rawshark_normal.txt resultados/rawshark_normal.txt
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:28:13.905171-03:00
+=== COMANDO ===
+python3 scripts/analizar.py
+=== RESULTADO ===
+{
+  "normal_dns": {
+    "frames": 22,
+    "dns_queries": 10,
+    "dns_responses": 10,
+    "other_frames": [
+      21,
+      22
+    ],
+    "unique_fqdns": 5,
+    "fqdn_length_min": 11,
+    "fqdn_length_max": 25,
+    "max_label_length": 10,
+    "longest_label_entropy_mean": 2.0288464309295846,
+    "query_frame_len_min": 71,
+    "query_frame_len_max": 85,
+    "query_bytes_total": 739,
+    "dns_frame_bytes_total": 2568,
+    "query_types": {
+      "1": 6,
+      "28": 4
+    },
+    "nxdomain_responses": 0,
+    "query_span_s": 4.462882995605469,
+    "query_rate_per_s": 2.016633644409266,
+    "interarrival_mean_s": 0.49587588840060765,
+    "interarrival_std_s": 0.12626252628658288,
+    "candidate_queries": 0,
+    "alerts": []
+  },
+  "dns_exfiltration": {
+    "frames": 83,
+    "dns_queries": 34,
+    "dns_responses": 34,
+    "other_frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      8,
+      15,
+      16,
+      27,
+      28,
+      31,
+      54,
+      65,
+      66,
+      73
+    ],
+    "unique_fqdns": 34,
+    "fqdn_length_min": 56,
+    "fqdn_length_max": 82,
+    "max_label_length": 52,
+    "longest_label_entropy_mean": 4.437184207645696,
+    "query_frame_len_min": 116,
+    "query_frame_len_max": 142,
+    "query_bytes_total": 4802,
+    "dns_frame_bytes_total": 10148,
+    "query_types": {
+      "1": 34
+    },
+    "nxdomain_responses": 0,
+    "query_span_s": 6.654306173324585,
+    "query_rate_per_s": 4.959194713986648,
+    "interarrival_mean_s": 0.20164564161589651,
+    "interarrival_std_s": 0.0009434373389509217,
+    "candidate_queries": 33,
+    "alerts": [
+      {
+        "source": "10.203.0.1",
+        "suffix": "lab.test",
+        "candidate_queries": 33,
+        "unique_candidates": 33,
+        "frames": [
+          6,
+          9,
+          11,
+          13,
+          17,
+          19,
+          21,
+          23,
+          25,
+          29,
+          32,
+          34,
+          36,
+          38,
+          40,
+          42,
+          44,
+          46,
+          48,
+          50,
+          52,
+          55,
+          57,
+          59,
+          61,
+          63,
+          67,
+          69,
+          71,
+          74,
+          76,
+          78,
+          80
+        ]
+      }
+    ],
+    "reconstructed_bytes": 1072,
+    "sha256": "41e631070a6cf404f57bf882d7e1161af41f816e5660468d7aac6630dd22a731"
+  }
+}
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:29:02.688436-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' copyto --username analyst --password '<clave predeterminada de la VM educativa>' scripts/gui_vm.py /home/analyst/dns-lab/scripts/
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:29:02.951819-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'cat /home/analyst/dns-lab/capturas/normal_dns.pcap | rawshark -r - -s -d encap:1 -n -F frame.number -F eth.src -F eth.dst -F ip.src -F ip.dst -F udp.srcport -F udp.dstport -F udp.length -F dns.id -F dns.flags -F dns.qry.name -F dns.a -F dns.aaaa -F dns.cname > /home/analyst/dns-lab/resultados/rawshark_normal.txt; head -7 /home/analyst/dns-lab/resultados/rawshark_normal.txt; python3 /home/analyst/dns-lab/scripts/gui_vm.py launch wireshark --fullscreen -n -r /home/analyst/dns-lab/capturas/normal_dns.pcap -Y dns -g 1'
+=== RESULTADO ===
+0 FT_UINT32 BASE_DEC - 1 FT_ETHER BASE_NONE - 2 FT_ETHER BASE_NONE - 3 FT_IPv4 BASE_NONE - 4 FT_IPv4 BASE_NONE - 5 FT_UINT16 BASE_PT_UDP - 6 FT_UINT16 BASE_PT_UDP - 7 FT_UINT16 BASE_DEC - 8 FT_UINT16 BASE_HEX - 9 FT_UINT16 BASE_HEX - 10 FT_STRING BASE_NONE - 11 FT_IPv4 BASE_NONE - 12 FT_IPv6 BASE_NONE - 13 FT_STRING BASE_NONE - 
+1 10="www.cisco.com" 9="0x0100" 8="0x669f" 7="39" 6="53" 5="41544" 4="10.0.2.3" 3="10.0.2.15" 2="52:54:00:12:35:00" 1="08:00:27:55:44:07" 0="1" -
+2 13="www.cisco.com.akadns.net" 13="wwwds.cisco.com.edgekey.net" 13="e2867.dsca.akamaiedge.net" 11="2.20.140.117" 10="www.cisco.com" 9="0x8180" 8="0x669f" 7="167" 6="41544" 5="53" 4="10.0.2.15" 3="10.0.2.3" 2="08:00:27:55:44:07" 1="52:54:00:12:35:00" 0="2" -
+3 10="e2867.dsca.akamaiedge.net" 9="0x0100" 8="0x1692" 7="51" 6="53" 5="33961" 4="10.0.2.3" 3="10.0.2.15" 2="52:54:00:12:35:00" 1="08:00:27:55:44:07" 0="3" -
+4 12="2600:1419:1200:885::b33" 12="2600:1419:1200:884::b33" 10="e2867.dsca.akamaiedge.net" 9="0x8180" 8="0x1692" 7="107" 6="33961" 5="53" 4="10.0.2.15" 3="10.0.2.3" 2="08:00:27:55:44:07" 1="52:54:00:12:35:00" 0="4" -
+5 10="www.google.com" 9="0x0120" 8="0x6570" 7="40" 6="53" 5="48201" 4="10.0.2.3" 3="10.0.2.15" 2="52:54:00:12:35:00" 1="08:00:27:55:44:07" 0="5" -
+6 11="142.251.156.119" 11="142.251.152.119" 11="142.251.154.119" 11="142.251.151.119" 11="142.251.155.119" 11="142.251.150.119" 11="142.251.157.119" 11="142.251.153.119" 10="www.google.com" 9="0x8180" 8="0x6570" 7="168" 6="48201" 5="53" 4="10.0.2.15" 3="10.0.2.3" 2="08:00:27:55:44:07" 1="52:54:00:12:35:00" 0="6" -
+Ventana iniciada, PID 2109
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:29:03.754517-03:00
+=== COMANDO ===
+VBoxManage controlvm 'Cybersecurity LabVM Worksation 20230210' screenshotpng /home/javier/Documents/University/5to/Crypto/TPs/DNS/evidencias/05_wireshark_consulta_dns.png
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:29:27.311405-03:00
+=== COMANDO ===
+VBoxManage controlvm 'Cybersecurity LabVM Worksation 20230210' screenshotpng /home/javier/Documents/University/5to/Crypto/TPs/DNS/evidencias/05_wireshark_consulta_dns.png
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:29:27.523807-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'cat /home/analyst/dns-lab/resultados/gui.log; pgrep -a wireshark'
+=== RESULTADO ===
+ ** (wireshark:2109) 14:29:03.811697 [GUI WARNING] -- QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-analyst'
+2109 wireshark --fullscreen -n -r /home/analyst/dns-lab/capturas/normal_dns.pcap -Y dns -g 1
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:29:27.802619-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' copyfrom --username analyst --password '<clave predeterminada de la VM educativa>' /home/analyst/dns-lab/resultados/rawshark_normal.txt resultados/rawshark_normal.txt
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:30:09.078471-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' copyto --username analyst --password '<clave predeterminada de la VM educativa>' scripts/gui_vm.py /home/analyst/dns-lab/scripts/
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:30:09.383352-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'python3 /home/analyst/dns-lab/scripts/gui_vm.py drag 800 391 800 245; python3 /home/analyst/dns-lab/scripts/gui_vm.py drag 800 698 800 900; python3 /home/analyst/dns-lab/scripts/gui_vm.py click 250 270; python3 /home/analyst/dns-lab/scripts/gui_vm.py sequence Control_L+Left Home Down Right'
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:30:11.686760-03:00
+=== COMANDO ===
+VBoxManage controlvm 'Cybersecurity LabVM Worksation 20230210' screenshotpng /home/javier/Documents/University/5to/Crypto/TPs/DNS/evidencias/06_ethernet_query.png
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:13.325539-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'python3 /home/analyst/dns-lab/scripts/gui_vm.py sequence Control_L+Left Home Down Down Right'
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:15.044505-03:00
+=== COMANDO ===
+VBoxManage controlvm 'Cybersecurity LabVM Worksation 20230210' screenshotpng /home/javier/Documents/University/5to/Crypto/TPs/DNS/evidencias/07_ipv4_query.png
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:15.221087-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'python3 /home/analyst/dns-lab/scripts/gui_vm.py sequence Control_L+Left Home Down Down Down Right'
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:17.051985-03:00
+=== COMANDO ===
+VBoxManage controlvm 'Cybersecurity LabVM Worksation 20230210' screenshotpng /home/javier/Documents/University/5to/Crypto/TPs/DNS/evidencias/08_udp_query.png
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:17.217861-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'python3 /home/analyst/dns-lab/scripts/gui_vm.py sequence Control_L+Left End Shift_L+Right'
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:18.646222-03:00
+=== COMANDO ===
+VBoxManage controlvm 'Cybersecurity LabVM Worksation 20230210' screenshotpng /home/javier/Documents/University/5to/Crypto/TPs/DNS/evidencias/09_dns_query.png
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:18.899503-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'python3 /home/analyst/dns-lab/scripts/gui_vm.py sequence Control_L+g 2 Return'
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:19.847884-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'python3 /home/analyst/dns-lab/scripts/gui_vm.py click 250 270'
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:20.507855-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'python3 /home/analyst/dns-lab/scripts/gui_vm.py sequence Control_L+Left End Shift_L+Right'
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:22.089211-03:00
+=== COMANDO ===
+VBoxManage controlvm 'Cybersecurity LabVM Worksation 20230210' screenshotpng /home/javier/Documents/University/5to/Crypto/TPs/DNS/evidencias/10_dns_respuesta_cisco.png
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:22.352354-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'python3 /home/analyst/dns-lab/scripts/gui_vm.py sequence Control_L+g 5 Return'
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:23.359827-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'python3 /home/analyst/dns-lab/scripts/gui_vm.py click 250 270'
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:23.908966-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'python3 /home/analyst/dns-lab/scripts/gui_vm.py sequence Control_L+Left Home Down Down Down Right'
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:25.778933-03:00
+=== COMANDO ===
+VBoxManage controlvm 'Cybersecurity LabVM Worksation 20230210' screenshotpng /home/javier/Documents/University/5to/Crypto/TPs/DNS/evidencias/12_google_consulta_udp.png
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:25.946413-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'python3 /home/analyst/dns-lab/scripts/gui_vm.py sequence Control_L+g 6 Return'
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:26.897126-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'python3 /home/analyst/dns-lab/scripts/gui_vm.py click 250 270'
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:27.571715-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'python3 /home/analyst/dns-lab/scripts/gui_vm.py sequence Control_L+Left End Shift_L+Right'
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:29.192446-03:00
+=== COMANDO ===
+VBoxManage controlvm 'Cybersecurity LabVM Worksation 20230210' screenshotpng /home/javier/Documents/University/5to/Crypto/TPs/DNS/evidencias/13_google_respuesta.png
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:29.378544-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'python3 /home/analyst/dns-lab/scripts/gui_vm.py launch wireshark --fullscreen -n -r /home/analyst/dns-lab/capturas/dns_exfiltration.pcap -Y dns -g 6'
+=== RESULTADO ===
+Ventana iniciada, PID 2315
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:31.604077-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'python3 /home/analyst/dns-lab/scripts/gui_vm.py click 250 270'
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:32.243833-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'python3 /home/analyst/dns-lab/scripts/gui_vm.py sequence Control_L+Left End Shift_L+Right'
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:33.690957-03:00
+=== COMANDO ===
+VBoxManage controlvm 'Cybersecurity LabVM Worksation 20230210' screenshotpng /home/javier/Documents/University/5to/Crypto/TPs/DNS/evidencias/14_exfiltracion_dns.png
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:34.000548-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'for p in normal_dns dns_exfiltration; do cat /home/analyst/dns-lab/capturas/$p.pcap | rawshark -r - -s -d encap:1 -n -F frame.number -F eth.src -F eth.dst -F ip.src -F ip.dst -F udp.srcport -F udp.dstport -F udp.length -F dns.id -F dns.flags -F dns.qry.name -F dns.a -F dns.aaaa -F dns.cname > /home/analyst/dns-lab/resultados/rawshark_$p.txt; done'
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:35.687999-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' copyfrom --username analyst --password '<clave predeterminada de la VM educativa>' /home/analyst/dns-lab/resultados/rawshark_normal_dns.txt /home/analyst/dns-lab/resultados/rawshark_dns_exfiltration.txt resultados/
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:31:48.300717-03:00
+=== COMANDO ===
+python3 scripts/contrastar_rawshark.py
+=== RESULTADO ===
+normal_dns : 22 tramas; 272 valores coincidentes con rawshark
+dns_exfiltration : 83 tramas; 827 valores coincidentes con rawshark
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:33:00.210717-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'python3 /home/analyst/dns-lab/scripts/gui_vm.py sequence Control_L+g 6 Return; python3 /home/analyst/dns-lab/scripts/gui_vm.py drag 800 391 800 245; python3 /home/analyst/dns-lab/scripts/gui_vm.py drag 800 698 800 900; python3 /home/analyst/dns-lab/scripts/gui_vm.py click 250 270; python3 /home/analyst/dns-lab/scripts/gui_vm.py sequence Control_L+Left End Shift_L+Right'
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:33:03.006047-03:00
+=== COMANDO ===
+VBoxManage controlvm 'Cybersecurity LabVM Worksation 20230210' screenshotpng /home/javier/Documents/University/5to/Crypto/TPs/DNS/evidencias/15_exfiltracion_consulta.png
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:33:03.255456-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'python3 /home/analyst/dns-lab/scripts/gui_vm.py launch xterm -hold -fa '"'"'DejaVu Sans Mono'"'"' -fs 13 -geometry 108x42+0+0 -title '"'"'Laboratorio DNS - Configuracion real de la VM'"'"' -e bash -lc '"'"'date --iso-8601=seconds; ip -4 addr show enp0s3; ip route; ip neigh; resolvectl status; cat /proc/sys/net/ipv4/ip_local_port_range'"'"''
+=== RESULTADO ===
+Ventana iniciada, PID 2427
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:37:07.521335-03:00
+=== COMANDO ===
+VBoxManage controlvm 'Cybersecurity LabVM Worksation 20230210' screenshotpng /home/javier/Documents/University/5to/Crypto/TPs/DNS/evidencias/02_configuracion_red.png
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:37:07.716180-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'cat /home/analyst/dns-lab/capturas/dns_exfiltration.pcap | rawshark -r - -s -d encap:1 -n -R "dns.flags.response == 0 && len(dns.qry.name) > 60" -F frame.number -F dns.qry.name > /home/analyst/dns-lab/resultados/filtro_longitud.txt; cat /home/analyst/dns-lab/capturas/normal_dns.pcap | rawshark -r - -s -d encap:1 -n -R arp -F frame.number -F arp.src.proto_ipv4 -F arp.dst.proto_ipv4 -F arp.opcode > /home/analyst/dns-lab/resultados/arp_normal.txt; cat /home/analyst/dns-lab/resultados/arp_normal.txt'
+=== RESULTADO ===
+0 FT_UINT32 BASE_DEC - 1 FT_IPv4 BASE_NONE - 2 FT_IPv4 BASE_NONE - 3 FT_UINT16 BASE_DEC - 
+1 0="1" 0 -
+2 0="2" 0 -
+3 0="3" 0 -
+4 0="4" 0 -
+5 0="5" 0 -
+6 0="6" 0 -
+7 0="7" 0 -
+8 0="8" 0 -
+9 0="9" 0 -
+10 0="10" 0 -
+11 0="11" 0 -
+12 0="12" 0 -
+13 0="13" 0 -
+14 0="14" 0 -
+15 0="15" 0 -
+16 0="16" 0 -
+17 0="17" 0 -
+18 0="18" 0 -
+19 0="19" 0 -
+20 0="20" 0 -
+21 3="1" 2="10.0.2.3" 1="10.0.2.15" 0="21" 1 -
+22 3="2" 2="10.0.2.15" 1="10.0.2.3" 0="22" 1 -
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:37:08.993228-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' copyfrom --username analyst --password '<clave predeterminada de la VM educativa>' /home/analyst/dns-lab/resultados/filtro_longitud.txt /home/analyst/dns-lab/resultados/arp_normal.txt resultados/
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:41:54.559470-03:00
+=== COMANDO ===
+python3 scripts/resumen.py
+=== RESULTADO ===
+LABORATORIO DNS - VERIFICACION SOBRE ARCHIVOS Y PCAP
+
+dns_demo.txt : 1072 bytes
+SHA256: 41e631070a6cf404f57bf882d7e1161af41f816e5660468d7aac6630dd22a731
+dns_demo_recibido.txt : 1072 bytes
+SHA256: 41e631070a6cf404f57bf882d7e1161af41f816e5660468d7aac6630dd22a731
+dns_demo_desde_pcap.txt : 1072 bytes
+SHA256: 41e631070a6cf404f57bf882d7e1161af41f816e5660468d7aac6630dd22a731
+
+Comparacion byte a byte: IGUALES los tres archivos
+
+Primeras cuatro lineas del archivo sintetico:
+LABORATORIO DE CIBERSEGURIDAD
+Datos ficticios para prueba de exfiltracion DNS.
+ID-DEMO-2026-001
+REGISTRO-FICTICIO-001; valor=0007; sin informacion personal.
+
+normal_dns.pcap
+Tramas: 22 Consultas: 10 Respuestas: 10
+FQDN unicos: 5 Candidatas: 0 Alertas: 0
+Entropia media: 2.0288 bits/caracter
+Intervalo medio: 0.495876 segundos
+
+dns_exfiltration.pcap
+Tramas: 83 Consultas: 34 Respuestas: 34
+FQDN unicos: 34 Candidatas: 33 Alertas: 1
+Entropia media: 4.4372 bits/caracter
+Intervalo medio: 0.201646 segundos
+ALERTA: 10.203.0.1 lab.test 33 consultas candidatas distintas
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:41:59.482581-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' copyto --username analyst --password '<clave predeterminada de la VM educativa>' scripts/resumen.py /home/analyst/dns-lab/scripts/
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:41:59.880140-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' copyto --username analyst --password '<clave predeterminada de la VM educativa>' resultados/analisis.json resultados/dns_demo_desde_pcap.txt /home/analyst/dns-lab/resultados/
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:42:00.212674-03:00
+=== COMANDO ===
+VBoxManage guestcontrol 'Cybersecurity LabVM Worksation 20230210' run --exe /bin/bash --username analyst --password '<clave predeterminada de la VM educativa>' --wait-stdout --wait-stderr -- -lc 'python3 /home/analyst/dns-lab/scripts/gui_vm.py launch xterm -hold -fa '"'"'DejaVu Sans Mono'"'"' -fs 12 -geometry 115x42+0+0 -title '"'"'Laboratorio DNS - Resultado verificado'"'"' -e python3 /home/analyst/dns-lab/scripts/resumen.py'
+=== RESULTADO ===
+Ventana iniciada, PID 2521
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:43:38.709292-03:00
+=== COMANDO ===
+VBoxManage controlvm 'Cybersecurity LabVM Worksation 20230210' screenshotpng /home/javier/Documents/University/5to/Crypto/TPs/DNS/evidencias/16_verificacion.png
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:47:24.331077-03:00
+=== COMANDO ===
+latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=resultados/latex DNS.tex
+=== RESULTADO ===
+Rc files read:
+  /etc/LatexMk
+Latexmk: This is Latexmk, John Collins, 31 Jan. 2024. Version 4.83.
+Latexmk: Nothing to do for 'DNS.tex'.
+Latexmk: All targets (resultados/latex/DNS.pdf) are up-to-date
+
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:48:14.723648-03:00
+=== COMANDO ===
+latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=resultados/latex DNS.tex
+=== RESULTADO ===
+Rc files read:
+  /etc/LatexMk
+Latexmk: This is Latexmk, John Collins, 31 Jan. 2024. Version 4.83.
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  DNS.tex
+Category 'changed_user':
+  DNS.tex
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -recorder -output-directory="resultados/latex"  "DNS.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./DNS.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+(/usr/share/texlive/texmf-dist/tex/generic/babel-spanish/spanish.ldf))
+(/usr/share/texlive/texmf-dist/tex/generic/babel/locale/es/babel-spanish.tex)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texmf/tex/latex/lm/lmodern.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/xurl/xurl.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg))
+(/usr/share/texmf/tex/latex/lm/t1lmr.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(resultados/latex/DNS.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(resultados/latex/DNS.out) (resultados/latex/DNS.out)
+(/usr/share/texmf/tex/latex/lm/ot1lmr.fd)
+(/usr/share/texmf/tex/latex/lm/omllmm.fd)
+(/usr/share/texmf/tex/latex/lm/omslmsy.fd)
+(/usr/share/texmf/tex/latex/lm/omxlmex.fd)
+(/usr/share/texmf/tex/latex/lm/t1lmtt.fd) [1{/var/lib/texmf/fonts/map/pdftex/up
+dmap/pdftex.map}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}] [2] [3{/usr/sh
+are/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm
+/lm-rm.enc} <./evidencias/02_configuracion_red.png (PNG copy)>]
+(./resultados/tabla_cisco.tex) [4] [5 <./evidencias/06_ethernet_query.png (PNG 
+copy)>] [6 <./evidencias/09_dns_query.png (PNG copy)>] [7 <./evidencias/10_dns_
+respuesta_cisco.png (PNG copy)>] [8] (./resultados/tabla_google.tex) [9]
+[10 <./evidencias/12_google_consulta_udp.png (PNG copy)>] [11] [12]
+(./resultados/tabla_exfil.tex) [13] [14 <./evidencias/15_exfiltracion_consulta.
+png (PNG copy)>] (./resultados/tabla_comparacion.tex) [15 <./evidencias/16_veri
+ficacion.png (PNG copy)>] [16{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc
+}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}] [17] [18] [19]
+(./resultados/tabla_transacciones.tex) [20] [21] (resultados/latex/DNS.aux) )</
+usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/
+public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/s
+hare/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/publi
+c/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/te
+xmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr
+17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts
+/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></
+usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/
+public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
+Output written on resultados/latex/DNS.pdf (21 pages, 1644213 bytes).
+Transcript written on resultados/latex/DNS.log.
+Latexmk: Getting log file 'resultados/latex/DNS.log'
+Latexmk: Examining 'resultados/latex/DNS.fls'
+Latexmk: Examining 'resultados/latex/DNS.log'
+Latexmk: Log file says output to 'resultados/latex/DNS.pdf'
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  resultados/latex/DNS.aux
+
+------------
+Run number 2 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -recorder -output-directory="resultados/latex"  "DNS.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./DNS.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+(/usr/share/texlive/texmf-dist/tex/generic/babel-spanish/spanish.ldf))
+(/usr/share/texlive/texmf-dist/tex/generic/babel/locale/es/babel-spanish.tex)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texmf/tex/latex/lm/lmodern.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/xurl/xurl.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg))
+(/usr/share/texmf/tex/latex/lm/t1lmr.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(resultados/latex/DNS.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(resultados/latex/DNS.out) (resultados/latex/DNS.out)
+(/usr/share/texmf/tex/latex/lm/ot1lmr.fd)
+(/usr/share/texmf/tex/latex/lm/omllmm.fd)
+(/usr/share/texmf/tex/latex/lm/omslmsy.fd)
+(/usr/share/texmf/tex/latex/lm/omxlmex.fd)
+(/usr/share/texmf/tex/latex/lm/t1lmtt.fd) [1{/var/lib/texmf/fonts/map/pdftex/up
+dmap/pdftex.map}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}] [2] [3{/usr/sh
+are/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm
+/lm-rm.enc} <./evidencias/02_configuracion_red.png (PNG copy)>]
+(./resultados/tabla_cisco.tex) [4] [5 <./evidencias/06_ethernet_query.png (PNG 
+copy)>] [6 <./evidencias/09_dns_query.png (PNG copy)>] [7 <./evidencias/10_dns_
+respuesta_cisco.png (PNG copy)>] [8] (./resultados/tabla_google.tex) [9]
+[10 <./evidencias/12_google_consulta_udp.png (PNG copy)>] [11] [12]
+(./resultados/tabla_exfil.tex) [13] [14 <./evidencias/15_exfiltracion_consulta.
+png (PNG copy)>] (./resultados/tabla_comparacion.tex) [15 <./evidencias/16_veri
+ficacion.png (PNG copy)>] [16{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc
+}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}] [17] [18] [19]
+(./resultados/tabla_transacciones.tex) [20] [21] (resultados/latex/DNS.aux) )</
+usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/
+public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/s
+hare/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/publi
+c/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/te
+xmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr
+17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts
+/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></
+usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/
+public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
+Output written on resultados/latex/DNS.pdf (21 pages, 1644213 bytes).
+Transcript written on resultados/latex/DNS.log.
+Latexmk: Getting log file 'resultados/latex/DNS.log'
+Latexmk: Examining 'resultados/latex/DNS.fls'
+Latexmk: Examining 'resultados/latex/DNS.log'
+Latexmk: Log file says output to 'resultados/latex/DNS.pdf'
+Latexmk: All targets (resultados/latex/DNS.pdf) are up-to-date
+
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:49:36.689170-03:00
+=== COMANDO ===
+latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=resultados/latex DNS.tex
+=== RESULTADO ===
+Rc files read:
+  /etc/LatexMk
+Latexmk: This is Latexmk, John Collins, 31 Jan. 2024. Version 4.83.
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  DNS.tex
+Category 'changed_user':
+  DNS.tex
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -recorder -output-directory="resultados/latex"  "DNS.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./DNS.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+(/usr/share/texlive/texmf-dist/tex/generic/babel-spanish/spanish.ldf))
+(/usr/share/texlive/texmf-dist/tex/generic/babel/locale/es/babel-spanish.tex)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texmf/tex/latex/lm/lmodern.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/xurl/xurl.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg))
+(/usr/share/texmf/tex/latex/lm/t1lmr.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(resultados/latex/DNS.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(resultados/latex/DNS.out) (resultados/latex/DNS.out)
+(/usr/share/texmf/tex/latex/lm/ot1lmr.fd)
+(/usr/share/texmf/tex/latex/lm/omllmm.fd)
+(/usr/share/texmf/tex/latex/lm/omslmsy.fd)
+(/usr/share/texmf/tex/latex/lm/omxlmex.fd)
+(/usr/share/texmf/tex/latex/lm/t1lmtt.fd) [1{/var/lib/texmf/fonts/map/pdftex/up
+dmap/pdftex.map}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}] [2] [3{/usr/sh
+are/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm
+/lm-rm.enc} <./evidencias/02_configuracion_red.png (PNG copy)>]
+(./resultados/tabla_cisco.tex) [4] [5 <./evidencias/06_ethernet_query.png (PNG 
+copy)>] [6 <./evidencias/09_dns_query.png (PNG copy)>] [7 <./evidencias/10_dns_
+respuesta_cisco.png (PNG copy)>] [8] (./resultados/tabla_google.tex) [9]
+[10 <./evidencias/12_google_consulta_udp.png (PNG copy)>] [11] [12]
+(./resultados/tabla_exfil.tex) [13] [14 <./evidencias/15_exfiltracion_consulta.
+png (PNG copy)>] (./resultados/tabla_comparacion.tex) [15 <./evidencias/16_veri
+ficacion.png (PNG copy)>] [16{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc
+}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}]
+Overfull \hbox (132.13326pt too wide) in paragraph at lines 698--704
+\T1/lmr/m/n/10.95 cap-tu-ra de la de-mos-tra-ci\xf3n: $[]$ 
+[17] [18] [19] (./resultados/tabla_transacciones.tex) [20] [21] [22]
+(resultados/latex/DNS.aux) )
+(see the transcript file for additional information)</usr/share/texmf/fonts/typ
+e1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></us
+r/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/pu
+blic/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/shar
+e/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm
+/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/
+fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb
+></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/typ
+e1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></usr
+/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
+Output written on resultados/latex/DNS.pdf (22 pages, 1644550 bytes).
+Transcript written on resultados/latex/DNS.log.
+Latexmk: Getting log file 'resultados/latex/DNS.log'
+Latexmk: Examining 'resultados/latex/DNS.fls'
+Latexmk: Examining 'resultados/latex/DNS.log'
+Latexmk: Log file says output to 'resultados/latex/DNS.pdf'
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  resultados/latex/DNS.aux
+
+------------
+Run number 2 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -recorder -output-directory="resultados/latex"  "DNS.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./DNS.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+(/usr/share/texlive/texmf-dist/tex/generic/babel-spanish/spanish.ldf))
+(/usr/share/texlive/texmf-dist/tex/generic/babel/locale/es/babel-spanish.tex)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texmf/tex/latex/lm/lmodern.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/xurl/xurl.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg))
+(/usr/share/texmf/tex/latex/lm/t1lmr.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(resultados/latex/DNS.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(resultados/latex/DNS.out) (resultados/latex/DNS.out)
+(/usr/share/texmf/tex/latex/lm/ot1lmr.fd)
+(/usr/share/texmf/tex/latex/lm/omllmm.fd)
+(/usr/share/texmf/tex/latex/lm/omslmsy.fd)
+(/usr/share/texmf/tex/latex/lm/omxlmex.fd)
+(/usr/share/texmf/tex/latex/lm/t1lmtt.fd) [1{/var/lib/texmf/fonts/map/pdftex/up
+dmap/pdftex.map}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}] [2] [3{/usr/sh
+are/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm
+/lm-rm.enc} <./evidencias/02_configuracion_red.png (PNG copy)>]
+(./resultados/tabla_cisco.tex) [4] [5 <./evidencias/06_ethernet_query.png (PNG 
+copy)>] [6 <./evidencias/09_dns_query.png (PNG copy)>] [7 <./evidencias/10_dns_
+respuesta_cisco.png (PNG copy)>] [8] (./resultados/tabla_google.tex) [9]
+[10 <./evidencias/12_google_consulta_udp.png (PNG copy)>] [11] [12]
+(./resultados/tabla_exfil.tex) [13] [14 <./evidencias/15_exfiltracion_consulta.
+png (PNG copy)>] (./resultados/tabla_comparacion.tex) [15 <./evidencias/16_veri
+ficacion.png (PNG copy)>] [16{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc
+}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}]
+Overfull \hbox (132.13326pt too wide) in paragraph at lines 698--704
+\T1/lmr/m/n/10.95 cap-tu-ra de la de-mos-tra-ci\xf3n: $[]$ 
+[17] [18] [19] (./resultados/tabla_transacciones.tex) [20] [21] [22]
+(resultados/latex/DNS.aux) )
+(see the transcript file for additional information)</usr/share/texmf/fonts/typ
+e1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></us
+r/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/pu
+blic/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/shar
+e/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm
+/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/
+fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb
+></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/typ
+e1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></usr
+/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
+Output written on resultados/latex/DNS.pdf (22 pages, 1644550 bytes).
+Transcript written on resultados/latex/DNS.log.
+Latexmk: Getting log file 'resultados/latex/DNS.log'
+Latexmk: Examining 'resultados/latex/DNS.fls'
+Latexmk: Examining 'resultados/latex/DNS.log'
+Latexmk: Log file says output to 'resultados/latex/DNS.pdf'
+Latexmk: All targets (resultados/latex/DNS.pdf) are up-to-date
+
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T11:50:32.971417-03:00
+=== COMANDO ===
+latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=resultados/latex DNS.tex
+=== RESULTADO ===
+Rc files read:
+  /etc/LatexMk
+Latexmk: This is Latexmk, John Collins, 31 Jan. 2024. Version 4.83.
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  DNS.tex
+Category 'changed_user':
+  DNS.tex
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -recorder -output-directory="resultados/latex"  "DNS.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./DNS.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+(/usr/share/texlive/texmf-dist/tex/generic/babel-spanish/spanish.ldf))
+(/usr/share/texlive/texmf-dist/tex/generic/babel/locale/es/babel-spanish.tex)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texmf/tex/latex/lm/lmodern.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/xurl/xurl.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg))
+(/usr/share/texmf/tex/latex/lm/t1lmr.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(resultados/latex/DNS.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(resultados/latex/DNS.out) (resultados/latex/DNS.out)
+(/usr/share/texmf/tex/latex/lm/ot1lmr.fd)
+(/usr/share/texmf/tex/latex/lm/omllmm.fd)
+(/usr/share/texmf/tex/latex/lm/omslmsy.fd)
+(/usr/share/texmf/tex/latex/lm/omxlmex.fd)
+(/usr/share/texmf/tex/latex/lm/t1lmtt.fd) [1{/var/lib/texmf/fonts/map/pdftex/up
+dmap/pdftex.map}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}] [2] [3{/usr/sh
+are/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm
+/lm-rm.enc} <./evidencias/02_configuracion_red.png (PNG copy)>]
+(./resultados/tabla_cisco.tex) [4] [5 <./evidencias/06_ethernet_query.png (PNG 
+copy)>] [6 <./evidencias/09_dns_query.png (PNG copy)>] [7 <./evidencias/10_dns_
+respuesta_cisco.png (PNG copy)>] [8] (./resultados/tabla_google.tex) [9]
+[10 <./evidencias/12_google_consulta_udp.png (PNG copy)>] [11] [12]
+(./resultados/tabla_exfil.tex) [13] [14 <./evidencias/15_exfiltracion_consulta.
+png (PNG copy)>] (./resultados/tabla_comparacion.tex) [15 <./evidencias/16_veri
+ficacion.png (PNG copy)>] [16{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc
+}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}] [17] [18] [19]
+(./resultados/tabla_transacciones.tex) [20] [21] [22] (resultados/latex/DNS.aux
+) )</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/t
+ype1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></
+usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/
+public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/sha
+re/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/l
+m/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/
+fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.p
+fb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/t
+ype1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
+Output written on resultados/latex/DNS.pdf (22 pages, 1644510 bytes).
+Transcript written on resultados/latex/DNS.log.
+Latexmk: Getting log file 'resultados/latex/DNS.log'
+Latexmk: Examining 'resultados/latex/DNS.fls'
+Latexmk: Examining 'resultados/latex/DNS.log'
+Latexmk: Log file says output to 'resultados/latex/DNS.pdf'
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  resultados/latex/DNS.aux
+
+------------
+Run number 2 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -recorder -output-directory="resultados/latex"  "DNS.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./DNS.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+(/usr/share/texlive/texmf-dist/tex/generic/babel-spanish/spanish.ldf))
+(/usr/share/texlive/texmf-dist/tex/generic/babel/locale/es/babel-spanish.tex)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texmf/tex/latex/lm/lmodern.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/xurl/xurl.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg))
+(/usr/share/texmf/tex/latex/lm/t1lmr.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(resultados/latex/DNS.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(resultados/latex/DNS.out) (resultados/latex/DNS.out)
+(/usr/share/texmf/tex/latex/lm/ot1lmr.fd)
+(/usr/share/texmf/tex/latex/lm/omllmm.fd)
+(/usr/share/texmf/tex/latex/lm/omslmsy.fd)
+(/usr/share/texmf/tex/latex/lm/omxlmex.fd)
+(/usr/share/texmf/tex/latex/lm/t1lmtt.fd) [1{/var/lib/texmf/fonts/map/pdftex/up
+dmap/pdftex.map}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}] [2] [3{/usr/sh
+are/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm
+/lm-rm.enc} <./evidencias/02_configuracion_red.png (PNG copy)>]
+(./resultados/tabla_cisco.tex) [4] [5 <./evidencias/06_ethernet_query.png (PNG 
+copy)>] [6 <./evidencias/09_dns_query.png (PNG copy)>] [7 <./evidencias/10_dns_
+respuesta_cisco.png (PNG copy)>] [8] (./resultados/tabla_google.tex) [9]
+[10 <./evidencias/12_google_consulta_udp.png (PNG copy)>] [11] [12]
+(./resultados/tabla_exfil.tex) [13] [14 <./evidencias/15_exfiltracion_consulta.
+png (PNG copy)>] (./resultados/tabla_comparacion.tex) [15 <./evidencias/16_veri
+ficacion.png (PNG copy)>] [16{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc
+}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}] [17] [18] [19]
+(./resultados/tabla_transacciones.tex) [20] [21] [22] (resultados/latex/DNS.aux
+) )</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/t
+ype1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></
+usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/
+public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/sha
+re/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/l
+m/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/
+fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.p
+fb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/t
+ype1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
+Output written on resultados/latex/DNS.pdf (22 pages, 1644510 bytes).
+Transcript written on resultados/latex/DNS.log.
+Latexmk: Getting log file 'resultados/latex/DNS.log'
+Latexmk: Examining 'resultados/latex/DNS.fls'
+Latexmk: Examining 'resultados/latex/DNS.log'
+Latexmk: Log file says output to 'resultados/latex/DNS.pdf'
+Latexmk: All targets (resultados/latex/DNS.pdf) are up-to-date
+
+
+=== RETORNO ===
+0

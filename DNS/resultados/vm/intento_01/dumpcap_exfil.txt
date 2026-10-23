@@ -1,0 +1,2 @@
+Capturing on 'dns-cli'
+dumpcap: The file to which the capture would be saved ("/home/analyst/dns-lab/capturas/dns_exfiltration.pcap") could not be opened: Permission denied.

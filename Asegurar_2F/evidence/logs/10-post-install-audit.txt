@@ -1,0 +1,10 @@
+12:Include /etc/ssh/sshd_config.d/*.conf
+62:KbdInteractiveAuthentication no
+85:UsePAM yes
+123:PasswordAuthentication yes
+fail2ban	0.11.2-6
+libpam-google-authenticator	20191231-2
+openssh-server	1:8.9p1-3ubuntu0.1
+inactive
+/usr/sbin/nft
+/usr/sbin/iptables

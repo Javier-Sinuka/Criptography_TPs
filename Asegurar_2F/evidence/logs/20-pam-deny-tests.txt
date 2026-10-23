@@ -1,0 +1,13 @@
+timestamp_utc=2026-10-13T05:04:13Z
+nonpriv_deny_exit=255
++----------------------------------------------+
+|   LABORATORIO DE SEGURIDAD SSH - CRIPTOGRAFIA  |
+|   Acceso autorizado para pruebas academicas   |
++----------------------------------------------+
+Connection closed by 127.0.0.1 port 2222
+cisco_unlisted_exit=0
++----------------------------------------------+
+|   LABORATORIO DE SEGURIDAD SSH - CRIPTOGRAFIA  |
+|   Acceso autorizado para pruebas academicas   |
++----------------------------------------------+
+cisco

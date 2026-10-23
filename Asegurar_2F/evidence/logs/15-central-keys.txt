@@ -1,0 +1,4 @@
+authorizedkeysfile /etc/ssh/authorized-keys/%u .ssh/authorized_keys
+256 SHA256:TNJCpC5/A8RHEIlVg7Z34u3Db1TUnbzyGXEy2n7thIY crypto-ssh2fa-lab (ED25519)
+/etc/ssh/authorized-keys root:root 755
+/etc/ssh/authorized-keys/nonpriv root:root 644

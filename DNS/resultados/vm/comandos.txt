@@ -1,0 +1,779 @@
+
+=== FECHA ===
+2026-09-20T14:24:18.345843+00:00
+=== COMANDO ===
+ip addr show enp0s3
+=== RESULTADO ===
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:55:44:07 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic enp0s3
+       valid_lft 86148sec preferred_lft 86148sec
+    inet6 fd17:625c:f037:2:a00:27ff:fe55:4407/64 scope global dynamic mngtmpaddr noprefixroute 
+       valid_lft 86148sec preferred_lft 14148sec
+    inet6 fe80::a00:27ff:fe55:4407/64 scope link 
+       valid_lft forever preferred_lft forever
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:18.355413+00:00
+=== COMANDO ===
+ip route
+=== RESULTADO ===
+default via 10.0.2.2 dev enp0s3 proto dhcp src 10.0.2.15 metric 100 
+10.0.2.0/24 dev enp0s3 proto kernel scope link src 10.0.2.15 metric 100 
+10.0.2.2 dev enp0s3 proto dhcp scope link src 10.0.2.15 metric 100 
+10.0.2.3 dev enp0s3 proto dhcp scope link src 10.0.2.15 metric 100 
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:18.370100+00:00
+=== COMANDO ===
+ip neigh
+=== RESULTADO ===
+10.0.2.3 dev enp0s3 lladdr 52:54:00:12:35:00 STALE
+10.0.2.2 dev enp0s3 lladdr 52:54:00:12:35:00 STALE
+fe80::2 dev enp0s3 lladdr 52:54:00:12:35:00 router STALE
+fd17:625c:f037:2::2 dev enp0s3 lladdr 52:54:00:12:35:00 router STALE
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:18.375421+00:00
+=== COMANDO ===
+cat /etc/resolv.conf
+=== RESULTADO ===
+# This is /run/systemd/resolve/stub-resolv.conf managed by man:systemd-resolved(8).
+# Do not edit.
+#
+# This file might be symlinked as /etc/resolv.conf. If you're looking at
+# /etc/resolv.conf and seeing this text, you have followed the symlink.
+#
+# This is a dynamic resolv.conf file for connecting local clients to the
+# internal DNS stub resolver of systemd-resolved. This file lists all
+# configured search domains.
+#
+# Run "resolvectl status" to see details about the uplink DNS servers
+# currently in use.
+#
+# Third party programs should typically not access this file directly, but only
+# through the symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a
+# different way, replace this symlink by a static file or a different symlink.
+#
+# See man:systemd-resolved.service(8) for details about the supported modes of
+# operation for /etc/resolv.conf.
+
+nameserver 127.0.0.53
+options edns0 trust-ad
+search lan
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:18.379280+00:00
+=== COMANDO ===
+resolvectl status
+=== RESULTADO ===
+Global
+       Protocols: -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+resolv.conf mode: stub
+
+Link 2 (enp0s3)
+    Current Scopes: DNS
+         Protocols: +DefaultRoute +LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+Current DNS Server: 10.0.2.3
+       DNS Servers: 10.0.2.3 fd17:625c:f037:2::3
+        DNS Domain: lan
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:18.397426+00:00
+=== COMANDO ===
+resolvectl flush-caches
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:18.413657+00:00
+=== COMANDO ===
+resolvectl statistics
+=== RESULTADO ===
+DNSSEC supported by current servers: no
+
+Transactions          
+Current Transactions: 0
+  Total Transactions: 13
+                      
+Cache                 
+  Current Cache Size: 0
+          Cache Hits: 2
+        Cache Misses: 8
+                      
+DNSSEC Verdicts       
+              Secure: 0
+            Insecure: 0
+               Bogus: 0
+       Indeterminate: 0
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:20.188988+00:00
+=== COMANDO ===
+dig @10.0.2.3 www.google.com A +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 www.google.com A +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 25968
+;; flags: qr rd ra; QUERY: 1, ANSWER: 8, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;www.google.com.			IN	A
+
+;; ANSWER SECTION:
+www.google.com.		119	IN	A	142.251.156.119
+www.google.com.		119	IN	A	142.251.152.119
+www.google.com.		119	IN	A	142.251.154.119
+www.google.com.		119	IN	A	142.251.151.119
+www.google.com.		119	IN	A	142.251.155.119
+www.google.com.		119	IN	A	142.251.150.119
+www.google.com.		119	IN	A	142.251.157.119
+www.google.com.		119	IN	A	142.251.153.119
+
+;; Query time: 32 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:20 UTC 2026
+;; MSG SIZE  rcvd: 160
+
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:20.664737+00:00
+=== COMANDO ===
+dig @10.0.2.3 www.google.com AAAA +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 www.google.com AAAA +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 12901
+;; flags: qr rd ra; QUERY: 1, ANSWER: 8, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;www.google.com.			IN	AAAA
+
+;; ANSWER SECTION:
+www.google.com.		262	IN	AAAA	2001:4860:482c:7700::
+www.google.com.		262	IN	AAAA	2001:4860:482a:7700::
+www.google.com.		262	IN	AAAA	2001:4860:4828:7700::
+www.google.com.		262	IN	AAAA	2001:4860:4827:7700::
+www.google.com.		262	IN	AAAA	2001:4860:4826:7700::
+www.google.com.		262	IN	AAAA	2001:4860:482b:7700::
+www.google.com.		262	IN	AAAA	2001:4860:482d:7700::
+www.google.com.		262	IN	AAAA	2001:4860:4829:7700::
+
+;; Query time: 32 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:20 UTC 2026
+;; MSG SIZE  rcvd: 256
+
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:21.132628+00:00
+=== COMANDO ===
+dig @10.0.2.3 example.com A +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 example.com A +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 8677
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;example.com.			IN	A
+
+;; ANSWER SECTION:
+example.com.		300	IN	A	104.20.23.154
+example.com.		300	IN	A	172.66.147.243
+
+;; Query time: 112 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:21 UTC 2026
+;; MSG SIZE  rcvd: 61
+
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:21.709844+00:00
+=== COMANDO ===
+dig @10.0.2.3 example.com AAAA +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 example.com AAAA +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 47520
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;example.com.			IN	AAAA
+
+;; ANSWER SECTION:
+example.com.		300	IN	AAAA	2606:4700:10::6814:179a
+example.com.		300	IN	AAAA	2606:4700:10::ac42:93f3
+
+;; Query time: 152 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:21 UTC 2026
+;; MSG SIZE  rcvd: 85
+
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:22.316242+00:00
+=== COMANDO ===
+dig @10.0.2.3 www.iana.org A +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 www.iana.org A +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 7381
+;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;www.iana.org.			IN	A
+
+;; ANSWER SECTION:
+www.iana.org.		1780	IN	CNAME	www.iana.org.cdn.cloudflare.net.
+www.iana.org.cdn.cloudflare.net. 300 IN	A	104.18.25.232
+www.iana.org.cdn.cloudflare.net. 300 IN	A	104.18.24.232
+
+;; Query time: 56 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:22 UTC 2026
+;; MSG SIZE  rcvd: 107
+
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:22.854040+00:00
+=== COMANDO ===
+dig @10.0.2.3 www.iana.org AAAA +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 www.iana.org AAAA +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 45842
+;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 2
+
+;; QUESTION SECTION:
+;www.iana.org.			IN	AAAA
+
+;; ANSWER SECTION:
+www.iana.org.		299	IN	CNAME	www.iana.org.cdn.cloudflare.net.
+www.iana.org.cdn.cloudflare.net. 300 IN	AAAA	2606:4700::6812:18e8
+www.iana.org.cdn.cloudflare.net. 300 IN	AAAA	2606:4700::6812:19e8
+
+;; ADDITIONAL SECTION:
+www.iana.org.cdn.cloudflare.net. 299 IN	A	104.18.25.232
+www.iana.org.cdn.cloudflare.net. 299 IN	A	104.18.24.232
+
+;; Query time: 56 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:22 UTC 2026
+;; MSG SIZE  rcvd: 163
+
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:23.414428+00:00
+=== COMANDO ===
+dig @10.0.2.3 www.cisco.com A +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 www.cisco.com A +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 4482
+;; flags: qr rd ra; QUERY: 1, ANSWER: 4, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;www.cisco.com.			IN	A
+
+;; ANSWER SECTION:
+www.cisco.com.		16	IN	CNAME	www.cisco.com.akadns.net.
+www.cisco.com.akadns.net. 16	IN	CNAME	wwwds.cisco.com.edgekey.net.
+wwwds.cisco.com.edgekey.net. 16	IN	CNAME	e2867.dsca.akamaiedge.net.
+e2867.dsca.akamaiedge.net. 16	IN	A	2.20.140.117
+
+;; Query time: 0 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:23 UTC 2026
+;; MSG SIZE  rcvd: 159
+
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:23.881889+00:00
+=== COMANDO ===
+dig @10.0.2.3 www.google.com A +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 www.google.com A +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 13333
+;; flags: qr rd ra; QUERY: 1, ANSWER: 8, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;www.google.com.			IN	A
+
+;; ANSWER SECTION:
+www.google.com.		115	IN	A	142.251.151.119
+www.google.com.		115	IN	A	142.251.156.119
+www.google.com.		115	IN	A	142.251.152.119
+www.google.com.		115	IN	A	142.251.155.119
+www.google.com.		115	IN	A	142.251.157.119
+www.google.com.		115	IN	A	142.251.150.119
+www.google.com.		115	IN	A	142.251.154.119
+www.google.com.		115	IN	A	142.251.153.119
+
+;; Query time: 8 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:23 UTC 2026
+;; MSG SIZE  rcvd: 160
+
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:23.991299+00:00
+=== COMANDO ===
+ip neigh
+=== RESULTADO ===
+10.0.2.3 dev enp0s3 lladdr 52:54:00:12:35:00 DELAY
+10.0.2.2 dev enp0s3 lladdr 52:54:00:12:35:00 STALE
+fe80::2 dev enp0s3 lladdr 52:54:00:12:35:00 router STALE
+fd17:625c:f037:2::2 dev enp0s3 lladdr 52:54:00:12:35:00 router STALE
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:42.279247+00:00
+=== COMANDO ===
+ip netns add dns-client-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:42.287315+00:00
+=== COMANDO ===
+ip netns add dns-server-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:42.296812+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 link add dns-cli type veth peer name dns-rx netns dns-server-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:42.309695+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 addr add 10.203.0.1/30 dev dns-cli
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:42.313954+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 link set lo up
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:42.317841+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 link set dns-cli up
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:42.325828+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 -br addr
+=== RESULTADO ===
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+dns-cli@if2      DOWN           10.203.0.1/30 
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:42.332850+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 route
+=== RESULTADO ===
+10.203.0.0/30 dev dns-cli proto kernel scope link src 10.203.0.1 linkdown 
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:42.335868+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 addr add 10.203.0.2/30 dev dns-rx
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:42.340469+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 link set lo up
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:42.346135+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 link set dns-rx up
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:42.351870+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 -br addr
+=== RESULTADO ===
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+dns-rx@if2       DOWN           10.203.0.2/30 
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:42.359753+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 route
+=== RESULTADO ===
+10.203.0.0/30 dev dns-rx proto kernel scope link src 10.203.0.2 
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:42.969273+00:00
+=== COMANDO ===
+ip netns exec dns-client-20260920 python3 /home/analyst/dns-lab/scripts/dns_demo.py sender
+=== RESULTADO ===
+{"synthetic_bytes": 1072, "chunks": 34, "sha256": "41e631070a6cf404f57bf882d7e1161af41f816e5660468d7aac6630dd22a731"}
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:50.427132+00:00
+=== COMANDO ===
+ip netns del dns-server-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:50.434786+00:00
+=== COMANDO ===
+ip netns del dns-client-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:24:50.448120+00:00
+=== COMANDO ===
+ip netns list
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:26:00.281245+00:00
+=== COMANDO ===
+ip netns add dns-client-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:26:00.289186+00:00
+=== COMANDO ===
+ip netns add dns-server-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:26:00.299542+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 link add dns-cli type veth peer name dns-rx netns dns-server-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:26:00.303931+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 addr add 10.203.0.1/30 dev dns-cli
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:26:00.307818+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 link set lo up
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:26:00.314443+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 link set dns-cli up
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:26:00.317283+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 -br addr
+=== RESULTADO ===
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+dns-cli@if2      DOWN           10.203.0.1/30 
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:26:00.321053+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 route
+=== RESULTADO ===
+10.203.0.0/30 dev dns-cli proto kernel scope link src 10.203.0.1 linkdown 
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:26:00.328002+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 addr add 10.203.0.2/30 dev dns-rx
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:26:00.333053+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 link set lo up
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:26:00.339692+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 link set dns-rx up
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:26:00.353067+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 -br addr
+=== RESULTADO ===
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+dns-rx@if2       DOWN           10.203.0.2/30 
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:26:00.357443+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 route
+=== RESULTADO ===
+10.203.0.0/30 dev dns-rx proto kernel scope link src 10.203.0.2 
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:26:00.862016+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 addr
+=== RESULTADO ===
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: dns-cli@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 7e:9e:18:cd:b2:18 brd ff:ff:ff:ff:ff:ff link-netns dns-server-20260920
+    inet 10.203.0.1/30 scope global dns-cli
+       valid_lft forever preferred_lft forever
+    inet6 fe80::7c9e:18ff:fecd:b218/64 scope link tentative 
+       valid_lft forever preferred_lft forever
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:26:00.866355+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 route
+=== RESULTADO ===
+10.203.0.0/30 dev dns-cli proto kernel scope link src 10.203.0.1 
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:26:00.871914+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 addr
+=== RESULTADO ===
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: dns-rx@if2: <NO-CARRIER,BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state DOWN group default qlen 1000
+    link/ether 02:af:b9:5b:09:ac brd ff:ff:ff:ff:ff:ff link-netns dns-client-20260920
+    inet 10.203.0.2/30 scope global dns-rx
+       valid_lft forever preferred_lft forever
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:26:00.877644+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 route
+=== RESULTADO ===
+10.203.0.0/30 dev dns-rx proto kernel scope link src 10.203.0.2 
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:26:01.487643+00:00
+=== COMANDO ===
+ip netns exec dns-client-20260920 python3 /home/analyst/dns-lab/scripts/dns_demo.py sender
+=== RESULTADO ===
+{"synthetic_bytes": 1072, "chunks": 34, "sha256": "41e631070a6cf404f57bf882d7e1161af41f816e5660468d7aac6630dd22a731"}
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:26:08.981267+00:00
+=== COMANDO ===
+ip netns del dns-server-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:26:08.986223+00:00
+=== COMANDO ===
+ip netns del dns-client-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+=== FECHA ===
+2026-09-20T14:26:08.994983+00:00
+=== COMANDO ===
+ip netns list
+=== RESULTADO ===
+
+=== RETORNO ===
+0

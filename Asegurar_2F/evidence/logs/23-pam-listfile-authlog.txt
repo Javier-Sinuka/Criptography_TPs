@@ -1,0 +1,3 @@
+Oct 13 05:04:12 labvm sshd[2983]: pam_listfile(sshd:account): Refused user nonpriv for service sshd
+Oct 13 05:04:32 labvm sshd[3102]: pam_listfile(sshd:account): Refused user nonpriv for service sshd
+Oct 13 05:04:32 labvm sudo:    cisco : PWD=/ ; USER=root ; COMMAND=/bin/bash -lc grep "pam_listfile(sshd:account)" /var/log/auth.log | tail -n 8

@@ -1,0 +1,13 @@
+OK: configuration test is successful
+active
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	0
+|  |- Total failed:	0
+|  `- File list:	/var/log/auth.log
+`- Actions
+   |- Currently banned:	0
+   |- Total banned:	0
+   `- Banned IP list:	
+Chain INPUT (policy ACCEPT)
+num  target     prot opt source               destination         

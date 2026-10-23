@@ -1,0 +1,9 @@
+mode=wrong
+result=timeout
+mode=expired
+result=timeout
+mode=wrong-key
+otp_prompt_seen=false
+command_marker_seen=false
+ssh_exit=255
+partial_publickey_success=false

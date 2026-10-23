@@ -1,0 +1,292 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+
+\definecolor{azulacademico}{RGB}{0,51,102}
+\definecolor{grisclaro}{RGB}{245,247,249}
+\definecolor{grisoscuro}{RGB}{70,70,70}
+\definecolor{verdeclaro}{RGB}{235,247,239}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=azulacademico,
+  urlcolor=azulacademico,
+  citecolor=azulacademico,
+  pdftitle={Informe de Laboratorio: Tutorial de Expresiones Regulares},
+  pdfauthor={Estudiante}
+}
+
+\title{Informe de laboratorio: expresiones regulares}
+\author{Javier Siñuka}
+\date{12 de septiembre de 2026}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Laboratorio de Ciberseguridad}
+\rhead{Expresiones regulares}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{14pt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.65em}
+\setlist[itemize]{leftmargin=1.6em}
+\setlist[enumerate]{leftmargin=1.8em}
+
+\newcommand{\regex}[1]{\texttt{#1}}
+
+\lstdefinestyle{terminal}{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{grisclaro},
+  frame=single,
+  rulecolor=\color{black!20},
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  xleftmargin=0.3em,
+  xrightmargin=0.3em
+}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{plain}
+
+\clearpage
+\tableofcontents
+\newpage
+
+\section{Resumen}
+
+El presente informe resuelve integralmente la práctica de laboratorio dedicada al uso de expresiones regulares (\emph{regular expressions}, regex). El trabajo aborda, en primer lugar, el significado de los principales metacaracteres utilizados para construir patrones; posteriormente interpreta cada una de las expresiones regulares propuestas en la guía; y, finalmente, documenta el procedimiento de validación sobre el archivo de registro \texttt{logstash-tutorial.log} mediante la herramienta \texttt{less} en la máquina virtual CyberOps Workstation.
+
+Desde la perspectiva de ciberseguridad, las expresiones regulares constituyen una herramienta fundamental para el análisis de logs, la búsqueda de indicadores de compromiso, la identificación de patrones de tráfico y la extracción de campos relevantes en procesos de monitoreo, respuesta a incidentes y análisis forense. Su uso debe realizarse con precisión, ya que un patrón excesivamente amplio puede producir falsos positivos, mientras que uno demasiado restrictivo puede omitir eventos relevantes.
+
+\section{Objetivos}
+
+\subsection{Objetivo general}
+Comprender y aplicar expresiones regulares para identificar cadenas de información dentro de archivos de texto y registros de eventos, interpretando correctamente sus operadores y verificando su comportamiento en un entorno de análisis CyberOps.
+
+\subsection{Objetivos específicos}
+\begin{itemize}
+    \item Reconocer la función de los principales metacaracteres de una expresión regular.
+    \item Interpretar patrones regex simples y compuestos.
+    \item Aplicar anclas, clases de caracteres, cuantificadores, escapes y alternancias.
+    \item Ejecutar búsquedas dentro de un archivo de log utilizando \texttt{less}.
+    \item Relacionar el uso de expresiones regulares con tareas habituales de ciberseguridad.
+\end{itemize}
+
+\section{Marco teórico}
+
+\subsection{Concepto de expresión regular}
+Una expresión regular es una notación formal para describir conjuntos de cadenas de caracteres mediante patrones. A diferencia de una búsqueda literal, una regex puede representar familias completas de cadenas. Por ejemplo, el patrón \regex{[0-9]} representa cualquier dígito decimal, mientras que \regex{[A-Z]\{2,4\}} representa una secuencia de entre dos y cuatro letras mayúsculas.
+
+La guía de laboratorio menciona dos grandes familias históricas de sintaxis: POSIX y Perl. En la práctica moderna existen múltiples motores compatibles en distinto grado con esas convenciones. Por este motivo, ciertos detalles ---por ejemplo, el significado exacto de \regex{\textbackslash d} o el comportamiento de \regex{.} frente a saltos de línea--- pueden variar según la herramienta utilizada. Para este informe se adopta la interpretación esperada por la práctica de Cisco y por motores de expresiones regulares de uso habitual.
+
+\subsection{Uso en ciberseguridad}
+En un centro de operaciones de seguridad (SOC), las regex se emplean habitualmente para:
+\begin{itemize}
+    \item localizar direcciones IP, dominios, nombres de host, identificadores o marcas temporales;
+    \item filtrar eventos de autenticación o solicitudes HTTP específicas;
+    \item construir reglas de detección y extracción de campos;
+    \item identificar cadenas asociadas a indicadores de compromiso (IoC);
+    \item normalizar datos provenientes de fuentes de log heterogéneas;
+    \item realizar búsquedas rápidas durante una investigación forense.
+\end{itemize}
+
+Debe considerarse, además, que patrones mal diseñados pueden ocasionar problemas de rendimiento. En motores susceptibles a retroceso excesivo, determinadas expresiones pueden provocar \emph{Regular Expression Denial of Service} (ReDoS). Por ello, en sistemas de producción resulta importante mantener patrones acotados, legibles y probados sobre entradas representativas.
+
+\subsection{Flujo conceptual de una búsqueda regex}
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=1.4cm,
+  box/.style={draw, rounded corners, align=center, minimum width=3.2cm, minimum height=1.0cm, fill=grisclaro},
+  arrow/.style={-{Latex[length=2.5mm]}, thick}
+]
+\node[box] (log) {Archivo de log\\\texttt{logstash-tutorial.log}};
+\node[box, right=of log] (regex) {Patrón regex\\ej. \texttt{\string^83}};
+\node[box, right=of regex] (motor) {Motor de\\expresiones regulares};
+\node[box, below=of motor] (match) {Coincidencias\\resaltadas};
+\draw[arrow] (log) -- (regex);
+\draw[arrow] (regex) -- (motor);
+\draw[arrow] (motor) -- (match);
+\end{tikzpicture}
+\end{center}
+
+\section{Desarrollo de la práctica}
+
+\subsection{Paso 1: metacaracteres}
+
+La primera actividad solicita describir la función de los metacaracteres indicados. La tabla siguiente completa la totalidad de los elementos presentados en la guía.
+
+\renewcommand{\arraystretch}{1.35}
+\begin{longtable}{>{\centering\arraybackslash}p{0.19\textwidth} p{0.72\textwidth}}
+\toprule
+\textbf{Metacarácter} & \textbf{Descripción} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Metacarácter} & \textbf{Descripción} \\
+\midrule
+\endhead
+\regex{\$} & Ancla de fin. Hace coincidir una posición situada al final de la cadena o de la línea, según el modo del motor regex. No consume caracteres. \\
+\regex{*} & Cuantificador de repetición: el elemento inmediatamente anterior puede aparecer cero o más veces. Por ejemplo, \regex{ab*} coincide con \texttt{a}, \texttt{ab}, \texttt{abb}, etc. \\
+\regex{.} & Comodín que representa un carácter cualquiera, salvo normalmente el salto de línea, dependiendo de la configuración del motor. \\
+\regex{[ ]} & Define una clase de caracteres. Coincide con exactamente un carácter perteneciente al conjunto o rango indicado entre corchetes. Ejemplo: \regex{[A-Z]}. \\
+\regex{\textbackslash .} & Representa un punto literal. La barra invertida elimina el significado especial del metacarácter \regex{.}. \\
+\regex{\textbackslash d} & Coincide con un dígito. En la interpretación habitual del ejercicio equivale a un carácter de \texttt{0} a \texttt{9}. \\
+\regex{\textbackslash D} & Coincide con un carácter que no es un dígito; es la clase complementaria de \regex{\textbackslash d}. \\
+\regex{\string^} & Ancla de inicio. Exige que la coincidencia comience al principio de la cadena o línea, según el modo de búsqueda. No consume caracteres. \\
+\regex{\{m\}} & Cuantificador exacto: el elemento anterior debe repetirse exactamente \textit{m} veces. \\
+\regex{\{n,m\}} & Cuantificador de rango: el elemento anterior debe repetirse como mínimo \textit{n} veces y como máximo \textit{m} veces, inclusive. \\
+\regex{\$} & La guía repite este metacarácter. Su función es la misma: anclar la coincidencia al final de la cadena o línea. \\
+\regex{*} & La guía repite este metacarácter. Su función es la misma: permitir cero o más repeticiones del elemento anterior. \\
+\regex{abc|123} & Alternancia lógica. Coincide con una de las dos alternativas: la cadena literal \texttt{abc} o la cadena literal \texttt{123}. \\
+\bottomrule
+\end{longtable}
+
+\textbf{Observación:} la tabla original presenta los metacaracteres \regex{\$} y \regex{*} dos veces. Para conservar fielmente la estructura de la práctica, ambos se mantienen y se responden nuevamente.
+
+\subsection{Paso 2: interpretación de los patrones proporcionados}
+
+A continuación se resuelve cada expresión regular solicitada por la guía.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.24\textwidth} p{0.67\textwidth}}
+\toprule
+\textbf{Patrón} & \textbf{Interpretación correcta} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Patrón} & \textbf{Interpretación correcta} \\
+\midrule
+\endhead
+\regex{\string^83} & Coincide únicamente cuando la cadena o línea comienza con los caracteres literales \texttt{83}. El símbolo \regex{\string^} fija el inicio de la búsqueda. \\
+\regex{[A-Z]\{2,4\}} & Coincide con una secuencia de entre dos y cuatro letras mayúsculas ASCII consecutivas. El rango \regex{[A-Z]} define las letras permitidas y \regex{\{2,4\}} establece la cantidad. \\
+\regex{2015} & Busca la secuencia literal \texttt{2015} en cualquier posición del texto. No contiene metacaracteres. \\
+\regex{05:22:2[0-9]} & Coincide con una hora o fragmento de marca temporal que empieza con \texttt{05:22:2} y termina con cualquier dígito. Por lo tanto, puede coincidir con \texttt{05:22:20}, \texttt{05:22:21}, \ldots, \texttt{05:22:29}. \\
+\regex{\textbackslash .com} & Coincide con la cadena literal \texttt{.com}. La secuencia \regex{\textbackslash .} obliga a interpretar el punto como carácter literal y no como comodín. \\
+\regex{complete|GET} & Alternancia: coincide con la cadena literal \texttt{complete} o con la cadena literal \texttt{GET}. \\
+\regex{0\{4\}} & Coincide con exactamente cuatro caracteres \texttt{0} consecutivos, es decir, \texttt{0000}. \\
+\bottomrule
+\end{longtable}
+
+\subsubsection{Consideraciones de precisión}
+
+Es importante destacar que los patrones anteriores no incorporan límites de palabra ni anclas adicionales salvo cuando se indican explícitamente. En consecuencia:
+\begin{itemize}
+    \item \regex{2015} también coincidiría dentro de una cadena más extensa que contenga esos cuatro caracteres.
+    \item \regex{0\{4\}} puede encontrar cuatro ceros dentro de una secuencia más larga de ceros.
+    \item \regex{[A-Z]\{2,4\}} puede identificar fragmentos de dos a cuatro mayúsculas dentro de una secuencia mayor, dependiendo del motor y de su estrategia de coincidencia.
+\end{itemize}
+
+Estas observaciones son relevantes en ciberseguridad: una regla de detección debe expresar exactamente el contexto que se desea identificar para reducir falsos positivos.
+
+\subsection{Paso 3: verificación en CyberOps Workstation}
+
+La guía indica verificar los patrones sobre el archivo \texttt{logstash-tutorial.log} almacenado en la máquina virtual CyberOps Workstation. El procedimiento completo es el siguiente.
+
+\subsubsection{Acceso y apertura del archivo}
+
+Iniciar sesión en la VM con las credenciales proporcionadas por la práctica y abrir una terminal. A continuación:
+
+\begin{lstlisting}[style=terminal]
+cd lab.support.files/
+less logstash-tutorial.log
+\end{lstlisting}
+
+Dentro de \texttt{less}, una búsqueda se inicia escribiendo \texttt{/} seguida de la expresión regular. Las expresiones solicitadas deben probarse individualmente de la siguiente manera:
+
+\begin{lstlisting}[style=terminal]
+/^83
+/[A-Z]{2,4}
+/2015
+/05:22:2[0-9]
+/\.com
+/complete|GET
+/0{4}
+\end{lstlisting}
+
+Una vez ingresado cada patrón, \texttt{less} resalta la coincidencia encontrada. Se puede navegar por el archivo mediante las teclas \texttt{j} y \texttt{k}; adicionalmente, en una sesión habitual de \texttt{less}, \texttt{n} permite avanzar a la coincidencia siguiente y \texttt{N} regresar a la anterior. Finalmente, se presiona \texttt{q} para salir.
+
+\subsubsection{Matriz de verificación esperada}
+
+\begin{tabularx}{\textwidth}{p{0.23\textwidth} X X}
+\toprule
+\textbf{Patrón} & \textbf{Qué debe verificarse} & \textbf{Criterio de aceptación} \\
+\midrule
+\regex{\string^83} & Inicio de línea/cadena con \texttt{83}. & Solo se resaltan coincidencias que comienzan en la primera posición. \\
+\regex{[A-Z]\{2,4\}} & Bloques de 2 a 4 letras mayúsculas. & Deben encontrarse secuencias como métodos, siglas o fragmentos en mayúsculas. \\
+\regex{2015} & Cadena literal \texttt{2015}. & Se resaltan todas las apariciones del año/secuencia. \\
+\regex{05:22:2[0-9]} & Tiempos entre \texttt{05:22:20} y \texttt{05:22:29}. & El último carácter debe ser un dígito entre 0 y 9. \\
+\regex{\textbackslash .com} & Sufijo literal \texttt{.com}. & El punto debe formar parte de la coincidencia. \\
+\regex{complete|GET} & Alternativas \texttt{complete} o \texttt{GET}. & Deben resaltarse apariciones de cualquiera de ambas cadenas. \\
+\regex{0\{4\}} & Cuatro ceros consecutivos. & La coincidencia mínima visible es \texttt{0000}. \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Nota metodológica:} la guía entregada contiene las instrucciones y una captura ilustrativa, pero no incorpora como archivo adjunto el contenido completo de \texttt{logstash-tutorial.log}. Por ello, este informe no inventa una lista de líneas coincidentes. La resolución incluye la interpretación exacta de todos los patrones y el procedimiento reproducible para comprobarlos en la VM indicada.
+
+\section{Análisis desde la perspectiva de ciberseguridad}
+
+\subsection{Lectura de logs y reducción del espacio de búsqueda}
+El análisis manual de un archivo de registro extenso puede resultar costoso. Las expresiones regulares permiten reducir rápidamente el conjunto de eventos candidatos. Por ejemplo, la búsqueda \regex{complete|GET} puede localizar eventos que contengan un estado o una operación HTTP específica, mientras que \regex{\textbackslash .com} puede ayudar a identificar dominios de nivel superior \texttt{.com} dentro de URLs o nombres de host.
+
+No obstante, una coincidencia textual no constituye por sí sola evidencia de actividad maliciosa. En un proceso profesional de monitoreo, el analista debe correlacionar el resultado con otros campos: dirección IP, usuario, código de estado, marca temporal, agente de usuario, host afectado y contexto del evento.
+
+\subsection{Falsos positivos y falsos negativos}
+Un patrón demasiado general, como \regex{2015}, puede generar numerosos resultados irrelevantes. Por el contrario, un patrón demasiado específico puede omitir variantes legítimas del dato buscado. El diseño de reglas de detección requiere equilibrar cobertura y precisión.
+
+Como ejemplo, si el objetivo real fuera detectar exclusivamente el año \texttt{2015} como token independiente, una expresión más estricta podría incorporar límites de palabra, por ejemplo \regex{\textbackslash b2015\textbackslash b}, siempre que el motor empleado soporte dicha construcción. Esto ilustra la diferencia entre resolver el ejercicio ---donde debe utilizarse exactamente el patrón indicado--- y diseñar una regla de producción.
+
+\subsection{Buenas prácticas}
+\begin{itemize}
+    \item Documentar la intención de cada patrón.
+    \item Evitar complejidad innecesaria y retroceso catastrófico.
+    \item Probar patrones con casos positivos y negativos.
+    \item Utilizar anclas y límites cuando el contexto lo requiera.
+    \item Escapar correctamente caracteres con significado especial.
+    \item Validar el comportamiento en el motor regex real del sistema objetivo.
+    \item No utilizar regex como único mecanismo de validación de seguridad cuando se requiere un parser estructurado.
+\end{itemize}
+
+\section{Resultados}
+
+La práctica permite comprobar los siguientes resultados:
+\begin{enumerate}
+    \item Se identificó correctamente la función de todos los metacaracteres solicitados.
+    \item Se interpretaron sin ambigüedad los siete patrones del Paso 2.
+    \item Se documentó el procedimiento completo para buscar cada patrón dentro de \texttt{logstash-tutorial.log} utilizando \texttt{less}.
+    \item Se vinculó el contenido del laboratorio con aplicaciones reales de análisis de registros y detección en ciberseguridad.
+\end{enumerate}
+
+\section{Conclusiones}
+
+Las expresiones regulares proporcionan un mecanismo compacto y potente para describir patrones de texto. En el contexto de CyberOps, su utilidad radica en permitir búsquedas rápidas y repetibles dentro de grandes volúmenes de registros. La práctica analizada introduce correctamente conceptos esenciales: anclas, cuantificadores, clases de caracteres, escapes y alternancias.
+
+La correcta interpretación de operadores como \regex{\string^}, \regex{\$}, \regex{*}, \regex{[ ]}, \regex{\{m\}} y \regex{|} es indispensable para evitar búsquedas imprecisas. Asimismo, el ejercicio de verificación mediante \texttt{less} muestra cómo una regex puede utilizarse directamente en una herramienta de línea de comandos para localizar eventos relevantes.
+
+Desde una perspectiva profesional, el principal aprendizaje es que una expresión regular debe evaluarse no solo por su capacidad de producir coincidencias, sino también por su exactitud semántica, su eficiencia y su adecuación al motor que la ejecuta. Estos criterios son especialmente importantes cuando las regex forman parte de reglas de monitoreo, sistemas SIEM, pipelines de procesamiento de logs o mecanismos automáticos de detección.
+
+\section*{Referencia de la práctica}
+\addcontentsline{toc}{section}{Referencia de la práctica}
+Cisco Networking Academy. \emph{Práctica de laboratorio: Tutorial de expresiones regulares}. Material de laboratorio CyberOps proporcionado para la actividad.
+
+\end{document}

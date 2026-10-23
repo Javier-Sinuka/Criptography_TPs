@@ -1,0 +1,27 @@
+services:
+  pebble:
+    image: ghcr.io/letsencrypt/pebble:latest
+    command: [-config, test/config/pebble-config.json, -strict, -dnsserver, challtestsrv:8053]
+    environment:
+      PEBBLE_VA_NOSLEEP: "1"
+    ports:
+      - "127.0.0.1:14000:14000"
+      - "127.0.0.1:15000:15000"
+    networks: [acmenet]
+  challtestsrv:
+    image: ghcr.io/letsencrypt/pebble-challtestsrv:latest
+    command: [-defaultIPv6, "", -defaultIPv4, 127.0.0.1]
+    ports:
+      - "127.0.0.1:8055:8055"
+    networks: [acmenet]
+  apache:
+    build: ./apache
+    ports:
+      - "127.0.0.1:8443:8443"
+    volumes:
+      - ./certs:/usr/local/apache2/conf/certs:ro
+    depends_on: [pebble]
+    networks: [acmenet]
+networks:
+  acmenet:
+    driver: bridge

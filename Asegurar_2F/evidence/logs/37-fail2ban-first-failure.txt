@@ -1,0 +1,7 @@
+timestamp_utc=2026-10-13T05:16:30Z
+first_controlled_failure_exit=255
++----------------------------------------------+
+|   LABORATORIO DE SEGURIDAD SSH - CRIPTOGRAFIA  |
+|   Acceso autorizado para pruebas academicas   |
++----------------------------------------------+
+invalidlab@127.0.0.1: Permission denied (publickey).

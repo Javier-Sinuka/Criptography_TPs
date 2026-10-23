@@ -1,0 +1,5 @@
+/root/ssh2fa-lab-backup 700
+/root/ssh2fa-lab-backup/sshd_config 644
+/root/ssh2fa-lab-backup/pam_sshd 644
+   |- Currently banned:	0
+   `- Banned IP list:	

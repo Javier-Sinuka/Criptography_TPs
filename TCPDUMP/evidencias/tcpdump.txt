@@ -1,0 +1,13 @@
+reading from file evidencias/captura_http.pcap, link-type EN10MB (Ethernet), snapshot length 262144
+2026-09-20 12:05:44.068059 IP 127.0.0.1.42804 > 127.0.0.1.8080: Flags [S], seq 2736802475, win 65495, options [mss 65495,sackOK,TS val 139145381 ecr 0,nop,wscale 10], length 0
+2026-09-20 12:05:44.068078 IP 127.0.0.1.8080 > 127.0.0.1.42804: Flags [S.], seq 2346315879, ack 2736802476, win 65483, options [mss 65495,sackOK,TS val 3438103151 ecr 139145381,nop,wscale 10], length 0
+2026-09-20 12:05:44.068095 IP 127.0.0.1.42804 > 127.0.0.1.8080: Flags [.], ack 1, win 64, options [nop,nop,TS val 139145381 ecr 3438103151], length 0
+2026-09-20 12:05:44.068226 IP 127.0.0.1.42804 > 127.0.0.1.8080: Flags [P.], seq 1:78, ack 1, win 64, options [nop,nop,TS val 139145382 ecr 3438103151], length 77: HTTP: GET / HTTP/1.1
+2026-09-20 12:05:44.068235 IP 127.0.0.1.8080 > 127.0.0.1.42804: Flags [.], ack 78, win 64, options [nop,nop,TS val 3438103152 ecr 139145382], length 0
+2026-09-20 12:05:44.069006 IP 127.0.0.1.8080 > 127.0.0.1.42804: Flags [P.], seq 1:154, ack 78, win 64, options [nop,nop,TS val 3438103152 ecr 139145382], length 153: HTTP: HTTP/1.0 200 OK
+2026-09-20 12:05:44.069020 IP 127.0.0.1.42804 > 127.0.0.1.8080: Flags [.], ack 154, win 64, options [nop,nop,TS val 139145382 ecr 3438103152], length 0
+2026-09-20 12:05:44.069234 IP 127.0.0.1.8080 > 127.0.0.1.42804: Flags [P.], seq 154:222, ack 78, win 64, options [nop,nop,TS val 3438103153 ecr 139145382], length 68: HTTP
+2026-09-20 12:05:44.069243 IP 127.0.0.1.42804 > 127.0.0.1.8080: Flags [.], ack 222, win 64, options [nop,nop,TS val 139145383 ecr 3438103153], length 0
+2026-09-20 12:05:44.069295 IP 127.0.0.1.8080 > 127.0.0.1.42804: Flags [F.], seq 222, ack 78, win 64, options [nop,nop,TS val 3438103153 ecr 139145383], length 0
+2026-09-20 12:05:44.069872 IP 127.0.0.1.42804 > 127.0.0.1.8080: Flags [F.], seq 78, ack 223, win 64, options [nop,nop,TS val 139145383 ecr 3438103153], length 0
+2026-09-20 12:05:44.069897 IP 127.0.0.1.8080 > 127.0.0.1.42804: Flags [.], ack 79, win 64, options [nop,nop,TS val 3438103153 ecr 139145383], length 0

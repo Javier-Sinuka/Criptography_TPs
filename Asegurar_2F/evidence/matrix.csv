@@ -1,0 +1,22 @@
+test_id,objetivo,fase,origen,procedimiento,esperado,observado,evidencia,estado
+T01,VM y OpenSSH disponibles,Inicial,VM,ip -br address; systemctl is-active ssh,VM accesible y ssh activo,10.0.2.15/24; ssh active,logs/01-guest-baseline.txt; screenshots/03-guest-baseline.png,PASA
+T02,Ingreso inicial de usuario normal,Inicial,Host a VM,ssh por contraseña como cisco,Ingreso permitido,exit 0; id -un = cisco,logs/04-ssh-password-baseline.txt,PASA
+T03,Ingreso root con clave de laboratorio,Claves,Host a VM,ssh root con clave de cisco,Rechazo: root no tiene esa clave autorizada,exit 255; Permission denied (publickey),logs/02-ssh-initial-config.txt; logs/12-password-disabled-tests.txt,PASA
+T03b,Otras cuentas del clon sin clave autorizada,MFA obligatoria,Cliente local VM a sshd VM,su local; ssh con clave no autorizada,"Locales válidas, SSH rechazado",analyst y sec_admin: su válido; SSH exit 255,logs/48-existing-accounts.txt; logs/49-existing-accounts-ssh.txt,PASA
+T04,Clave pública autorizada,Claves,Host a VM,ssh -i id_ed25519_lab -o IdentitiesOnly=yes,Ingreso permitido,exit 0; cisco; servidor acepta clave,logs/08-key-login.txt,PASA
+T05,Clave incorrecta,Claves,Host a VM,ssh con otra clave y IdentityAgent=none,Rechazo,exit 255; Permission denied,logs/09-wrong-key.txt,PASA
+T06,Contraseña SSH deshabilitada,Solo clave,Host a VM,password-only frente a PasswordAuthentication no,Rechazo sin interrumpir clave pública,contraseña: exit 255; clave: exit 0,logs/11-disable-ssh-password.txt; logs/12-password-disabled-tests.txt,PASA
+T07,nonpriv antes de autorización,Solo clave,VM y host,su - nonpriv; ssh nonpriv,Local válido y SSH rechazado,su muestra nonpriv; SSH exit 255,logs/13-nonpriv-local.txt; logs/14-nonpriv-before.txt,PASA
+T08,nonpriv con clave central,Claves centrales,Host a VM,AuthorizedKeysFile y ssh nonpriv,Ingreso permitido,root:root 0644; ssh muestra nonpriv,logs/15-central-keys.txt; logs/16-nonpriv-after.txt,PASA
+T09,Banner de preautenticación,Banner,Host a VM,ssh cisco,Banner visible,Texto ASCII mostrado antes del resultado,logs/18-banner-test.txt,PASA
+T10,PAM denylist,PAM deny,Host a VM,nonpriv listado; cisco no listado,nonpriv rechazado; cisco permitido,exit 255 y exit 0; rechazo en auth.log,logs/20-pam-deny-tests.txt; logs/23-pam-listfile-authlog.txt,PASA
+T11,PAM allowlist,PAM allow,Host a VM,cisco listado; nonpriv no listado,cisco permitido; nonpriv rechazado,exit 0 y exit 255; rechazo en auth.log,logs/22-pam-allow-tests.txt; logs/23-pam-listfile-authlog.txt,PASA
+T12,Clave más TOTP válido,MFA obligatoria,Cliente local VM a sshd VM,cliente TOTP local con clave correcta,Ingreso permitido,prompt TOTP; marcador de comando; exit 0,logs/30-mfa-valid.txt; logs/45-mfa-valid-recheck.txt; screenshots/05-mfa-success.png,PASA
+T13,Clave válida sin TOTP,MFA obligatoria,Host a VM,ssh BatchMode con clave correcta,Rechazo tras aceptar clave,exit 255; continúa keyboard-interactive,logs/31-mfa-negative-client-tests.txt,PASA
+T14,TOTP incorrecto y vencido,MFA obligatoria,Cliente local VM a sshd VM,cliente TOTP wrong y expired,Rechazo de ambos,prompt visto; exit 255; sin marcador,logs/33-mfa-totp-retake.txt; screenshots/06-mfa-wrong-code.png,PASA
+T15,Clave incorrecta durante MFA,MFA obligatoria,Cliente local VM a sshd VM,cliente TOTP wrong-key,Rechazo antes de solicitar TOTP,exit 255; no aparece prompt TOTP,logs/32-mfa-negative-totp-tests.txt,PASA
+T16,Jail SSH activo,Fail2ban,VM,fail2ban-client status sshd,Jail operativo,sshd listado; auth.log vigilado,logs/36-fail2ban-start.txt; logs/38-fail2ban-first-status.txt,PASA
+T17,Umbral y bloqueo,Fail2ban,Host 10.0.2.2 a VM,Fallos controlados de invalidlab,Bloqueo tras alcanzar maxretry,Ban 10.0.2.2; regla REJECT en f2b-sshd,logs/39-fail2ban-threshold.txt; logs/40-fail2ban-ban-firewall.txt; screenshots/07-fail2ban-ban-firewall.png,PASA
+T18,Conexión bloqueada,Fail2ban,Host a VM,SSH autorizado desde IP baneada,Bloqueo antes del banner,exit 255; timeout during banner exchange,logs/41-fail2ban-blocked-client.txt,PASA
+T19,Unban y recuperación,Fail2ban,VM y host,unbanip; iptables; reconexión SSH,IP retirada y conexión reanudada,Regla retirada; host llega a segunda etapa MFA; cliente local completa MFA,logs/42-fail2ban-unban.txt; logs/43-fail2ban-post-unban-client.txt; logs/44-fail2ban-post-unban-mfa.txt; screenshots/08-fail2ban-unban.png,PARCIAL: host sin TOTP
+T20,Tercer factor opcional,Opcional,VM,No ejecutado,Clave más contraseña más TOTP,No se configuró para preservar el estado MFA final,ninguna,NO EJECUTADO

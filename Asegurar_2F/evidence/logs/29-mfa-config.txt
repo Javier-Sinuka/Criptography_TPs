@@ -1,0 +1,8 @@
+usepam yes
+pubkeyauthentication yes
+passwordauthentication no
+kbdinteractiveauthentication yes
+authenticationmethods publickey,keyboard-interactive
+4:#@include common-auth
+5:auth required pam_google_authenticator.so
+active

@@ -1,0 +1,1 @@
+[sudo] password for cisco: banner /etc/ssh/ssh2fa-banner

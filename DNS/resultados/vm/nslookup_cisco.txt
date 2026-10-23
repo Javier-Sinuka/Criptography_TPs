@@ -1,0 +1,16 @@
+Default server: 10.0.2.3
+Address: 10.0.2.3#53
+Server:		10.0.2.3
+Address:	10.0.2.3#53
+
+Non-authoritative answer:
+www.cisco.com	canonical name = www.cisco.com.akadns.net.
+www.cisco.com.akadns.net	canonical name = wwwds.cisco.com.edgekey.net.
+wwwds.cisco.com.edgekey.net	canonical name = e2867.dsca.akamaiedge.net.
+Name:	e2867.dsca.akamaiedge.net
+Address: 2.20.140.117
+Name:	e2867.dsca.akamaiedge.net
+Address: 2600:1419:1200:885::b33
+Name:	e2867.dsca.akamaiedge.net
+Address: 2600:1419:1200:884::b33
+

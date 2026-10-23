@@ -1,0 +1,5 @@
+timestamp_utc=2026-10-13T05:17:52Z
+post_unban_client_exit=255
+debug1: Server accepts key: /tmp/ssh2fa-client/id_ed25519_lab ED25519 SHA256:TNJCpC5/A8RHEIlVg7Z34u3Db1TUnbzyGXEy2n7thIY explicit agent
+debug1: Authentications that can continue: keyboard-interactive
+cisco@127.0.0.1: Permission denied (keyboard-interactive).

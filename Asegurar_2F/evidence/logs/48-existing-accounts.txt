@@ -1,0 +1,7 @@
+cisco /home/cisco /bin/bash
+analyst /home/analyst /bin/bash
+sec_admin /home/sec_admin /bin/bash
+nonpriv /home/nonpriv /bin/bash
+root /root /bin/bash
+local_analyst=analyst
+local_sec_admin=sec_admin

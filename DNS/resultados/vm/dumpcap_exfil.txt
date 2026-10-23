@@ -1,0 +1,4 @@
+Capturing on 'dns-cli'
+File: -
+Packets: 1 Packets: 10 Packets: 18 Packets: 22 Packets: 30 Packets: 37 Packets: 41 Packets: 47 Packets: 51 Packets: 58 Packets: 62 Packets: 70 Packets: 75 Packets: 81 Packets: 83 Packets captured: 83
+Packets received/dropped on interface 'dns-cli': 83/0 (pcap:0/dumpcap:0/flushed:0/ps_ifdrop:0) (100.0%)

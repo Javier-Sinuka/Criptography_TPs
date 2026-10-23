@@ -1,0 +1,453 @@
+
+=== FECHA ===
+2026-09-20T14:24:18.345843+00:00
+=== COMANDO ===
+ip addr show enp0s3
+=== RESULTADO ===
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:55:44:07 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic enp0s3
+       valid_lft 86148sec preferred_lft 86148sec
+    inet6 fd17:625c:f037:2:a00:27ff:fe55:4407/64 scope global dynamic mngtmpaddr noprefixroute 
+       valid_lft 86148sec preferred_lft 14148sec
+    inet6 fe80::a00:27ff:fe55:4407/64 scope link 
+       valid_lft forever preferred_lft forever
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:18.355413+00:00
+=== COMANDO ===
+ip route
+=== RESULTADO ===
+default via 10.0.2.2 dev enp0s3 proto dhcp src 10.0.2.15 metric 100 
+10.0.2.0/24 dev enp0s3 proto kernel scope link src 10.0.2.15 metric 100 
+10.0.2.2 dev enp0s3 proto dhcp scope link src 10.0.2.15 metric 100 
+10.0.2.3 dev enp0s3 proto dhcp scope link src 10.0.2.15 metric 100 
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:18.370100+00:00
+=== COMANDO ===
+ip neigh
+=== RESULTADO ===
+10.0.2.3 dev enp0s3 lladdr 52:54:00:12:35:00 STALE
+10.0.2.2 dev enp0s3 lladdr 52:54:00:12:35:00 STALE
+fe80::2 dev enp0s3 lladdr 52:54:00:12:35:00 router STALE
+fd17:625c:f037:2::2 dev enp0s3 lladdr 52:54:00:12:35:00 router STALE
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:18.375421+00:00
+=== COMANDO ===
+cat /etc/resolv.conf
+=== RESULTADO ===
+# This is /run/systemd/resolve/stub-resolv.conf managed by man:systemd-resolved(8).
+# Do not edit.
+#
+# This file might be symlinked as /etc/resolv.conf. If you're looking at
+# /etc/resolv.conf and seeing this text, you have followed the symlink.
+#
+# This is a dynamic resolv.conf file for connecting local clients to the
+# internal DNS stub resolver of systemd-resolved. This file lists all
+# configured search domains.
+#
+# Run "resolvectl status" to see details about the uplink DNS servers
+# currently in use.
+#
+# Third party programs should typically not access this file directly, but only
+# through the symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a
+# different way, replace this symlink by a static file or a different symlink.
+#
+# See man:systemd-resolved.service(8) for details about the supported modes of
+# operation for /etc/resolv.conf.
+
+nameserver 127.0.0.53
+options edns0 trust-ad
+search lan
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:18.379280+00:00
+=== COMANDO ===
+resolvectl status
+=== RESULTADO ===
+Global
+       Protocols: -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+resolv.conf mode: stub
+
+Link 2 (enp0s3)
+    Current Scopes: DNS
+         Protocols: +DefaultRoute +LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+Current DNS Server: 10.0.2.3
+       DNS Servers: 10.0.2.3 fd17:625c:f037:2::3
+        DNS Domain: lan
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:18.397426+00:00
+=== COMANDO ===
+resolvectl flush-caches
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:18.413657+00:00
+=== COMANDO ===
+resolvectl statistics
+=== RESULTADO ===
+DNSSEC supported by current servers: no
+
+Transactions          
+Current Transactions: 0
+  Total Transactions: 13
+                      
+Cache                 
+  Current Cache Size: 0
+          Cache Hits: 2
+        Cache Misses: 8
+                      
+DNSSEC Verdicts       
+              Secure: 0
+            Insecure: 0
+               Bogus: 0
+       Indeterminate: 0
+
+=== RETORNO ===
+0
+
+CAPTURA: dumpcap -i enp0s3 -p -P -w /home/analyst/dns-lab/capturas/normal_dns.pcap
+=== NSLOOKUP INTERACTIVO ===
+server 10.0.2.3
+www.cisco.com
+exit
+Default server: 10.0.2.3
+Address: 10.0.2.3#53
+Server:		10.0.2.3
+Address:	10.0.2.3#53
+
+Non-authoritative answer:
+www.cisco.com	canonical name = www.cisco.com.akadns.net.
+www.cisco.com.akadns.net	canonical name = wwwds.cisco.com.edgekey.net.
+wwwds.cisco.com.edgekey.net	canonical name = e2867.dsca.akamaiedge.net.
+Name:	e2867.dsca.akamaiedge.net
+Address: 2.20.140.117
+Name:	e2867.dsca.akamaiedge.net
+Address: 2600:1419:1200:885::b33
+Name:	e2867.dsca.akamaiedge.net
+Address: 2600:1419:1200:884::b33
+
+
+
+=== FECHA ===
+2026-09-20T14:24:20.188988+00:00
+=== COMANDO ===
+dig @10.0.2.3 www.google.com A +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 www.google.com A +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 25968
+;; flags: qr rd ra; QUERY: 1, ANSWER: 8, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;www.google.com.			IN	A
+
+;; ANSWER SECTION:
+www.google.com.		119	IN	A	142.251.156.119
+www.google.com.		119	IN	A	142.251.152.119
+www.google.com.		119	IN	A	142.251.154.119
+www.google.com.		119	IN	A	142.251.151.119
+www.google.com.		119	IN	A	142.251.155.119
+www.google.com.		119	IN	A	142.251.150.119
+www.google.com.		119	IN	A	142.251.157.119
+www.google.com.		119	IN	A	142.251.153.119
+
+;; Query time: 32 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:20 UTC 2026
+;; MSG SIZE  rcvd: 160
+
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:20.664737+00:00
+=== COMANDO ===
+dig @10.0.2.3 www.google.com AAAA +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 www.google.com AAAA +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 12901
+;; flags: qr rd ra; QUERY: 1, ANSWER: 8, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;www.google.com.			IN	AAAA
+
+;; ANSWER SECTION:
+www.google.com.		262	IN	AAAA	2001:4860:482c:7700::
+www.google.com.		262	IN	AAAA	2001:4860:482a:7700::
+www.google.com.		262	IN	AAAA	2001:4860:4828:7700::
+www.google.com.		262	IN	AAAA	2001:4860:4827:7700::
+www.google.com.		262	IN	AAAA	2001:4860:4826:7700::
+www.google.com.		262	IN	AAAA	2001:4860:482b:7700::
+www.google.com.		262	IN	AAAA	2001:4860:482d:7700::
+www.google.com.		262	IN	AAAA	2001:4860:4829:7700::
+
+;; Query time: 32 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:20 UTC 2026
+;; MSG SIZE  rcvd: 256
+
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:21.132628+00:00
+=== COMANDO ===
+dig @10.0.2.3 example.com A +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 example.com A +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 8677
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;example.com.			IN	A
+
+;; ANSWER SECTION:
+example.com.		300	IN	A	104.20.23.154
+example.com.		300	IN	A	172.66.147.243
+
+;; Query time: 112 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:21 UTC 2026
+;; MSG SIZE  rcvd: 61
+
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:21.709844+00:00
+=== COMANDO ===
+dig @10.0.2.3 example.com AAAA +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 example.com AAAA +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 47520
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;example.com.			IN	AAAA
+
+;; ANSWER SECTION:
+example.com.		300	IN	AAAA	2606:4700:10::6814:179a
+example.com.		300	IN	AAAA	2606:4700:10::ac42:93f3
+
+;; Query time: 152 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:21 UTC 2026
+;; MSG SIZE  rcvd: 85
+
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:22.316242+00:00
+=== COMANDO ===
+dig @10.0.2.3 www.iana.org A +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 www.iana.org A +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 7381
+;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;www.iana.org.			IN	A
+
+;; ANSWER SECTION:
+www.iana.org.		1780	IN	CNAME	www.iana.org.cdn.cloudflare.net.
+www.iana.org.cdn.cloudflare.net. 300 IN	A	104.18.25.232
+www.iana.org.cdn.cloudflare.net. 300 IN	A	104.18.24.232
+
+;; Query time: 56 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:22 UTC 2026
+;; MSG SIZE  rcvd: 107
+
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:22.854040+00:00
+=== COMANDO ===
+dig @10.0.2.3 www.iana.org AAAA +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 www.iana.org AAAA +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 45842
+;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 2
+
+;; QUESTION SECTION:
+;www.iana.org.			IN	AAAA
+
+;; ANSWER SECTION:
+www.iana.org.		299	IN	CNAME	www.iana.org.cdn.cloudflare.net.
+www.iana.org.cdn.cloudflare.net. 300 IN	AAAA	2606:4700::6812:18e8
+www.iana.org.cdn.cloudflare.net. 300 IN	AAAA	2606:4700::6812:19e8
+
+;; ADDITIONAL SECTION:
+www.iana.org.cdn.cloudflare.net. 299 IN	A	104.18.25.232
+www.iana.org.cdn.cloudflare.net. 299 IN	A	104.18.24.232
+
+;; Query time: 56 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:22 UTC 2026
+;; MSG SIZE  rcvd: 163
+
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:23.414428+00:00
+=== COMANDO ===
+dig @10.0.2.3 www.cisco.com A +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 www.cisco.com A +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 4482
+;; flags: qr rd ra; QUERY: 1, ANSWER: 4, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;www.cisco.com.			IN	A
+
+;; ANSWER SECTION:
+www.cisco.com.		16	IN	CNAME	www.cisco.com.akadns.net.
+www.cisco.com.akadns.net. 16	IN	CNAME	wwwds.cisco.com.edgekey.net.
+wwwds.cisco.com.edgekey.net. 16	IN	CNAME	e2867.dsca.akamaiedge.net.
+e2867.dsca.akamaiedge.net. 16	IN	A	2.20.140.117
+
+;; Query time: 0 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:23 UTC 2026
+;; MSG SIZE  rcvd: 159
+
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:23.881889+00:00
+=== COMANDO ===
+dig @10.0.2.3 www.google.com A +noedns +time=3 +tries=1
+=== RESULTADO ===
+
+; <<>> DiG 9.18.1-1ubuntu1.3-Ubuntu <<>> @10.0.2.3 www.google.com A +noedns +time=3 +tries=1
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 13333
+;; flags: qr rd ra; QUERY: 1, ANSWER: 8, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;www.google.com.			IN	A
+
+;; ANSWER SECTION:
+www.google.com.		115	IN	A	142.251.151.119
+www.google.com.		115	IN	A	142.251.156.119
+www.google.com.		115	IN	A	142.251.152.119
+www.google.com.		115	IN	A	142.251.155.119
+www.google.com.		115	IN	A	142.251.157.119
+www.google.com.		115	IN	A	142.251.150.119
+www.google.com.		115	IN	A	142.251.154.119
+www.google.com.		115	IN	A	142.251.153.119
+
+;; Query time: 8 msec
+;; SERVER: 10.0.2.3#53(10.0.2.3) (UDP)
+;; WHEN: Sun Sep 20 14:24:23 UTC 2026
+;; MSG SIZE  rcvd: 160
+
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:24:23.991299+00:00
+=== COMANDO ===
+ip neigh
+=== RESULTADO ===
+10.0.2.3 dev enp0s3 lladdr 52:54:00:12:35:00 DELAY
+10.0.2.2 dev enp0s3 lladdr 52:54:00:12:35:00 STALE
+fe80::2 dev enp0s3 lladdr 52:54:00:12:35:00 router STALE
+fd17:625c:f037:2::2 dev enp0s3 lladdr 52:54:00:12:35:00 router STALE
+
+=== RETORNO ===
+0
+
+Capturing on 'enp0s3'
+File: /home/analyst/dns-lab/capturas/normal_dns.pcap
+
+Packets: 3 
+Packets: 6 
+Packets: 8 
+Packets: 10 
+Packets: 12 
+Packets: 13 
+Packets: 15 
+Packets: 18 
+Packets: 20 
+Packets: 22 
+Packets captured: 22
+Packets received/dropped on interface 'enp0s3': 22/0 (pcap:0/dumpcap:0/flushed:0/ps_ifdrop:0) (100.0%)
+

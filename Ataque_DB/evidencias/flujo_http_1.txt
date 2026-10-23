@@ -1,0 +1,142 @@
+
+===================================================================
+Follow: http,ascii
+Filter: tcp.stream eq 1
+Node 0: 10.0.2.4:35638
+Node 1: 10.0.2.15:80
+470
+GET /dvwa/vulnerabilities/sqli/?id=1%3D1&Submit=Submit HTTP/1.1
+Host: 10.0.2.15
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:50.0) Gecko/20100101 Firefox/50.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://10.0.2.15/dvwa/vulnerabilities/sqli/
+Cookie: security=low; PHPSESSID=ml2n7d0t4rem6k0n4is82u5157
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+	352
+HTTP/1.1 200 OK
+Date: Mon, 06 Feb 2017 14:18:22 GMT
+Server: Apache/2.4.18 (Ubuntu)
+Expires: Tue, 23 Jun 2009 12:00:00 GMT
+Cache-Control: no-cache, must-revalidate
+Pragma: no-cache
+Vary: Accept-Encoding
+Content-Encoding: gzip
+Content-Length: 1443
+Keep-Alive: timeout=5, max=100
+Connection: Keep-Alive
+Content-Type: text/html;charset=utf-8
+
+
+	5072
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+.<head>
+..<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+..<title>Vulnerability: SQL Injection :: Damn Vulnerable Web Application (DVWA) v1.10 *Development*</title>
+
+..<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+..<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+..<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+.</head>
+
+.<body class="home">
+..<div id="container">
+
+...<div id="header">
+
+....<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+...</div>
+
+...<div id="main_menu">
+
+....<div id="main_menu_padded">
+....<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class=""><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class=""><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class=""><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class="selected"><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class=""><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class=""><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+....</div>
+
+...</div>
+
+...<div id="main_body">
+
+....
+<div class="body_padded">
+.<h1>Vulnerability: SQL Injection</h1>
+
+.
+
+.<div class="vulnerable_code_area">
+..<form action="#" method="GET">
+...<p>
+....User ID:
+....<input type="text" size="15" name="id">
+....<input type="submit" name="Submit" value="Submit">
+...</p>
+
+..</form>
+..<pre>ID: 1=1<br />First name: admin<br />Surname: admin</pre>
+.</div>
+
+.<h2>More Information</h2>
+.<ul>
+..<li><a href="http://www.securiteam.com/securityreviews/5DP0N1P76E.html" target="_blank">http://www.securiteam.com/securityreviews/5DP0N1P76E.html</a></li>
+..<li><a href="https://en.wikipedia.org/wiki/SQL_injection" target="_blank">https://en.wikipedia.org/wiki/SQL_injection</a></li>
+..<li><a href="http://ferruh.mavituna.com/sql-injection-cheatsheet-oku/" target="_blank">http://ferruh.mavituna.com/sql-injection-cheatsheet-oku/</a></li>
+..<li><a href="http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet" target="_blank">http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet</a></li>
+..<li><a href="https://www.owasp.org/index.php/SQL_Injection" target="_blank">https://www.owasp.org/index.php/SQL_Injection</a></li>
+..<li><a href="http://bobby-tables.com/" target="_blank">http://bobby-tables.com/</a></li>
+.</ul>
+</div>
+
+....<br /><br />
+....
+
+...</div>
+
+...<div class="clear">
+...</div>
+
+...<div id="system_info">
+....<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=sqli&security=low' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=sqli&security=low' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> low<br /><em>PHPIDS:</em> disabled</div>
+...</div>
+
+...<div id="footer">
+
+....<p>Damn Vulnerable Web Application (DVWA) v1.10 *Development*</p>
+
+...</div>
+
+..</div>
+
+.</body>
+
+</html>
+===================================================================

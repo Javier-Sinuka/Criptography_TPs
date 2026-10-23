@@ -1,0 +1,6 @@
+Verificacion local del hash del laboratorio SQL_Lab.pcap
+Usuario en la respuesta HTTP: 1337
+Contrasena candidata: charley
+MD5 calculado:        8d3533d75ae2c3966d7e0d4fcc69216b
+Hash de la consigna:  8d3533d75ae2c3966d7e0d4fcc69216b
+Coinciden: True

@@ -1,0 +1,2 @@
+# PAM configuration for the Secure Shell service
+

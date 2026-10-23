@@ -1,0 +1,768 @@
+Quiero que actúes como un especialista en Ciberseguridad, Redes y análisis de tráfico con Wireshark, y que realices de forma práctica, verificable y documentada el trabajo de laboratorio que adjunto.
+
+IMPORTANTE: no quiero una resolución puramente teórica. Quiero que ejecutes realmente, dentro de las posibilidades de este equipo, las actividades prácticas indicadas en los documentos y generes evidencia auténtica de la ejecución.
+
+Te adjunto:
+
+1. "17.1.7 Lab - Exploring DNS Traffic.docx"
+2. "10.2.7 Lab - Using Wireshark to Examine a UDP DNS Capture.docx"
+3. Captura de pantalla con la consigna general del trabajo.
+4. El siguiente artículo sobre exfiltración/tunneling DNS:
+   https://helgeklein.com/blog/dns-exfiltration-tunneling-how-it-works-dnsteal-demo-setup/
+
+OBJETIVO GENERAL
+
+Necesito producir un informe académico completo sobre:
+
+- Funcionamiento y análisis del tráfico DNS.
+- Captura y análisis de consultas y respuestas DNS utilizando Wireshark.
+- DNS sobre UDP.
+- Información observable en los distintos niveles: Ethernet, IPv4, UDP y DNS.
+- Exfiltración de datos mediante DNS.
+- Cómo detectar este tipo de comportamiento.
+- Medidas para prevenir o mitigar ataques de exfiltración DNS.
+- Un escenario práctico, controlado y seguro que demuestre el concepto de DNS exfiltration/tunneling.
+
+El resultado debe estar basado principalmente en ejecuciones reales realizadas en este equipo o dentro de máquinas virtuales/laboratorios creados para ese propósito.
+
+==================================================
+1. REGLA FUNDAMENTAL: NO INVENTAR EVIDENCIA
+==================================================
+
+NO inventes:
+
+- direcciones IP,
+- direcciones MAC,
+- puertos,
+- capturas de Wireshark,
+- resultados de comandos,
+- tamaños de paquetes,
+- nombres de interfaces,
+- respuestas DNS,
+- capturas de pantalla,
+- resultados de la prueba de exfiltración,
+- ni ningún otro dato experimental.
+
+Toda evidencia que aparezca en el informe debe proceder de una ejecución real.
+
+Si algo no puede ejecutarse en este entorno, indícalo expresamente y explica por qué.
+
+No reemplaces una ejecución fallida por una simulación sin decirlo.
+
+Si realizas una aproximación, simulación o inferencia, etiquétala claramente como tal.
+
+==================================================
+2. SEGURIDAD Y ALCANCE DEL LABORATORIO
+==================================================
+
+La demostración de DNS exfiltration debe realizarse ÚNICAMENTE:
+
+- sobre este equipo,
+- máquinas virtuales propias,
+- contenedores propios,
+- una red virtual aislada,
+- localhost,
+- o infraestructura creada específicamente para este laboratorio.
+
+NO debes:
+
+- atacar sistemas externos,
+- exfiltrar información real,
+- utilizar credenciales,
+- utilizar documentos personales,
+- utilizar secretos,
+- utilizar información privada,
+- probar dominios o servidores de terceros sin autorización.
+
+Para demostrar exfiltración, crea un archivo sintético e inocuo, por ejemplo:
+
+dns_demo.txt
+
+con contenido como:
+
+LABORATORIO DE CIBERSEGURIDAD
+Datos ficticios para prueba de exfiltracion DNS.
+ID-DEMO-2026-001
+
+Todo lo transmitido debe ser información ficticia creada específicamente para el laboratorio.
+
+Si el artículo de Helge Klein propone alguna acción que podría afectar sistemas externos, adapta la práctica para reproducir únicamente el concepto dentro de un laboratorio aislado.
+
+==================================================
+3. PRIMERA ETAPA: INSPECCIÓN DEL ENTORNO
+==================================================
+
+Antes de modificar el sistema, inspecciona qué herramientas están disponibles.
+
+Determina:
+
+- sistema operativo del host,
+- interfaces de red,
+- herramientas de virtualización instaladas,
+- VirtualBox,
+- QEMU/KVM,
+- VMware si estuviera disponible,
+- Docker/Podman,
+- Wireshark,
+- tshark,
+- tcpdump,
+- dig,
+- nslookup,
+- host,
+- Python,
+- herramientas para tomar capturas de pantalla.
+
+No instales ni elimines software innecesariamente.
+
+Si hace falta instalar algo, explícame primero:
+
+1. qué falta,
+2. para qué se necesita,
+3. qué comando vas a ejecutar.
+
+Evita cualquier modificación destructiva.
+
+==================================================
+4. MÁQUINA VIRTUAL
+==================================================
+
+Uno de los laboratorios solicita una "CyberOps Workstation VM".
+
+Comprueba primero si existe o está disponible.
+
+Si se puede utilizar exactamente esa VM, utilízala.
+
+Si no está disponible, NO inventes que utilizaste CyberOps Workstation.
+
+En ese caso puedes crear/utilizar una VM Linux equivalente para reproducir técnicamente el laboratorio, pero debes dejar escrito en el informe algo similar a:
+
+"Debido a que la imagen original CyberOps Workstation no se encontraba disponible en el entorno, se utilizó una máquina virtual Linux equivalente para reproducir las operaciones de red requeridas por la práctica."
+
+La sustitución debe conservar los objetivos técnicos:
+
+- obtener IP,
+- obtener MAC,
+- conocer gateway,
+- conocer servidor DNS,
+- generar consultas DNS,
+- capturar tráfico,
+- analizar Ethernet/IP/UDP/DNS.
+
+Cuando corresponda, utiliza networking virtual seguro.
+
+Para el laboratorio inicial puedes utilizar NAT o bridge según sea necesario.
+
+Para la prueba de exfiltración DNS prefiero una red virtual AISLADA o Host-Only entre máquinas para evitar enviar datos fuera del entorno.
+
+==================================================
+5. LABORATORIO: EXPLORING DNS TRAFFIC
+==================================================
+
+Lee COMPLETAMENTE el documento:
+
+"17.1.7 Lab - Exploring DNS Traffic.docx"
+
+No te limites a resumirlo.
+
+Quiero que ejecutes los pasos que sean posibles y respondas TODAS las preguntas del documento.
+
+Entre otras actividades deberás:
+
+- identificar la interfaz de red,
+- limpiar la caché DNS cuando sea posible,
+- iniciar una captura,
+- ejecutar consultas mediante nslookup/dig,
+- capturar tráfico DNS,
+- detener la captura,
+- filtrar tráfico DNS,
+- analizar consultas,
+- analizar respuestas.
+
+Debes examinar las capas:
+
+Ethernet II
+IPv4
+UDP
+DNS
+
+Debes registrar datos reales como:
+
+- MAC origen,
+- MAC destino,
+- IP origen,
+- IP destino,
+- puerto UDP origen,
+- puerto UDP destino,
+- Transaction ID,
+- flags DNS,
+- query,
+- respuestas,
+- registros A,
+- registros AAAA si aparecen,
+- CNAME si aparecen.
+
+Responde explícitamente todas las preguntas que aparecen en el documento.
+
+Incluye también las preguntas de reflexión finales.
+
+==================================================
+6. LABORATORIO: USING WIRESHARK TO EXAMINE A UDP DNS CAPTURE
+==================================================
+
+Lee COMPLETAMENTE:
+
+"10.2.7 Lab - Using Wireshark to Examine a UDP DNS Capture.docx"
+
+Ejecuta el laboratorio de forma real.
+
+Completa las tablas solicitadas con valores obtenidos del entorno.
+
+Obtén, como mínimo:
+
+- dirección IP de la estación,
+- MAC de la estación,
+- gateway,
+- DNS configurado.
+
+Utiliza comandos apropiados al sistema, por ejemplo:
+
+ip addr
+ip route
+cat /etc/resolv.conf
+resolvectl status
+
+o equivalentes.
+
+Después genera una consulta DNS y captúrala.
+
+Analiza el paquete de consulta:
+
+Ethernet II
+IPv4
+UDP
+DNS
+
+Después analiza su respuesta correspondiente.
+
+Comprueba especialmente la inversión de:
+
+Consulta:
+
+Cliente -> Servidor DNS
+Puerto efímero -> 53
+
+Respuesta:
+
+Servidor DNS -> Cliente
+53 -> Puerto efímero
+
+Responde TODAS las preguntas y completa TODAS las tablas de la práctica.
+
+No copies automáticamente los valores que aparecen como ejemplo en Cisco.
+
+Los números de los documentos de Cisco son únicamente ejemplos.
+
+Utiliza LOS VALORES REALES obtenidos en nuestra ejecución.
+
+==================================================
+7. CAPTURAS DE WIRESHARK
+==================================================
+
+Siempre que sea posible utiliza Wireshark gráfico.
+
+Guarda también el tráfico capturado como:
+
+*.pcap
+o
+*.pcapng
+
+Utiliza filtros apropiados, por ejemplo:
+
+dns
+
+udp.port == 53
+
+dns.qry.name
+
+y otros filtros que resulten útiles.
+
+Si resulta más fiable automatizar partes del análisis con tshark, puedes hacerlo.
+
+Sin embargo, conserva la captura PCAP original.
+
+Quiero que las conclusiones puedan comprobarse posteriormente abriendo el PCAP.
+
+==================================================
+8. CAPTURAS DE PANTALLA
+==================================================
+
+Necesito evidencia visual REAL.
+
+Crea una carpeta:
+
+evidencias/
+
+y guarda capturas de pantalla relevantes.
+
+Ejemplos:
+
+01_configuracion_red.png
+02_ip_addr.png
+03_gateway.png
+04_dns_configurado.png
+05_wireshark_consulta_dns.png
+06_ethernet_query.png
+07_ipv4_query.png
+08_udp_query.png
+09_dns_query.png
+10_wireshark_respuesta_dns.png
+11_dns_answers.png
+etc.
+
+Las capturas tienen que provenir de la ejecución real.
+
+NO generes imágenes ficticias para simular Wireshark.
+
+NO reutilices las capturas incluidas en los documentos de Cisco como si fueran nuestras.
+
+Si no puedes controlar gráficamente Wireshark desde VS Code, utiliza una combinación de:
+
+- Wireshark abierto manualmente,
+- tshark,
+- tcpdump,
+- terminal,
+- screenshots del sistema.
+
+En ese caso explícame qué captura necesito realizar manualmente y exactamente qué ventana/campo debe aparecer.
+
+==================================================
+9. DNS EXFILTRATION / DNS TUNNELING
+==================================================
+
+Después de completar los laboratorios básicos, estudia el artículo:
+
+https://helgeklein.com/blog/dns-exfiltration-tunneling-how-it-works-dnsteal-demo-setup/
+
+Comprende primero el mecanismo.
+
+Explica de forma académica:
+
+- qué es DNS exfiltration,
+- por qué DNS puede utilizarse como canal encubierto,
+- cómo se codifican datos dentro de consultas DNS,
+- qué papel cumplen los subdominios,
+- qué hace el servidor DNS controlado por el atacante en un escenario real,
+- diferencias entre DNS exfiltration y DNS tunneling.
+
+Después monta una DEMOSTRACIÓN CONTROLADA.
+
+Idealmente utiliza:
+
+VM 1:
+Cliente
+
+VM 2:
+Servidor/receptor DNS de laboratorio
+
+Red:
+aislada/host-only
+
+Archivo:
+dns_demo.txt
+
+Nunca utilizar datos reales.
+
+Puedes seguir/adaptar dnsteal u otra implementación educativa equivalente si resulta compatible con el entorno.
+
+No necesito que ataques infraestructura pública.
+
+Quiero demostrar técnicamente:
+
+archivo ficticio
+        |
+        v
+codificación
+        |
+        v
+consultas DNS
+        |
+        v
+red de laboratorio
+        |
+        v
+servidor/receptor
+        |
+        v
+reconstrucción del contenido
+
+Captura todo el tráfico con Wireshark/tshark.
+
+==================================================
+10. ANÁLISIS DE LA EXFILTRACIÓN
+==================================================
+
+Analiza el PCAP generado por la demostración.
+
+Quiero comprobar si un analista podría detectar la actividad.
+
+Busca indicadores como:
+
+- nombres DNS anormalmente largos,
+- gran cantidad de subdominios,
+- alta entropía,
+- caracteres compatibles con Base32/Base64/hex,
+- muchas consultas hacia un mismo dominio,
+- frecuencia anormal de consultas,
+- consultas únicas repetitivas,
+- volumen de DNS elevado,
+- tipos de registro utilizados,
+- tamaños inusuales,
+- periodicidad.
+
+Compara:
+
+TRÁFICO DNS NORMAL
+
+contra
+
+TRÁFICO DE EXFILTRACIÓN DNS
+
+Utiliza evidencia del PCAP.
+
+==================================================
+11. ¿CÓMO DETECTAR ESTE ATAQUE?
+==================================================
+
+La consigna pregunta:
+
+"¿Cómo creen que podrían detectarse este tipo de ataques?"
+
+Responde con profundidad.
+
+Incluye alternativas como:
+
+- análisis de longitud de FQDN,
+- frecuencia de consultas,
+- entropía,
+- número de subdominios únicos,
+- volumen por host,
+- NXDOMAIN,
+- dominios poco frecuentes,
+- análisis estadístico,
+- IDS/IPS,
+- SIEM,
+- Zeek,
+- Suricata,
+- reglas de detección,
+- logs del resolver DNS,
+- DNS firewall,
+- machine learning si resulta pertinente.
+
+Cuando sea razonable, crea al menos UNA detección práctica sobre el tráfico generado.
+
+Puede ser:
+
+- filtro de Wireshark/tshark,
+- script Python,
+- regla Suricata,
+- consulta Zeek,
+- o análisis estadístico.
+
+Quiero que esa detección sea ejecutada contra NUESTRA captura y que muestres el resultado.
+
+==================================================
+12. ¿CÓMO EVITARLO O MITIGARLO?
+==================================================
+
+La consigna pregunta también:
+
+"¿Pueden evitarse estos ataques?"
+
+La respuesta debe ser matizada.
+
+No quiero simplemente:
+
+"Sí, bloqueando DNS."
+
+Explica medidas realistas:
+
+- obligar a utilizar resolvers DNS corporativos,
+- impedir DNS directo hacia Internet,
+- controlar UDP/TCP 53,
+- registrar las consultas,
+- analizar DoH/DoT,
+- aplicar DNS filtering,
+- RPZ,
+- allowlists cuando corresponda,
+- EDR,
+- NDR,
+- IDS/IPS,
+- SIEM,
+- detección de anomalías,
+- segmentación,
+- control de endpoints,
+- egress filtering.
+
+Explica también las limitaciones de cada enfoque.
+
+==================================================
+13. INFORME FINAL
+==================================================
+
+Quiero que generes un informe final académico.
+
+Debe parecer escrito por un estudiante de Ingeniería en Computación que REALIZÓ el laboratorio.
+
+Evita frases típicas y artificiales de IA como:
+
+"En el fascinante mundo de..."
+"Es importante destacar que..."
+"En conclusión, podemos afirmar categóricamente..."
+
+Prefiero una redacción técnica pero natural.
+
+Puedes utilizar primera persona plural cuando describamos las pruebas:
+
+"Configuramos..."
+"Capturamos..."
+"Observamos..."
+"En nuestra ejecución..."
+
+Pero solamente cuando realmente se haya ejecutado.
+
+==================================================
+14. ESTRUCTURA SUGERIDA DEL INFORME
+==================================================
+
+1. Portada
+
+2. Introducción
+
+3. Objetivos
+
+4. Marco teórico
+   - DNS
+   - consultas y respuestas
+   - UDP
+   - puerto 53
+   - resolución recursiva
+   - registros DNS
+   - Wireshark
+
+5. Laboratorio 1
+   - entorno utilizado
+   - procedimiento
+   - evidencia
+   - análisis
+   - respuestas a todas las preguntas
+
+6. Laboratorio 2
+   - entorno utilizado
+   - procedimiento
+   - evidencia
+   - tablas completas
+   - análisis
+   - respuestas a todas las preguntas
+
+7. DNS Exfiltration
+   - concepto
+   - funcionamiento
+   - escenario montado
+
+8. Prueba práctica de DNS Exfiltration
+   - topología
+   - herramientas
+   - procedimiento
+   - archivo ficticio
+   - captura
+   - recepción
+   - evidencia
+
+9. Análisis en Wireshark
+
+10. Detección
+    - indicadores
+    - prueba de detección realizada
+
+11. Mitigación
+
+12. Respuestas concretas a:
+    - ¿Cómo podrían detectarse estos ataques?
+    - ¿Pueden evitarse estos ataques?
+
+13. Conclusiones
+
+14. Referencias
+
+15. Anexo de evidencias
+
+==================================================
+15. IMÁGENES EN EL INFORME
+==================================================
+
+Cada captura debe tener:
+
+Figura X – descripción.
+
+Ejemplo:
+
+Figura 4 – Consulta DNS tipo A capturada desde la máquina cliente.
+
+Después de cada captura debe haber una breve explicación de QUÉ estamos observando.
+
+No coloques screenshots sin analizarlos.
+
+==================================================
+16. ORGANIZACIÓN DE ARCHIVOS
+==================================================
+
+Crea una estructura similar a:
+
+dns-lab/
+|
++-- informe/
+|   +-- informe_dns.docx
+|   +-- informe_dns.pdf
+|
++-- evidencias/
+|   +-- *.png
+|
++-- capturas/
+|   +-- normal_dns.pcapng
+|   +-- dns_exfiltration.pcapng
+|
++-- scripts/
+|   +-- herramientas utilizadas
+|
++-- resultados/
+|   +-- comandos.txt
+|   +-- analisis.txt
+|
++-- README.md
+
+Guarda los comandos ejecutados y resultados importantes.
+
+==================================================
+17. TRAZABILIDAD
+==================================================
+
+Quiero poder verificar posteriormente todo lo realizado.
+
+Mantén un archivo:
+
+resultados/comandos.txt
+
+con una estructura similar a:
+
+=== COMANDO ===
+
+ip addr
+
+=== RESULTADO ===
+
+...
+
+=== COMANDO ===
+
+ip route
+
+=== RESULTADO ===
+
+...
+
+No inventes resultados.
+
+==================================================
+18. ANTES DE EMPEZAR
+==================================================
+
+Antes de ejecutar cambios importantes:
+
+1. Lee completamente los documentos adjuntos.
+2. Identifica todas las actividades.
+3. Identifica todas las preguntas.
+4. Construye un checklist.
+5. Verifica el entorno disponible.
+6. Dime qué estrategia concreta utilizarás.
+
+Después continúa con la ejecución.
+
+No des por terminado el trabajo hasta comprobar que:
+
+[ ] Se respondieron TODAS las preguntas del primer DOCX.
+[ ] Se respondieron TODAS las preguntas del segundo DOCX.
+[ ] Se completaron las tablas.
+[ ] Se realizaron capturas DNS reales.
+[ ] Existe al menos un PCAP de DNS normal.
+[ ] Se realizó una prueba segura de DNS exfiltration.
+[ ] Existe un PCAP de la prueba de exfiltración.
+[ ] Hay evidencia visual real.
+[ ] Se explicó cómo detectar el ataque.
+[ ] Se probó al menos un método de detección.
+[ ] Se explicó cómo mitigar el ataque.
+[ ] No se utilizaron datos reales para la exfiltración.
+[ ] No se atacó infraestructura de terceros.
+[ ] El informe coincide con la evidencia obtenida.
+[ ] No existen screenshots ni resultados inventados.
+
+==================================================
+19. IMPORTANTE DURANTE LA EJECUCIÓN
+==================================================
+
+No quiero que intentes terminar rápido sacrificando evidencia.
+
+Trabaja por etapas.
+
+Si encuentras un problema:
+
+- diagnostícalo,
+- documenta el error,
+- intenta resolverlo,
+- registra la solución.
+
+Eso también puede incluirse en el informe si resulta relevante.
+
+Si necesitas una intervención manual mía, detente únicamente en ese punto y dime EXACTAMENTE qué tengo que hacer.
+
+Ejemplo:
+
+"Necesito que abras Wireshark y hagas doble clic en la interfaz enp3s0. Cuando aparezca tráfico, avísame y continúo."
+
+No me pidas realizar manualmente algo que puedas hacer tú mismo mediante terminal.
+
+==================================================
+20. RESULTADO QUE ESPERO
+==================================================
+
+Al finalizar quiero tener un trabajo que pueda defender oralmente.
+
+Por eso, además del informe, crea:
+
+"GUIA_DEFENSA.md"
+
+que explique de forma sencilla:
+
+- qué hicimos,
+- por qué lo hicimos,
+- qué representa cada capa del paquete,
+- por qué DNS usa normalmente UDP,
+- por qué aparece el puerto 53,
+- qué es un puerto efímero,
+- diferencia entre IP destino y MAC destino,
+- qué cambia entre query y response,
+- qué es DNS exfiltration,
+- cómo funcionó nuestra demostración,
+- cómo la detectamos,
+- cómo podría mitigarse.
+
+Incluye también unas 15-20 preguntas posibles que podría realizar un profesor y sus respuestas.
+
+La prioridad es:
+
+1. ejecución real,
+2. evidencia verificable,
+3. responder absolutamente toda la consigna,
+4. comprender lo realizado,
+5. buena presentación del informe.
+
+Comienza leyendo los archivos y elaborando el checklist de actividades y preguntas. Después inspecciona el entorno y empieza el laboratorio.

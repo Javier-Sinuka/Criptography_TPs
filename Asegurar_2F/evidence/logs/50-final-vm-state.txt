@@ -1,0 +1,11 @@
+2026-10-13T05:35:44+00:00
+usepam yes
+passwordauthentication no
+kbdinteractiveauthentication yes
+banner /etc/ssh/ssh2fa-banner
+authorizedkeysfile /etc/ssh/authorized-keys/%u .ssh/authorized_keys
+authenticationmethods publickey,keyboard-interactive
+active
+active
+   |- Currently banned:	0
+   `- Banned IP list:	

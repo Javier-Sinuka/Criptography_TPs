@@ -1,0 +1,4 @@
+Capturing on 'enp0s3'
+File: /home/analyst/dns-lab/capturas/normal_dns.pcap
+Packets: 3 Packets: 6 Packets: 8 Packets: 10 Packets: 12 Packets: 13 Packets: 15 Packets: 18 Packets: 20 Packets: 22 Packets captured: 22
+Packets received/dropped on interface 'enp0s3': 22/0 (pcap:0/dumpcap:0/flushed:0/ps_ifdrop:0) (100.0%)

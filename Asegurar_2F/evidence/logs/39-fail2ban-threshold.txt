@@ -1,0 +1,13 @@
+attempt=2 exit=255 time_utc=2026-10-13T05:16:56Z output=invalidlab2@127.0.0.1: Permission denied (publickey).
+|  |- Currently failed:	0
+|  |- Total failed:	5
+   |- Currently banned:	0
+   |- Total banned:	0
+   `- Banned IP list:	
+attempt=3 exit=255 time_utc=2026-10-13T05:16:57Z output=invalidlab3@127.0.0.1: Permission denied (publickey).
+|  |- Currently failed:	1
+|  |- Total failed:	6
+   |- Currently banned:	1
+   |- Total banned:	1
+   `- Banned IP list:	10.0.2.2
+ban_detected=yes

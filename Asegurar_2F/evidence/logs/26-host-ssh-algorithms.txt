@@ -1,0 +1,33 @@
+timestamp_utc=2026-10-13T05:08:39Z
+OpenSSH_9.6p1 Ubuntu-3ubuntu13.19, OpenSSL 3.0.13 30 Jan 2024
+=== key types (ssh -Q key) ===
+ssh-ed25519
+ssh-ed25519-cert-v01@openssh.com
+sk-ssh-ed25519@openssh.com
+sk-ssh-ed25519-cert-v01@openssh.com
+ecdsa-sha2-nistp256
+ecdsa-sha2-nistp256-cert-v01@openssh.com
+ecdsa-sha2-nistp384
+ecdsa-sha2-nistp384-cert-v01@openssh.com
+ecdsa-sha2-nistp521
+ecdsa-sha2-nistp521-cert-v01@openssh.com
+sk-ecdsa-sha2-nistp256@openssh.com
+sk-ecdsa-sha2-nistp256-cert-v01@openssh.com
+ssh-dss
+ssh-dss-cert-v01@openssh.com
+ssh-rsa
+ssh-rsa-cert-v01@openssh.com
+=== signature algorithms (ssh -Q sig) ===
+ssh-ed25519
+sk-ssh-ed25519@openssh.com
+ecdsa-sha2-nistp256
+ecdsa-sha2-nistp384
+ecdsa-sha2-nistp521
+sk-ecdsa-sha2-nistp256@openssh.com
+webauthn-sk-ecdsa-sha2-nistp256@openssh.com
+ssh-dss
+ssh-rsa
+rsa-sha2-256
+rsa-sha2-512
+=== accepted public key defaults ===
+pubkeyacceptedalgorithms ssh-ed25519-cert-v01@openssh.com,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com,sk-ecdsa-sha2-nistp256-cert-v01@openssh.com,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,ssh-ed25519,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ssh-ed25519@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,rsa-sha2-512,rsa-sha2-256

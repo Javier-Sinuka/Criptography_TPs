@@ -1,0 +1,18 @@
+Status
+|- Number of jail:	1
+`- Jail list:	sshd
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	1
+|  |- Total failed:	4
+|  `- File list:	/var/log/auth.log
+`- Actions
+   |- Currently banned:	0
+   |- Total banned:	0
+   `- Banned IP list:	
+/var/log/auth.log:Oct 13 05:16:30 labvm sshd[1656]: Invalid user invalidlab from 10.0.2.2 port 40894
+/var/log/auth.log:Oct 13 05:16:31 labvm sudo:    cisco : PWD=/ ; USER=root ; COMMAND=/bin/bash -lc fail2ban-client status; fail2ban-client status sshd; grep -E "Invalid user invalidlab|Ban 10.0.2.2|Found 10.0.2.2" /var/log/auth.log /var/log/fail2ban.log 2>/dev/null | tail -n 8
+/var/log/fail2ban.log:2026-10-13 05:16:12,083 fail2ban.filter         [1640]: INFO    [sshd] Found 10.0.2.2 - 2026-10-13 05:14:13
+/var/log/fail2ban.log:2026-10-13 05:16:12,087 fail2ban.filter         [1640]: INFO    [sshd] Found 10.0.2.2 - 2026-10-13 05:14:13
+/var/log/fail2ban.log:2026-10-13 05:16:12,092 fail2ban.filter         [1640]: INFO    [sshd] Found 10.0.2.2 - 2026-10-13 05:14:13
+/var/log/fail2ban.log:2026-10-13 05:16:30,747 fail2ban.filter         [1640]: INFO    [sshd] Found 10.0.2.2 - 2026-10-13 05:16:30

@@ -1,0 +1,3 @@
+account required pam_listfile.so item=user sense=deny file=/etc/ssh/ssh.deny onerr=fail
+# PAM configuration for the Secure Shell service
+/etc/ssh/ssh.deny root:root 600

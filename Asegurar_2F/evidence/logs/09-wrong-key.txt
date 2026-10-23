@@ -1,0 +1,4 @@
+timestamp_utc=2026-10-13T05:01:17Z
+test=wrong_key_login; expected=deny
+exit=255
+cisco@127.0.0.1: Permission denied (publickey,password).

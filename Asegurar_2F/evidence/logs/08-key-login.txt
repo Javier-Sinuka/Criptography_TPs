@@ -1,0 +1,7 @@
+timestamp_utc=2026-10-13T05:01:16Z
+test=public_key_login; expected=success
+exit=0
+debug1: Offering public key: /tmp/ssh2fa-client/id_ed25519_lab ED25519 SHA256:TNJCpC5/A8RHEIlVg7Z34u3Db1TUnbzyGXEy2n7thIY explicit agent
+debug1: Server accepts key: /tmp/ssh2fa-client/id_ed25519_lab ED25519 SHA256:TNJCpC5/A8RHEIlVg7Z34u3Db1TUnbzyGXEy2n7thIY explicit agent
+Authenticated to 127.0.0.1 ([127.0.0.1]:2222) using "publickey".
+cisco

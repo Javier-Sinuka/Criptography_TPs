@@ -1,0 +1,10 @@
+backup_created=/root/ssh2fa-backup-2026-10-13
+usepam yes
+permitrootlogin without-password
+pubkeyauthentication yes
+passwordauthentication yes
+kbdinteractiveauthentication no
+banner none
+authorizedkeysfile .ssh/authorized_keys .ssh/authorized_keys2
+authenticationmethods any
+active

@@ -1,0 +1,597 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+
+\definecolor{azulacademico}{RGB}{0,51,102}
+\definecolor{grisclaro}{RGB}{245,247,249}
+\definecolor{grisoscuro}{RGB}{70,70,70}
+\definecolor{verdeclaro}{RGB}{235,247,239}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=azulacademico,
+  urlcolor=azulacademico,
+  citecolor=azulacademico,
+  pdftitle={Informe de Laboratorio: Registros de eventos},
+  pdfauthor={Javier Siñuka}
+}
+
+\title{Informe de laboratorio: registros de eventos}
+\author{Javier Siñuka}
+\date{12 de septiembre de 2026}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Laboratorio de Ciberseguridad}
+\rhead{Registros de eventos}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{14pt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.65em}
+\setlist[itemize]{leftmargin=1.6em}
+\setlist[enumerate]{leftmargin=1.8em}
+
+\newcommand{\cmd}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\ruta}[1]{\path{#1}}
+
+\lstdefinestyle{terminal}{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{grisclaro},
+  frame=single,
+  rulecolor=\color{black!20},
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  xleftmargin=0.3em,
+  xrightmargin=0.3em
+}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{plain}
+
+\clearpage
+\tableofcontents
+\newpage
+
+\begin{abstract}
+El presente informe resuelve integralmente la práctica de laboratorio sobre registros de eventos en Linux, tomando como base la máquina virtual \emph{CyberOps Workstation}. Se analizan registros de Apache y nginx, archivos de sistema ubicados en \ruta{/var/log}, métodos para localizar archivos de log en sistemas desconocidos y técnicas de monitoreo en tiempo real mediante \cmd{tail} y \cmd{journalctl}. Asimismo, se responden todas las preguntas explícitas de la guía y se incorpora un análisis complementario desde la perspectiva de ciberseguridad, orientado a monitoreo, respuesta a incidentes y análisis forense.
+\end{abstract}
+
+\section{Introducción}
+
+Los archivos de registro constituyen una de las fuentes de evidencia más importantes en la administración de sistemas y en ciberseguridad. Servicios web, procesos del sistema operativo, mecanismos de autenticación, componentes de red y aplicaciones generan eventos que permiten reconstruir qué ocurrió, cuándo ocurrió, qué proceso intervino y, en muchos casos, qué usuario o sistema remoto estuvo involucrado.
+
+La práctica analizada se organiza en tres partes: una descripción general de los archivos de registro, la localización de logs en sistemas cuyos detalles de instalación pueden desconocerse y el monitoreo de eventos en tiempo real. El entorno utilizado es la máquina virtual \emph{CyberOps Workstation}, basada en Arch Linux, con servicios como nginx y \cmd{systemd-journald}.
+
+Desde el punto de vista de un analista de seguridad, el valor de un registro no reside únicamente en ``guardar mensajes'', sino en aportar evidencia temporal y contextual para detectar anomalías, correlacionar eventos, investigar incidentes y validar hipótesis. Por esta razón, la sincronización horaria, la integridad de los registros, su retención y la correcta interpretación del formato resultan aspectos críticos.
+
+\section{Objetivos}
+
+\subsection{Objetivo general}
+Comprender la estructura, ubicación, consulta y monitoreo de archivos de registro en sistemas Linux, aplicando herramientas de línea de comandos y relacionando sus resultados con tareas reales de ciberseguridad.
+
+\subsection{Objetivos específicos}
+\begin{itemize}
+    \item Interpretar entradas de registros generadas por servidores web y por el sistema operativo.
+    \item Diferenciar registros de acceso, registros de error y registros generales del sistema.
+    \item Ubicar archivos de configuración y registros de nginx cuando no se conoce inicialmente su ruta exacta.
+    \item Utilizar \cmd{cat}, \cmd{more}, \cmd{less}, \cmd{ps}, \cmd{grep}, \cmd{ls} y \cmd{tail} para inspeccionar información operativa.
+    \item Comprender el funcionamiento de la rotación de registros.
+    \item Monitorear logs en tiempo real mediante \cmd{tail -f} y \cmd{journalctl -f}.
+    \item Aplicar filtros de \cmd{journalctl} por arranque, intervalo temporal y unidad de \cmd{systemd}.
+    \item Resolver las preguntas planteadas en la guía con fundamento técnico y sin atribuir evidencia que no se encuentre en el material proporcionado.
+\end{itemize}
+
+\section{Marco teórico}
+
+\subsection{Qué es un registro de eventos}
+Un archivo de registro o \emph{log} almacena eventos generados por software, servicios, procesos del sistema operativo o transacciones entre componentes. El formato concreto depende de la aplicación que produce el evento. Por ello, no existe un único formato universal: cada servicio puede definir qué campos registrar, cómo ordenarlos y en qué destino almacenarlos.
+
+En Linux es habitual encontrar registros en \ruta{/var/log}, mientras que los archivos de configuración suelen ubicarse bajo \ruta{/etc}. Estas rutas son convenciones frecuentes, no garantías absolutas. La configuración de cada aplicación puede modificar el destino de los logs.
+
+\subsection{Campos relevantes para análisis de seguridad}
+Aunque la estructura varía entre productos, los registros útiles para ciberseguridad suelen contener una combinación de los siguientes datos:
+\begin{itemize}
+    \item marca temporal;
+    \item host o servicio que genera el evento;
+    \item severidad o tipo de evento;
+    \item identificador de proceso o hilo;
+    \item identidad de usuario o cuenta de servicio;
+    \item dirección IP de origen o destino;
+    \item recurso solicitado;
+    \item resultado de la operación;
+    \item descripción del evento o mensaje de error.
+\end{itemize}
+
+La marca temporal merece especial atención. La correlación entre sistemas diferentes solo es fiable si sus relojes están razonablemente sincronizados. Una diferencia horaria puede alterar la secuencia aparente de un incidente y dificultar la reconstrucción forense.
+
+\subsection{Registros de acceso y registros de error}
+En un servidor web conviene distinguir dos categorías habituales:
+\begin{itemize}
+    \item \textbf{Registro de acceso:} documenta solicitudes HTTP recibidas y normalmente incluye origen, fecha y hora, método HTTP, recurso, versión del protocolo, código de estado, tamaño de respuesta y agente de usuario.
+    \item \textbf{Registro de error:} documenta fallos operativos o condiciones anómalas del servidor, como archivos inexistentes, errores de configuración, permisos insuficientes o problemas durante la ejecución.
+\end{itemize}
+
+La diferencia es fundamental: una misma interacción puede producir una entrada de acceso y, si ocurre un problema, otra entrada en el registro de error.
+
+\subsection{Flujo de análisis de registros}
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=1.25cm and 1.35cm,
+  box/.style={draw, rounded corners, align=center, minimum width=3.0cm, minimum height=1.0cm, fill=grisclaro},
+  arrow/.style={-{Latex[length=2.4mm]}, thick}
+]
+\node[box] (fuentes) {Fuentes de eventos\\SO, nginx, Apache};
+\node[box, right=of fuentes] (logs) {Registros\\\texttt{/var/log}, journald};
+\node[box, right=of logs] (consulta) {Consulta y filtros\\\texttt{tail}, \texttt{grep}, \texttt{journalctl}};
+\node[box, below=of consulta] (analisis) {Análisis\\correlación y contexto};
+\node[box, left=of analisis] (respuesta) {Decisión\\diagnóstico o respuesta};
+\draw[arrow] (fuentes) -- (logs);
+\draw[arrow] (logs) -- (consulta);
+\draw[arrow] (consulta) -- (analisis);
+\draw[arrow] (analisis) -- (respuesta);
+\end{tikzpicture}
+\end{center}
+
+\section{Parte 1: descripción general de los archivos de registro}
+
+\subsection{Paso 1: ejemplo de registro de un servidor web Apache}
+
+La guía proporciona la siguiente entrada de error de Apache:
+
+\begin{lstlisting}[style=terminal]
+[Wed Mar 22 11:23:12.207022 2017] [core:error]
+[pid 3548:tid 4682351596] [client 209.165.200.230]
+File does not exist: /var/www/apache/htdocs/favicon.ico
+\end{lstlisting}
+
+Esta entrada puede descomponerse de la siguiente manera:
+
+\begin{tabularx}{\textwidth}{p{0.21\textwidth} X}
+\toprule
+\textbf{Campo} & \textbf{Interpretación} \\
+\midrule
+Marca temporal & Miércoles 22 de marzo de 2017 a las 11:23:12.207022. \\
+Tipo & \cmd{core:error}: evento clasificado como error del núcleo de Apache. \\
+PID/TID & El proceso tiene PID 3548 y se registra además el identificador de hilo 4682351596. \\
+Cliente & La solicitud se asocia con la dirección IP \cmd{209.165.200.230}. \\
+Descripción & Apache intentó localizar \ruta{/var/www/apache/htdocs/favicon.ico}, pero el archivo no existía. \\
+\bottomrule
+\end{tabularx}
+
+\subsubsection*{Respuesta a la pregunta 1}
+\textbf{¿Qué sucedió?}
+
+Un cliente con dirección IP \cmd{209.165.200.230} realizó una solicitud que llevó al servidor Apache a intentar acceder al archivo \ruta{/var/www/apache/htdocs/favicon.ico}. El archivo no existía en esa ruta, por lo que Apache registró un evento de tipo \cmd{core:error}. El incidente ocurrió el 22 de marzo de 2017 a las 11:23:12 y fue procesado por el proceso Apache con PID 3548.
+
+Desde el punto de vista de seguridad, esta única entrada no demuestra actividad maliciosa. La ausencia de \cmd{favicon.ico} es un evento frecuente en servidores web. Para evaluar riesgo sería necesario correlacionar el origen con otras solicitudes, frecuencia, recursos consultados, códigos de respuesta y comportamiento temporal.
+
+\subsection{Registro de acceso de muestra: \texttt{logstash-tutorial.log}}
+
+La guía utiliza el siguiente comando:
+
+\begin{lstlisting}[style=terminal]
+cat /var/log/logstash-tutorial.log
+\end{lstlisting}
+
+Entre las entradas mostradas aparecen solicitudes como:
+
+\begin{lstlisting}[style=terminal]
+83.149.9.216 - - [04/Jan/2015:05:13:42 +0000]
+"GET /presentations/logstash-monitorama-2013/images/kibana-search.png HTTP/1.1"
+200 203023
+"http://semicomplete.com/presentations/logstash-monitorama-2013/"
+"Mozilla/5.0 (...) Chrome/32.0.1700.77 Safari/537.36"
+\end{lstlisting}
+
+Los elementos relevantes son la IP de origen, la marca temporal, el método HTTP, el recurso solicitado, la versión del protocolo, el código HTTP, el tamaño de la respuesta, el referente y el agente de usuario.
+
+\subsubsection*{Respuesta a la pregunta 2}
+\textbf{¿La salida puede considerarse una transacción web? ¿Por qué el formato es diferente del ejemplo anterior?}
+
+Sí. Cada entrada del archivo representa una solicitud HTTP y su resultado, es decir, una interacción o transacción web registrada por el servidor. En el ejemplo se observa, por ejemplo, una petición \cmd{GET} y una respuesta con código \cmd{200}.
+
+La diferencia de formato \textbf{no es causada por el comando \cmd{cat}}. \cmd{cat} se limita a mostrar el contenido del archivo sin reinterpretarlo. El formato cambia porque se están observando registros de naturaleza distinta: la primera entrada corresponde a un \textbf{registro de error de Apache}, mientras que \ruta{/var/log/logstash-tutorial.log} presenta un formato de \textbf{registro de acceso web}. Además, cada servidor y cada configuración puede definir su propio formato de logging.
+
+\subsection{Paso 2: ejemplo de registro del sistema operativo}
+
+La práctica consulta \ruta{/var/log/messages} mediante:
+
+\begin{lstlisting}[style=terminal]
+sudo more /var/log/messages
+\end{lstlisting}
+
+La salida incluye mensajes del kernel, por ejemplo eventos de la interfaz \cmd{enp0s3}:
+
+\begin{lstlisting}[style=terminal]
+Mar 20 14:28:29 secOps kernel: ... enp0s3: link down
+Mar 20 14:28:33 secOps kernel: ... enp0s3: link up, 100Mbps, full-duplex
+Mar 20 14:28:35 secOps kernel: ... enp0s3: link down
+Mar 20 14:28:43 secOps kernel: ... enp0s3: link up, 100Mbps, full-duplex
+Mar 20 14:28:53 secOps kernel: ... enp0s3: link down
+Mar 20 14:28:57 secOps kernel: ... enp0s3: link up, 100Mbps, full-duplex
+Mar 20 14:29:01 secOps kernel: ... enp0s3: link down
+Mar 20 14:29:05 secOps kernel: ... enp0s3: link up, 100Mbps, full-duplex
+\end{lstlisting}
+
+La secuencia evidencia una inestabilidad o \emph{flapping} del enlace: la interfaz alterna repetidamente entre estados \cmd{down} y \cmd{up}. Una situación así puede provocar pérdida de conectividad, retransmisiones, interrupciones de sesiones y percepción de lentitud.
+
+\subsubsection*{Respuesta a la pregunta 3}
+\textbf{¿Hay pruebas en las entradas mostradas de lentitud alrededor de las 04:20 del 19 de mayo?}
+
+\textbf{No es posible demostrarlo con el fragmento de registro mostrado en la guía.} Las líneas visibles con eventos de red corresponden al \textbf{20 de marzo alrededor de las 14:28--14:29}, y posteriormente aparecen eventos del \textbf{22 de marzo}. No se muestran entradas del 19 de mayo a las 04:20.
+
+Sí existe evidencia de un problema de enlace en las líneas de marzo citadas anteriormente, pero atribuirlo al incidente reportado para mayo sería incorrecto por incompatibilidad temporal. En una investigación real se debería consultar el archivo completo alrededor del intervalo informado, por ejemplo:
+
+\begin{lstlisting}[style=terminal]
+sudo grep '^May 19 04:2' /var/log/messages
+sudo grep -E '^May 19 04:2.*(enp0s3|link|network|dhcp)' /var/log/messages
+\end{lstlisting}
+
+La conclusión correcta es, por tanto, que el extracto visible contiene un patrón técnicamente compatible con problemas de conectividad, pero \textbf{no constituye evidencia del incidente fechado el 19 de mayo}.
+
+\section{Parte 2: ubicación de archivos de registro en sistemas desconocidos}
+
+\subsection{1. Consultar primero la documentación}
+Cuando se trabaja con un servicio que no se conoce, la estrategia inicial debe ser revisar su documentación. La práctica utiliza:
+
+\begin{lstlisting}[style=terminal]
+man nginx
+\end{lstlisting}
+
+La página de manual identifica a nginx como servidor HTTP, proxy inverso y proxy de correo. Además, confirma que dispone de registro de depuración y referencias a rutas de archivos como el PID, el archivo principal de configuración y el registro de errores.
+
+Este paso es importante metodológicamente: buscar directamente por todo el sistema puede ser más lento y generar ruido. La documentación permite conocer convenciones, parámetros de compilación y archivos relevantes antes de realizar búsquedas más amplias.
+
+\subsection{2. Verificar que nginx se encuentre en ejecución}
+
+La guía combina \cmd{ps} con \cmd{grep}:
+
+\begin{lstlisting}[style=terminal]
+ps ax | grep nginx
+\end{lstlisting}
+
+La salida mostrada contiene un proceso maestro y un proceso \emph{worker}, además del propio \cmd{grep}. Se observa que nginx fue iniciado con parámetros que fijan el PID en \ruta{/run/nginx.pid} y redirigen el registro de errores a \cmd{stderr}.
+
+\textbf{Interpretación de seguridad:} verificar procesos activos permite confirmar que el servicio investigado efectivamente está en ejecución y proporciona datos como PID, usuario, argumentos de inicio y opciones relevantes. Los argumentos de línea de comandos pueden revelar rutas de configuración personalizadas o comportamientos que no coinciden con los valores predeterminados.
+
+\subsection{3. Localizar la configuración bajo \texttt{/etc}}
+
+La práctica enumera \ruta{/etc} y detecta el subdirectorio \ruta{/etc/nginx}. Posteriormente ejecuta:
+
+\begin{lstlisting}[style=terminal]
+ls -l /etc/nginx/
+\end{lstlisting}
+
+Entre los archivos se encuentra \ruta{/etc/nginx/nginx.conf}, además de configuraciones auxiliares y archivos personalizados. Luego se consulta:
+
+\begin{lstlisting}[style=terminal]
+cat /etc/nginx/nginx.conf
+\end{lstlisting}
+
+La configuración mostrada contiene líneas de \cmd{error_log} comentadas. Como las líneas precedidas por \cmd{\#} no se encuentran activas, no se obtiene allí una ruta explícita efectiva de logging para esa ejecución, por lo que resulta razonable comprobar las ubicaciones predeterminadas.
+
+\subsection{4. Explorar \texttt{/var/log} y localizar los logs de nginx}
+
+La guía ejecuta:
+
+\begin{lstlisting}[style=terminal]
+ls -l /var/log/
+sudo ls -l /var/log/nginx
+\end{lstlisting}
+
+En \ruta{/var/log} se observa el subdirectorio \ruta{/var/log/nginx}. En él aparecen:
+
+\begin{lstlisting}[style=terminal]
+access.log
+access.log.1.gz
+access.log.2.gz
+access.log.3.gz
+access.log.4.gz
+\end{lstlisting}
+
+El archivo \ruta{/var/log/nginx/access.log} contiene los eventos más recientes, mientras que los archivos comprimidos numerados son registros rotados.
+
+\subsection{5. Rotación de registros}
+La rotación evita que un único archivo crezca indefinidamente. De forma general, el mecanismo conserva versiones antiguas, puede comprimirlas y crea o reutiliza un archivo principal para los eventos nuevos.
+
+Para un analista de seguridad esto tiene varias consecuencias:
+\begin{itemize}
+    \item la ausencia de eventos antiguos en \cmd{access.log} no implica que nunca hayan existido;
+    \item es necesario revisar los archivos rotados cuando el intervalo de investigación es anterior;
+    \item los archivos comprimidos pueden requerir herramientas como \cmd{zgrep}, \cmd{zcat} o descompresión controlada;
+    \item las políticas de retención determinan cuánto tiempo permanece disponible la evidencia local.
+\end{itemize}
+
+\subsection{Resumen del procedimiento de descubrimiento}
+
+\begin{enumerate}
+    \item Consultar documentación y página de manual del servicio.
+    \item Confirmar si el proceso se está ejecutando y con qué argumentos.
+    \item Localizar el archivo de configuración principal.
+    \item Revisar directivas activas relacionadas con logs.
+    \item Aplicar convenciones del sistema, como \ruta{/var/log}, cuando la configuración no especifica una ruta alternativa.
+    \item Verificar la actividad del archivo generando eventos controlados y observando si el log se actualiza.
+\end{enumerate}
+
+Este último punto es especialmente sólido: no basta con encontrar un archivo cuyo nombre ``parezca correcto''; conviene demostrar que el servicio lo actualiza cuando ocurre una operación conocida.
+
+\section{Parte 3: monitoreo de archivos de registro en tiempo real}
+
+\subsection{Paso 1: uso de \texttt{tail}}
+
+Por defecto, \cmd{tail} muestra las últimas diez líneas de un archivo. La práctica utiliza:
+
+\begin{lstlisting}[style=terminal]
+sudo tail /var/log/nginx/access.log
+\end{lstlisting}
+
+Las entradas mostradas registran solicitudes locales desde \cmd{127.0.0.1}, incluyendo respuestas HTTP \cmd{200}, \cmd{304} y \cmd{404}. Entre ellas aparece el acceso a \ruta{/favicon.ico} con código \cmd{404}, lo que indica que el recurso solicitado no fue encontrado.
+
+\subsection{Selección del número de líneas}
+La opción \cmd{-n} permite indicar cuántas líneas finales deben mostrarse:
+
+\begin{lstlisting}[style=terminal]
+sudo tail -n 5 /var/log/nginx/access.log
+\end{lstlisting}
+
+Esto resulta útil para obtener contexto reciente sin cargar un archivo potencialmente grande.
+
+\subsection{Seguimiento continuo con \texttt{tail -f}}
+
+Para monitoreo en tiempo real:
+
+\begin{lstlisting}[style=terminal]
+sudo tail -f /var/log/nginx/access.log
+\end{lstlisting}
+
+La opción \cmd{-f} (\emph{follow}) mantiene el proceso activo y muestra nuevas líneas a medida que se anexan al archivo. Al abrir \cmd{127.0.0.1} en el navegador se genera una nueva solicitud al servidor local y la correspondiente entrada aparece en el terminal.
+
+La observación de esta actualización permite confirmar empíricamente que \ruta{/var/log/nginx/access.log} es utilizado por nginx como registro de acceso en ese entorno.
+
+\textbf{Nota sobre el material:} en una línea de la guía aparece la ruta \ruta{/var/log/acess.log}; por el contexto, los comandos anteriores y posteriores, la ruta operativa utilizada en la práctica es \ruta{/var/log/nginx/access.log}. En este informe se conserva esta última y se deja explícita la discrepancia tipográfica.
+
+\subsection{Interpretación de códigos HTTP observados}
+
+\begin{tabularx}{\textwidth}{p{0.16\textwidth} p{0.24\textwidth} X}
+\toprule
+\textbf{Código} & \textbf{Significado} & \textbf{Interpretación en la práctica} \\
+\midrule
+200 & OK & El servidor respondió satisfactoriamente y entregó el recurso solicitado. \\
+304 & Not Modified & El recurso no cambió respecto de la copia en caché del cliente; por ello no se retransmite el contenido completo. \\
+404 & Not Found & El recurso solicitado no existe en la ubicación esperada; en los ejemplos ocurre con \ruta{/favicon.ico}. \\
+\bottomrule
+\end{tabularx}
+
+Estos códigos son informativos, pero en análisis de seguridad deben interpretarse con contexto. Numerosos \cmd{404} secuenciales sobre rutas sensibles o aleatorias podrían indicar enumeración de contenidos, mientras que un \cmd{404} aislado para \cmd{favicon.ico} es habitualmente benigno.
+
+\section{Herramienta adicional: \texttt{journalctl}}
+
+\subsection{systemd, journald y journalctl}
+La máquina virtual utiliza \cmd{systemd} como sistema de inicialización. Dentro de este ecosistema, \cmd{systemd-journald} recopila eventos y los almacena en un formato propio. \cmd{journalctl} es la utilidad de consulta del \emph{journal}.
+
+La guía comienza con:
+
+\begin{lstlisting}[style=terminal]
+journalctl
+\end{lstlisting}
+
+El mensaje mostrado advierte que el usuario \cmd{analyst} no ve necesariamente los eventos de otros usuarios ni todos los mensajes del sistema porque no pertenece a grupos con acceso ampliado.
+
+\subsubsection*{Respuesta a la pregunta 4}
+\textbf{¿Cómo ejecutar \texttt{journalctl} y ver todas las entradas de registro?}
+
+La solución inmediata en la práctica es ejecutar la herramienta con privilegios elevados:
+
+\begin{lstlisting}[style=terminal]
+sudo journalctl
+\end{lstlisting}
+
+El mensaje de \cmd{journalctl} también indica que usuarios pertenecientes a grupos como \cmd{adm}, \cmd{systemd-journal} o \cmd{wheel} pueden disponer de acceso ampliado según la configuración del sistema. Para el laboratorio, el uso de \cmd{sudo} es la respuesta directa y coherente con los comandos posteriores.
+
+\subsection{Filtrar por arranque}
+
+La opción \cmd{-b} restringe la salida al arranque seleccionado:
+
+\begin{lstlisting}[style=terminal]
+sudo journalctl -b
+\end{lstlisting}
+
+Para consultar arranques anteriores pueden emplearse desplazamientos negativos. La guía muestra el segundo arranque anterior:
+
+\begin{lstlisting}[style=terminal]
+sudo journalctl -b -2
+\end{lstlisting}
+
+Y para listar los arranques disponibles:
+
+\begin{lstlisting}[style=terminal]
+sudo journalctl --list-boots
+\end{lstlisting}
+
+Cada entrada de \cmd{--list-boots} incluye un desplazamiento, un identificador de arranque y el intervalo temporal correspondiente. Esto es muy útil durante análisis post-incidente, ya que permite acotar una investigación a la sesión de arranque relevante.
+
+\subsection{Filtrar por intervalo temporal}
+
+La guía utiliza \cmd{--since} para limitar la consulta:
+
+\begin{lstlisting}[style=terminal]
+sudo journalctl --since "2 hours ago"
+sudo journalctl --since "1 day ago"
+\end{lstlisting}
+
+En un análisis real, el filtrado temporal reduce drásticamente el volumen de información y permite correlacionar un reporte de incidente con eventos del sistema ocurridos en la misma ventana.
+
+Como extensión natural, cuando la herramienta y versión lo permiten, puede combinarse \cmd{--since} con \cmd{--until} para definir un intervalo cerrado, por ejemplo:
+
+\begin{lstlisting}[style=terminal]
+sudo journalctl --since "2017-05-19 04:15:00" \
+                --until "2017-05-19 04:25:00"
+\end{lstlisting}
+
+Este último comando se presenta como técnica complementaria de análisis; no forma parte de los comandos exigidos explícitamente por la práctica.
+
+\subsection{Filtrar por servicio o unidad}
+
+Para mostrar eventos asociados con nginx:
+
+\begin{lstlisting}[style=terminal]
+sudo journalctl -u nginx.service
+\end{lstlisting}
+
+La salida de la guía contiene eventos de inicio y detención del servicio, advertencias de configuración, referencias al PID y errores relacionados con \cmd{favicon.ico}. El filtro por unidad evita revisar mensajes no relacionados provenientes de todo el sistema.
+
+\subsection{Monitoreo en tiempo real con journalctl}
+
+El equivalente funcional al seguimiento continuo de \cmd{tail -f} es:
+
+\begin{lstlisting}[style=terminal]
+sudo journalctl -f
+\end{lstlisting}
+
+Y para restringir el seguimiento exclusivamente a nginx:
+
+\begin{lstlisting}[style=terminal]
+sudo journalctl -u nginx.service -f
+\end{lstlisting}
+
+Al mantener este comando activo y abrir \cmd{127.0.0.1} o \cmd{127.0.0.1:8080}, la guía indica que pueden observarse en tiempo real eventos relacionados con el servicio, incluido el error por el archivo \cmd{favicon.ico} inexistente.
+
+\section{Tabla consolidada de herramientas y comandos}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.28\textwidth} p{0.62\textwidth}}
+\toprule
+\textbf{Comando} & \textbf{Función en la práctica} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Comando} & \textbf{Función en la práctica} \\
+\midrule
+\endhead
+\cmd{cat archivo} & Muestra el contenido completo de un archivo de texto en la salida estándar. \\
+\cmd{more archivo} & Permite recorrer un archivo progresivamente, útil cuando el contenido no cabe en pantalla. \\
+\cmd{less archivo} & Visor interactivo con navegación y búsqueda; adecuado para inspección de archivos extensos. \\
+\cmd{ps ax | grep nginx} & Identifica procesos nginx activos y permite observar sus argumentos de ejecución. \\
+\cmd{ls -l ruta} & Enumera archivos, permisos, propietarios, tamaños y fechas. \\
+\cmd{tail archivo} & Muestra las últimas diez líneas de un archivo por defecto. \\
+\cmd{tail -n 5 archivo} & Muestra las últimas cinco líneas. \\
+\cmd{tail -f archivo} & Sigue el archivo y muestra nuevas líneas en tiempo real. \\
+\cmd{journalctl} & Consulta los registros administrados por journald accesibles al usuario actual. \\
+\cmd{sudo journalctl} & Consulta el journal con privilegios elevados. \\
+\cmd{journalctl -b} & Filtra por arranque. \\
+\cmd{journalctl --list-boots} & Lista los arranques registrados y sus identificadores. \\
+\cmd{journalctl --since ...} & Filtra por tiempo de inicio de la consulta. \\
+\cmd{journalctl -u nginx.service} & Filtra los eventos de la unidad nginx. \\
+\cmd{journalctl -f} & Sigue nuevas entradas del journal en tiempo real. \\
+\cmd{journalctl -u nginx.service -f} & Combina filtro por unidad con monitoreo en tiempo real. \\
+\bottomrule
+\end{longtable}
+
+\section{Resolución consolidada de las preguntas}
+
+\begin{enumerate}
+    \item \textbf{Entrada de Apache:} el cliente \cmd{209.165.200.230} provocó una solicitud que hizo que Apache buscara \ruta{/var/www/apache/htdocs/favicon.ico}; el recurso no existía y se registró un error \cmd{core:error} asociado al PID 3548.
+
+    \item \textbf{Transacción web y diferencia de formato:} las entradas de \cmd{logstash-tutorial.log} representan solicitudes HTTP y sus respuestas, por lo que corresponden a transacciones web registradas. El formato no cambia por \cmd{cat}; cambia porque se trata de un registro de acceso, mientras que el primer ejemplo era un registro de error, y cada aplicación/configuración define su formato.
+
+    \item \textbf{Supuesto problema de red del 19 de mayo a las 04:20:} el fragmento visible no contiene eventos de ese momento, por lo que no puede confirmarse el reporte a partir de las líneas mostradas. Sí se observan repetidos \cmd{link down}/\cmd{link up} el 20 de marzo alrededor de las 14:28--14:29, lo cual evidencia inestabilidad de enlace en otra fecha.
+
+    \item \textbf{Acceso completo con journalctl:} ejecutar \cmd{sudo journalctl}. Alternativamente, el acceso puede depender de pertenecer a grupos autorizados como \cmd{adm}, \cmd{systemd-journal} o \cmd{wheel}, según la política del sistema.
+\end{enumerate}
+
+\section{Análisis complementario desde ciberseguridad}
+
+\subsection{Los logs como evidencia}
+Un registro es una fuente de evidencia, pero debe interpretarse con criterios de confiabilidad. El analista debe preguntarse quién genera el evento, si la fuente puede ser manipulada, si el reloj es correcto, si existe pérdida de datos por rotación y si el registro local fue alterado después del incidente.
+
+En investigaciones formales conviene preservar copias, registrar hashes criptográficos de los archivos recolectados y mantener trazabilidad sobre quién accedió a la evidencia. Estas prácticas no forman parte operativa del laboratorio, pero son una extensión profesional natural del trabajo con logs.
+
+\subsection{Correlación temporal}
+La pregunta sobre una supuesta lentitud de red ilustra un principio central: \textbf{un evento técnicamente plausible no es evidencia suficiente si la marca temporal no coincide}. Un analista no debería seleccionar un evento ``parecido'' y atribuirlo al incidente sin correspondencia temporal.
+
+La correlación exige alinear eventos provenientes de múltiples fuentes: registros del kernel, servidor web, autenticación, firewall, DNS, aplicaciones y, cuando corresponde, telemetría de red. De allí la importancia de NTP u otro mecanismo confiable de sincronización horaria.
+
+\subsection{Privilegios mínimos y acceso a logs}
+La necesidad de utilizar \cmd{sudo} muestra que los registros pueden contener información sensible. Conceder lectura irrestricta a todos los usuarios puede exponer nombres de cuenta, rutas internas, direcciones IP, errores de aplicaciones y otros datos útiles para un atacante.
+
+El principio de mínimo privilegio recomienda que solo las cuentas y grupos que requieran acceso operativo puedan consultar registros sensibles. Al mismo tiempo, un SOC necesita acceso suficiente para investigar incidentes; por ello es habitual separar funciones mediante grupos, roles o plataformas centralizadas de logging.
+
+\subsection{Rotación, retención y riesgo de pérdida de evidencia}
+La rotación controla el consumo de disco, pero una política demasiado agresiva puede eliminar evidencia antes de que un incidente sea detectado. Una política adecuada debe equilibrar capacidad de almacenamiento, requisitos operativos, obligaciones normativas y ventana de investigación.
+
+En entornos de mayor criticidad, los registros suelen enviarse a un sistema remoto o SIEM. Esto reduce la dependencia del almacenamiento local y dificulta que un atacante que compromete un host elimine toda la evidencia disponible.
+
+\subsection{Monitoreo en tiempo real frente a análisis histórico}
+\cmd{tail -f} y \cmd{journalctl -f} son excelentes para observar qué ocurre mientras se reproduce un evento o se diagnostica un servicio. Sin embargo, el monitoreo interactivo manual no sustituye un sistema de detección automatizada.
+
+Un flujo profesional combina:
+\begin{itemize}
+    \item \textbf{análisis histórico}, para reconstruir hechos ya ocurridos;
+    \item \textbf{monitoreo en tiempo real}, para observar cambios mientras suceden;
+    \item \textbf{correlación}, para relacionar múltiples fuentes;
+    \item \textbf{alertamiento}, para identificar automáticamente patrones de interés;
+    \item \textbf{retención}, para conservar evidencia durante el período necesario.
+\end{itemize}
+
+\section{Observaciones sobre precisión técnica del material}
+
+Para conservar rigurosidad académica, se normalizan algunos detalles tipográficos del documento original:
+\begin{itemize}
+    \item Los comandos se escriben con guiones ASCII reales, por ejemplo \cmd{--list-boots} y \cmd{--since}; en el PDF algunos guiones aparecen tipográficamente como rayas.
+    \item Se utiliza \ruta{/var/log/nginx/access.log} como ruta del registro de acceso de nginx, coherente con los comandos y listados previos. El texto contiene una mención aislada a \ruta{/var/log/acess.log}, aparentemente incompleta.
+    \item La guía contiene una forma unida \cmd{sudonginx} en una nota; la sintaxis operativa correcta requiere separar \cmd{sudo} del comando nginx.
+\end{itemize}
+
+Estas correcciones de presentación no modifican el objetivo ni los resultados conceptuales de la práctica.
+
+\section{Resultados de aprendizaje}
+
+A partir de la resolución completa del laboratorio se obtienen los siguientes resultados:
+\begin{enumerate}
+    \item Se interpretó correctamente la estructura de registros web y del sistema operativo.
+    \item Se diferenciaron registros de acceso y registros de error.
+    \item Se estableció un método reproducible para localizar logs en un sistema inicialmente desconocido.
+    \item Se comprendió el propósito de la rotación de registros y su efecto sobre investigaciones históricas.
+    \item Se utilizaron conceptualmente herramientas de inspección estática y seguimiento en tiempo real.
+    \item Se aplicaron filtros de \cmd{journalctl} por arranque, tiempo y unidad de servicio.
+    \item Se resolvieron las cuatro preguntas explícitas de la guía con fundamento en la evidencia efectivamente mostrada.
+    \item Se vinculó el laboratorio con principios profesionales de correlación, integridad, mínimo privilegio y preservación de evidencia.
+\end{enumerate}
+
+\section{Conclusiones}
+
+La práctica demuestra que el trabajo con registros no consiste únicamente en abrir archivos de texto, sino en comprender el origen, el formato, la ubicación y el contexto de cada evento. La combinación de herramientas sencillas como \cmd{cat}, \cmd{more}, \cmd{grep}, \cmd{tail} y \cmd{ps} con utilidades específicas como \cmd{journalctl} permite investigar el comportamiento de un sistema Linux con gran nivel de detalle.
+
+El procedimiento utilizado para nginx es especialmente valioso: consultar documentación, verificar el proceso, identificar la configuración, explorar ubicaciones convencionales y validar el archivo generando una solicitud conocida. Esta secuencia evita asumir que una ruta es correcta únicamente por su nombre.
+
+Desde la perspectiva de ciberseguridad, los principales aprendizajes son la necesidad de correlacionar eventos con marcas temporales correctas, preservar el contexto, distinguir evidencia de hipótesis y considerar los efectos de la rotación y los permisos de acceso. Un evento de red observado en una fecha distinta no debe utilizarse para justificar un incidente posterior, aun cuando el patrón técnico sea similar.
+
+Finalmente, \cmd{tail -f} y \cmd{journalctl -f} muestran cómo observar un sistema en tiempo real, mientras que los filtros temporales y por unidad permiten reducir el volumen de datos durante una investigación. Estas capacidades constituyen una base directa para tareas de monitoreo, respuesta a incidentes y análisis forense en entornos Linux.
+
+\section*{Referencia de la práctica}
+\addcontentsline{toc}{section}{Referencia de la práctica}
+Cisco Networking Academy. \emph{Práctica de laboratorio: Registros de eventos / Ubicar archivos de registro}. Material de laboratorio CyberOps proporcionado para la actividad.
+
+\end{document}

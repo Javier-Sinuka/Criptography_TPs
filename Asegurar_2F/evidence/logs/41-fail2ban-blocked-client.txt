@@ -1,0 +1,4 @@
+timestamp_utc=2026-10-13T05:17:20Z
+authorized_client_while_banned_exit=255
+Connection timed out during banner exchange
+Connection to 127.0.0.1 port 2222 timed out

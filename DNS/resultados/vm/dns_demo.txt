@@ -1,0 +1,19 @@
+LABORATORIO DE CIBERSEGURIDAD
+Datos ficticios para prueba de exfiltracion DNS.
+ID-DEMO-2026-001
+REGISTRO-FICTICIO-001; valor=0007; sin informacion personal.
+REGISTRO-FICTICIO-002; valor=0014; sin informacion personal.
+REGISTRO-FICTICIO-003; valor=0021; sin informacion personal.
+REGISTRO-FICTICIO-004; valor=0028; sin informacion personal.
+REGISTRO-FICTICIO-005; valor=0035; sin informacion personal.
+REGISTRO-FICTICIO-006; valor=0042; sin informacion personal.
+REGISTRO-FICTICIO-007; valor=0049; sin informacion personal.
+REGISTRO-FICTICIO-008; valor=0056; sin informacion personal.
+REGISTRO-FICTICIO-009; valor=0063; sin informacion personal.
+REGISTRO-FICTICIO-010; valor=0070; sin informacion personal.
+REGISTRO-FICTICIO-011; valor=0077; sin informacion personal.
+REGISTRO-FICTICIO-012; valor=0084; sin informacion personal.
+REGISTRO-FICTICIO-013; valor=0091; sin informacion personal.
+REGISTRO-FICTICIO-014; valor=0098; sin informacion personal.
+REGISTRO-FICTICIO-015; valor=0105; sin informacion personal.
+REGISTRO-FICTICIO-016; valor=0112; sin informacion personal.

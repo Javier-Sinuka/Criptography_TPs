@@ -1,0 +1,5 @@
+mode=valid
+otp_prompt_seen=true
+command_marker_seen=true
+ssh_exit=0
+partial_publickey_success=false

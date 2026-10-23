@@ -1,0 +1,1 @@
+totp_file_mode=400 owner=cisco:cisco size=135

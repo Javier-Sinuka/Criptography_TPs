@@ -1,0 +1,21 @@
+timestamp_utc=2026-10-13T05:07:41Z
+PRETTY_NAME="Ubuntu 24.04.5 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.5 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+7.0.0-31-generic
+7.2.14r174565
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi        11Gi       351Mi       1.3Gi       5.1Gi       3.9Gi
+Swap:          4.0Gi       4.0Gi       5.8Mi
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p2  457G  416G   19G  96% /
+Name:                        Crypto SSH 2FA Fail2ban Lab
+Guest OS:                    Ubuntu (64-bit)
+Memory size:                 2048MB
+Number of CPUs:              2
+State:                       live snapshotting (since 2026-10-13T05:04:52.557000000)
+NIC 1:                       MAC: 0800271C8D56, Attachment: NAT, Cable connected: on, Trace: off (file: none), Type: 82540EM, Reported speed: 0 Mbps, Boot priority: 0, Promisc Policy: deny, Bandwidth group: none
+NIC 1 Settings:

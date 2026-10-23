@@ -1,0 +1,5 @@
+timestamp_utc=2026-10-13T05:00:27Z
+dedicated_key_generated=yes; passphrase_protected=yes; private_key_location=/tmp/ssh2fa-client (outside report)
+/tmp/ssh2fa-client/id_ed25519_lab mode=600
+/tmp/ssh2fa-client/id_ed25519_lab.pub mode=644
+256 SHA256:TNJCpC5/A8RHEIlVg7Z34u3Db1TUnbzyGXEy2n7thIY crypto-ssh2fa-lab (ED25519)

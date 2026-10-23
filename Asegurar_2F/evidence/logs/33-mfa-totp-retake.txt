@@ -1,0 +1,15 @@
+mode=wrong
+otp_prompt_seen=true
+command_marker_seen=false
+ssh_exit=255
+partial_publickey_success=false
+mode=expired
+otp_prompt_seen=true
+command_marker_seen=false
+ssh_exit=255
+partial_publickey_success=false
+mode=valid
+otp_prompt_seen=true
+command_marker_seen=true
+ssh_exit=0
+partial_publickey_success=false

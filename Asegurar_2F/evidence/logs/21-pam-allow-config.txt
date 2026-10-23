@@ -1,0 +1,2 @@
+account required pam_listfile.so item=user sense=allow file=/etc/ssh/ssh.allow onerr=fail
+# PAM configuration for the Secure Shell service

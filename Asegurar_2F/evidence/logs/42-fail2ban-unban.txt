@@ -1,0 +1,14 @@
+1
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	1
+|  |- Total failed:	6
+|  `- File list:	/var/log/auth.log
+`- Actions
+   |- Currently banned:	0
+   |- Total banned:	1
+   `- Banned IP list:	
+Chain f2b-sshd (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+2026-10-13 05:17:52,314 fail2ban.actions        [1640]: NOTICE  [sshd] Unban 10.0.2.2

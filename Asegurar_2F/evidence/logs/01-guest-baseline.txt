@@ -1,0 +1,31 @@
+2026-10-13T04:58:16+00:00
+PRETTY_NAME="Ubuntu 22.04.1 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.1 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+5.15.0-60-generic
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+enp0s3           UP             10.0.2.15/24 metric 100 fd17:625c:f037:2:a00:27ff:fe1c:8d56/64 fe80::a00:27ff:fe1c:8d56/64 
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2        23G  8.0G   14G  37% /
+active
+OpenSSH_8.9p1 Ubuntu-3ubuntu0.1, OpenSSL 3.0.2 15 Mar 2022
+ 
+ssh-ed25519
+ssh-ed25519-cert-v01@openssh.com
+sk-ssh-ed25519@openssh.com
+sk-ssh-ed25519-cert-v01@openssh.com
+ssh-rsa
+ssh-dss
+ecdsa-sha2-nistp256
+ecdsa-sha2-nistp384
+ecdsa-sha2-nistp521
+sk-ecdsa-sha2-nistp256@openssh.com
+ssh-rsa-cert-v01@openssh.com
+ssh-dss-cert-v01@openssh.com
+ecdsa-sha2-nistp256-cert-v01@openssh.com
+ecdsa-sha2-nistp384-cert-v01@openssh.com
+ecdsa-sha2-nistp521-cert-v01@openssh.com
+sk-ecdsa-sha2-nistp256-cert-v01@openssh.com

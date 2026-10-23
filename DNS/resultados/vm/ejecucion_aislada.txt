@@ -1,0 +1,265 @@
+
+=== FECHA ===
+2026-09-20T14:26:00.281245+00:00
+=== COMANDO ===
+ip netns add dns-client-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.289186+00:00
+=== COMANDO ===
+ip netns add dns-server-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.299542+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 link add dns-cli type veth peer name dns-rx netns dns-server-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.303931+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 addr add 10.203.0.1/30 dev dns-cli
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.307818+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 link set lo up
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.314443+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 link set dns-cli up
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.317283+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 -br addr
+=== RESULTADO ===
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+dns-cli@if2      DOWN           10.203.0.1/30 
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.321053+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 route
+=== RESULTADO ===
+10.203.0.0/30 dev dns-cli proto kernel scope link src 10.203.0.1 linkdown 
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.328002+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 addr add 10.203.0.2/30 dev dns-rx
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.333053+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 link set lo up
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.339692+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 link set dns-rx up
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.353067+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 -br addr
+=== RESULTADO ===
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+dns-rx@if2       DOWN           10.203.0.2/30 
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.357443+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 route
+=== RESULTADO ===
+10.203.0.0/30 dev dns-rx proto kernel scope link src 10.203.0.2 
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.862016+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 addr
+=== RESULTADO ===
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: dns-cli@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 7e:9e:18:cd:b2:18 brd ff:ff:ff:ff:ff:ff link-netns dns-server-20260920
+    inet 10.203.0.1/30 scope global dns-cli
+       valid_lft forever preferred_lft forever
+    inet6 fe80::7c9e:18ff:fecd:b218/64 scope link tentative 
+       valid_lft forever preferred_lft forever
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.866355+00:00
+=== COMANDO ===
+ip -n dns-client-20260920 route
+=== RESULTADO ===
+10.203.0.0/30 dev dns-cli proto kernel scope link src 10.203.0.1 
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.871914+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 addr
+=== RESULTADO ===
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: dns-rx@if2: <NO-CARRIER,BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state DOWN group default qlen 1000
+    link/ether 02:af:b9:5b:09:ac brd ff:ff:ff:ff:ff:ff link-netns dns-client-20260920
+    inet 10.203.0.2/30 scope global dns-rx
+       valid_lft forever preferred_lft forever
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:00.877644+00:00
+=== COMANDO ===
+ip -n dns-server-20260920 route
+=== RESULTADO ===
+10.203.0.0/30 dev dns-rx proto kernel scope link src 10.203.0.2 
+
+=== RETORNO ===
+0
+
+CAPTURA: ip netns exec dns-client-20260920 dumpcap -i dns-cli -p -P -w -
+{"received_bytes": 1072, "chunks": 34, "sha256": "41e631070a6cf404f57bf882d7e1161af41f816e5660468d7aac6630dd22a731"}
+
+=== FECHA ===
+2026-09-20T14:26:01.487643+00:00
+=== COMANDO ===
+ip netns exec dns-client-20260920 python3 /home/analyst/dns-lab/scripts/dns_demo.py sender
+=== RESULTADO ===
+{"synthetic_bytes": 1072, "chunks": 34, "sha256": "41e631070a6cf404f57bf882d7e1161af41f816e5660468d7aac6630dd22a731"}
+
+=== RETORNO ===
+0
+
+VERIFICACION: archivos identicos, 1072 bytes; SHA256 41e631070a6cf404f57bf882d7e1161af41f816e5660468d7aac6630dd22a731
+Capturing on 'dns-cli'
+File: -
+
+Packets: 1 
+Packets: 10 
+Packets: 18 
+Packets: 22 
+Packets: 30 
+Packets: 37 
+Packets: 41 
+Packets: 47 
+Packets: 51 
+Packets: 58 
+Packets: 62 
+Packets: 70 
+Packets: 75 
+Packets: 81 
+Packets: 83 
+Packets captured: 83
+Packets received/dropped on interface 'dns-cli': 83/0 (pcap:0/dumpcap:0/flushed:0/ps_ifdrop:0) (100.0%)
+
+
+=== FECHA ===
+2026-09-20T14:26:08.981267+00:00
+=== COMANDO ===
+ip netns del dns-server-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:08.986223+00:00
+=== COMANDO ===
+ip netns del dns-client-20260920
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+
+
+=== FECHA ===
+2026-09-20T14:26:08.994983+00:00
+=== COMANDO ===
+ip netns list
+=== RESULTADO ===
+
+=== RETORNO ===
+0
+

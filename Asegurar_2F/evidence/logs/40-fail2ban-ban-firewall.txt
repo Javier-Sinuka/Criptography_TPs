@@ -1,0 +1,23 @@
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	1
+|  |- Total failed:	6
+|  `- File list:	/var/log/auth.log
+`- Actions
+   |- Currently banned:	1
+   |- Total banned:	1
+   `- Banned IP list:	10.0.2.2
+Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 f2b-sshd   tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 22
+Chain f2b-sshd (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 REJECT     all  --  *      *       10.0.2.2             0.0.0.0/0            reject-with icmp-port-unreachable
+2        0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+2026-10-13 05:16:12,083 fail2ban.filter         [1640]: INFO    [sshd] Found 10.0.2.2 - 2026-10-13 05:14:13
+2026-10-13 05:16:12,087 fail2ban.filter         [1640]: INFO    [sshd] Found 10.0.2.2 - 2026-10-13 05:14:13
+2026-10-13 05:16:12,092 fail2ban.filter         [1640]: INFO    [sshd] Found 10.0.2.2 - 2026-10-13 05:14:13
+2026-10-13 05:16:30,747 fail2ban.filter         [1640]: INFO    [sshd] Found 10.0.2.2 - 2026-10-13 05:16:30
+2026-10-13 05:16:56,830 fail2ban.filter         [1640]: INFO    [sshd] Found 10.0.2.2 - 2026-10-13 05:16:56
+2026-10-13 05:16:57,428 fail2ban.actions        [1640]: NOTICE  [sshd] Ban 10.0.2.2
+2026-10-13 05:16:57,443 fail2ban.filter         [1640]: INFO    [sshd] Found 10.0.2.2 - 2026-10-13 05:16:57

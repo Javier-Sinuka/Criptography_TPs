@@ -1,0 +1,4 @@
+ssh_analyst_exit=255
+analyst@127.0.0.1: Permission denied (publickey).
+ssh_sec_admin_exit=255
+sec_admin@127.0.0.1: Permission denied (publickey).

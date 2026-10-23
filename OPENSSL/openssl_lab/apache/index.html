@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Laboratorio HTTPS · OpenSSL</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, sans-serif; color: #172536; background: #edf3f8; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; }
+    main { width: min(880px, calc(100% - 48px)); padding: 42px; background: #fff; border: 1px solid #d8e2eb; border-radius: 18px; box-shadow: 0 18px 48px #19324a18; }
+    .tag { display: inline-block; padding: 7px 12px; border-radius: 999px; background: #e7f7ef; color: #14643b; font-size: 14px; font-weight: 700; letter-spacing: .02em; }
+    h1 { margin: 20px 0 8px; font-size: 34px; }
+    .intro { margin: 0 0 28px; color: #526579; font-size: 18px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .item { padding: 17px 19px; border: 1px solid #e1e8ef; border-radius: 12px; background: #f9fbfd; }
+    .label { display: block; margin-bottom: 6px; color: #64788c; font-size: 13px; text-transform: uppercase; letter-spacing: .07em; }
+    .value { font-size: 17px; font-weight: 650; overflow-wrap: anywhere; }
+    footer { margin-top: 24px; padding-top: 18px; border-top: 1px solid #e7edf2; color: #526579; font-size: 14px; line-height: 1.5; }
+    @media (max-width: 620px) { main { padding: 26px; } .grid { grid-template-columns: 1fr; } h1 { font-size: 27px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <span class="tag">HTTPS local · respuesta 200</span>
+    <h1>Laboratorio ACME con Apache</h1>
+    <p class="intro">Certificado emitido por Pebble para verificar el despliegue TLS local.</p>
+    <section class="grid" aria-label="Datos observados del certificado">
+      <div class="item"><span class="label">Nombre SAN</span><span class="value">openssl-lab.invalid</span></div>
+      <div class="item"><span class="label">Autoridad emisora</span><span class="value">Pebble Intermediate CA 793601</span></div>
+      <div class="item"><span class="label">Válido desde</span><span class="value">13 oct 2026 · 05:40 UTC</span></div>
+      <div class="item"><span class="label">Válido hasta</span><span class="value">11 ene 2027 · 05:40 UTC</span></div>
+    </section>
+    <footer>Servicio de prueba accesible sólo en 127.0.0.1:8443. Pebble es una CA ACME de laboratorio; este certificado no es público ni corresponde a Let's Encrypt.</footer>
+  </main>
+</body>
+</html>

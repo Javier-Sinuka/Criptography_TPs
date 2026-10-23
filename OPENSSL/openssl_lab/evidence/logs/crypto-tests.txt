@@ -1,0 +1,79 @@
+Fecha UTC: 2026-10-13T05:45:16+00:00
+Sistema: Ubuntu 24.04.5 LTS
+OpenSSL: OpenSSL 3.0.13 30 Jan 2024 (Library: OpenSSL 3.0.13 30 Jan 2024)
+
+E01 Texto plano, PDF p. 2
+Hola abuela,
+
+Te escribo esta carta para agradecerte el pan casero con
+chicharrones y el salame de Colonia Caroya que me enviaste.
+¡Los probé esta mañana en el desayuno y son absolutamente
+deliciosos!
+
+Te deseo lo mejor.
+Tu nieto feliz.
+text/plain; charset=utf-8
+240 data/letter_to_grandma.txt
+ce826f3b0089e4b8f8571a23031a2bdaf8601033df1dbba782410c00fa487aa7  data/letter_to_grandma.txt
+
+E02 AES-256-CBC con KDF heredada; se usa passfile para no revelar el secreto
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+outputs/message_binary.enc: openssl enc'd data with salted password
+272 outputs/message_binary.enc
+00000000: 5361 6c74 6564 5f5f 688e cd7c fa4c 66e4  Salted__h..|.Lf.
+00000010: 8b00 0432 796c 6385 354c e919 9e96 0f18  ...2ylc.5L......
+00000020: 0676 c278 4c02 8774 a487 e690 ca09 025e  .v.xL..t.......^
+
+E03 AES-256-CBC + Base64
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+outputs/message_base64.enc: openssl enc'd data with salted password, base64 encoded
+370 outputs/message_base64.enc
+U2FsdGVkX18D+o5pWZc9Fwv/9h2vy1QZykCFfkL4Sy8m1+jA5W2RKmSWqMyTstqo
+4dYD2qJ
+
+E04 Descifrado, -a decodifica Base64
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+cmp: PASS
+ce826f3b0089e4b8f8571a23031a2bdaf8601033df1dbba782410c00fa487aa7  data/letter_to_grandma.txt
+ce826f3b0089e4b8f8571a23031a2bdaf8601033df1dbba782410c00fa487aa7  outputs/decrypted_letter.txt
+
+E04-N Contraseña incorrecta
+Error de descifrado
+
+E05 Claves RSA cifradas de Alice y Bob, 3072 bits
+-rw------- 1 javier javier 2654 Oct 13 02:45 outputs/alice_private.pem
+-rw------- 1 javier javier  625 Oct 13 02:45 outputs/alice_public.pem
+outputs/alice_private.pem: OpenSSH private key (with password)
+outputs/alice_public.pem:  ASCII text
+Private-Key: (3072 bit, 2 primes)
+-rw------- 1 javier javier 2654 Oct 13 02:45 outputs/bob_private.pem
+-rw------- 1 javier javier  625 Oct 13 02:45 outputs/bob_public.pem
+outputs/bob_private.pem: OpenSSH private key (with password)
+outputs/bob_public.pem:  ASCII text
+Private-Key: (3072 bit, 2 primes)
+
+E06 Alice cifra a Bob con RSA-OAEP-SHA256
+Alice->Bob cmp: PASS
+outputs/top_secret.enc: data
+ 14 data/top_secret.txt
+384 outputs/top_secret.enc
+398 total
+00000000: 4f44 9695 b497 6c8c aa59 8c19 af15 ca3d  OD....l..Y.....=
+00000010: 6211 f53f 2808 9283 c26a 49d2 0a41 dd0e  b..?(....jI..A..
+Clave privada equivocada: rechazada
+Bob->Alice cmp: PASS
+
+E07 Sobre híbrido, adaptación explícita a clave de alta entropía
+Archivo híbrido cmp: PASS
+91d3beb88a9b2f778a6c44a1c53b63d3c79931845a9aef84b3fb414610bd1938  data/file_secret
+91d3beb88a9b2f778a6c44a1c53b63d3c79931845a9aef84b3fb414610bd1938  outputs/file_secret.restored
+2097152 data/file_secret
+2097184 outputs/file_secret.enc
+    384 outputs/key.pass.enc
+4194720 total
+
+E07-N Alteración de ciphertext CBC
+alteración no autenticada: archivo distinto
